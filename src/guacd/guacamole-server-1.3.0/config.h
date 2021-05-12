@@ -225,7 +225,7 @@
 #define _XOPEN_SOURCE 700
 
 /* Uses BSD-specific APIs (if available) */
-#define __BSD_VISIBLE 1
+//#define __BSD_VISIBLE 1
 
 /* Define to `unsigned int' if <sys/types.h> does not define. */
 /* #undef size_t */
