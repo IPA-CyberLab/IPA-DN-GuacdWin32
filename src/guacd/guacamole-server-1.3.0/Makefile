@@ -1,6 +1,7 @@
 # by dnobori
 
-.PHONY: all build clean
+.PHONY: all build clean FORCE
+FORCE:
 
 .DEFAULT_GOAL := all
 
