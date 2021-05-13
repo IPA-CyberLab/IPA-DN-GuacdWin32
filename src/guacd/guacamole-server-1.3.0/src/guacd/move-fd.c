@@ -26,12 +26,51 @@
 #include <errno.h>
 #include <fcntl.h>
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/wait.h>
 #include <unistd.h>
 
-int guacd_send_fd(int sock, int fd) {
+int guacd_send_fd(int sock, int fd)
+{
+    char str[32] = { 0 };
+
+    sprintf(str, "%u", fd);
+
+    int ret = send(sock, str, 32, 0);
+    if (ret != 32)
+    {
+        printf("guacd_send_fd: fd = %u send error\n", fd);
+        return 0;
+    }
+
+    printf("guacd_send_fd: fd = %u send ok\n", fd);
+
+    return 1;
+}
+
+int guacd_recv_fd(int sock)
+{
+    char str[32] = { 0 };
+
+    int ret = recv(sock, str, 32, 0);
+
+    if (ret != 32)
+    {
+		printf("guacd_recv_fd: recv error: ret = %u, err = %u\n", ret, errno);
+		return -1;
+    }
+
+    int fd = (int)strtoul(str, NULL, 0);
+
+    printf("guacd_recv_fd: '%s': %u\n", str, fd);
+
+    return fd;
+}
+
+int guacd_send_fd_original(int sock, int fd) {
 
     struct msghdr message = {0};
     char message_data[] = {'G'};
@@ -62,9 +101,11 @@ int guacd_send_fd(int sock, int fd) {
 
 }
 
-int guacd_recv_fd(int sock) {
+int guacd_recv_fd_original(int sock) {
 
     int fd;
+
+    printf("child: guacd_recv_fd(): sock = %u\n", sock);
 
     struct msghdr message = {0};
     char message_data[1];
@@ -83,18 +124,19 @@ int guacd_recv_fd(int sock) {
     message.msg_controllen = sizeof(buffer);
 
     /* Receive file descriptor */
-    if (recvmsg(sock, &message, 0) == sizeof(message_data)) {
+    int sz = 0;
+    if ((sz = recvmsg(sock, &message, 0)) == sizeof(message_data)) {
 
         /* Validate payload */
         if (message_data[0] != 'G') {
             errno = EPROTO;
+            printf("child: guacd_recv_fd(): message_data[0] != 'G'\n");
             return -1;
         }
 
         /* Iterate control headers, looking for the sent file descriptor */
         struct cmsghdr* control;
         for (control = CMSG_FIRSTHDR(&message); control != NULL; control = CMSG_NXTHDR(&message, control)) {
-
             /* Pull file descriptor from data */
             if (control->cmsg_level == SOL_SOCKET && control->cmsg_type == SCM_RIGHTS) {
                 memcpy(&fd, CMSG_DATA(control), sizeof(fd));
@@ -106,6 +148,7 @@ int guacd_recv_fd(int sock) {
     } /* end if recvmsg() success */
 
     /* Failed to receive file descriptor */
+    printf("child: guacd_recv_fd(): Failed to receive file descriptor, sz = %u, sizeof(message_data) = %u\n", sz, sizeof(message_data));
     return -1;
 
 }

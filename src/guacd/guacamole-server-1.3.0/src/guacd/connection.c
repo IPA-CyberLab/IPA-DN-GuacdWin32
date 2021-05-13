@@ -134,6 +134,8 @@ void* guacd_connection_io_thread(void* data) {
 
     int length;
 
+    printf("parent: guacd_connection_io_thread started\n");
+
     pthread_t write_thread;
     pthread_create(&write_thread, NULL, guacd_connection_write_thread, params);
 
@@ -151,6 +153,8 @@ void* guacd_connection_io_thread(void* data) {
     guac_socket_free(params->socket);
     close(params->fd);
     free(params);
+
+    printf("parent: guacd_connection_io_thread finished\n");
 
     return NULL;
 
@@ -183,28 +187,32 @@ static int guacd_add_user(guacd_proc* proc, guac_parser* parser, guac_socket* so
 
     int sockets[2];
 
+    printf("parent: guacd_add_user\n");
+
     /* Set up socket pair */
-    if (socketpair(AF_UNIX, SOCK_STREAM, 0, sockets) < 0) {
-        guacd_log(GUAC_LOG_ERROR, "Unable to allocate file descriptors for I/O transfer: %s", strerror(errno));
-        return 1;
-    }
+    //if (socketpair(AF_UNIX, SOCK_STREAM, 0, sockets) < 0) {
+    //    guacd_log(GUAC_LOG_ERROR, "Unable to allocate file descriptors for I/O transfer: %s", strerror(errno));
+    //    return 1;
+    //}
 
-    int user_fd = sockets[0];
-    int proc_fd = sockets[1];
+    //int user_fd = sockets[0];
+    //int proc_fd = sockets[1];
 
-    /* Send user file descriptor to process */
-    if (!guacd_send_fd(proc->fd_socket, proc_fd)) {
-        guacd_log(GUAC_LOG_ERROR, "Unable to add user.");
-        return 1;
-    }
+    //printf("parent: guacd_send_fd: user_fd = %u, proc_fd = %u\n", user_fd, proc_fd);
+
+    ///* Send user file descriptor to process */
+    //if (!guacd_send_fd(proc->fd_socket, proc_fd)) {
+    //    guacd_log(GUAC_LOG_ERROR, "Unable to add user.");
+    //    return 1;
+    //}
 
     /* Close our end of the process file descriptor */
-    close(proc_fd);
+    //close(proc_fd);
 
     guacd_connection_io_thread_params* params = malloc(sizeof(guacd_connection_io_thread_params));
     params->parser = parser;
     params->socket = socket;
-    params->fd = user_fd;
+    params->fd = proc->fd_socket;
 
     /* Start I/O thread */
     pthread_t io_thread;
@@ -272,6 +280,7 @@ static int guacd_route_connection(guacd_proc_map* map, guac_socket* socket) {
 
     const char* identifier = parser->argv[0];
 
+#if 0
     /* If connection ID, retrieve existing process */
     if (identifier[0] == GUAC_CLIENT_ID_PREFIX) {
 
@@ -289,7 +298,9 @@ static int guacd_route_connection(guacd_proc_map* map, guac_socket* socket) {
     }
 
     /* Otherwise, create new client */
-    else {
+    else
+#endif
+	{
 
         guacd_log(GUAC_LOG_INFO, "Creating new client for protocol \"%s\"",
                 identifier);

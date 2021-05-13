@@ -18,6 +18,8 @@
  */
 
 // dnobori
+#include "config.h"
+
 #ifdef ENABLE_WINSOCK
 
 

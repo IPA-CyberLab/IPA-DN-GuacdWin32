@@ -64,6 +64,7 @@ int guac_parser_append(guac_parser* parser, void* buffer, int length) {
     if (parser->__elementc == GUAC_INSTRUCTION_MAX_ELEMENTS
             && parser->state != GUAC_PARSE_COMPLETE) {
         parser->state = GUAC_PARSE_ERROR;
+        printf("GUAC_PARSE_ERROR: 1\n");
         return 0;
     }
 
@@ -91,6 +92,7 @@ int guac_parser_append(guac_parser* parser, void* buffer, int length) {
             /* If not digit, parse error */
             else {
                 parser->state = GUAC_PARSE_ERROR;
+                printf("GUAC_PARSE_ERROR: 2\n");
                 return 0;
             }
 
@@ -99,6 +101,7 @@ int guac_parser_append(guac_parser* parser, void* buffer, int length) {
         /* If too long, parse error */
         if (parsed_length > GUAC_INSTRUCTION_MAX_LENGTH) {
             parser->state = GUAC_PARSE_ERROR;
+            printf("GUAC_PARSE_ERROR: 3\n");
             return 0;
         }
 
@@ -146,6 +149,7 @@ int guac_parser_append(guac_parser* parser, void* buffer, int length) {
                 /* Otherwise, parse error */
                 else {
                     parser->state = GUAC_PARSE_ERROR;
+                    printf("GUAC_PARSE_ERROR: 4. c = 0x%X\n", c);
                     return 0;
                 }
 

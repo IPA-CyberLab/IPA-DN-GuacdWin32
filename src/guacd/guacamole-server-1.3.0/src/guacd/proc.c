@@ -32,6 +32,7 @@
 #include <guacamole/socket.h>
 #include <guacamole/user.h>
 
+#include <stdio.h>
 #include <errno.h>
 #include <pthread.h>
 #include <signal.h>
@@ -138,7 +139,9 @@ static void guacd_proc_add_user(guacd_proc* proc, int fd, int owner) {
     /* Start user thread */
     pthread_t user_thread;
     pthread_create(&user_thread, NULL, guacd_user_thread, params);
-    pthread_detach(user_thread);
+    //pthread_detach(user_thread);
+    pthread_join(user_thread, NULL);
+
 
 }
 
@@ -314,6 +317,8 @@ static void guacd_exec_proc(guacd_proc* proc, const char* protocol) {
 
     /* Init client for selected protocol */
     guac_client* client = proc->client;
+	printf("child: start guac_client_load_plugin: %s\n", protocol);
+
     if (guac_client_load_plugin(client, protocol)) {
 
         /* Log error */
@@ -327,6 +332,8 @@ static void guacd_exec_proc(guacd_proc* proc, const char* protocol) {
         goto cleanup_client;
     }
 
+    printf("child: guac_client_load_plugin %s OK.\n", protocol);
+
     /* The first file descriptor is the owner */
     int owner = 1;
 
@@ -334,15 +341,19 @@ static void guacd_exec_proc(guacd_proc* proc, const char* protocol) {
     guac_socket_require_keep_alive(client->socket);
 
     /* Add each received file descriptor as a new user */
-    int received_fd;
-    while ((received_fd = guacd_recv_fd(proc->fd_socket)) != -1) {
+    int received_fd = proc->fd_socket;
+    //while ((received_fd = guacd_recv_fd(proc->fd_socket)) != -1) {
+
+    //    printf("child: received_fd = %u\n", received_fd);
 
         guacd_proc_add_user(proc, received_fd, owner);
 
         /* Future file descriptors are not owners */
         owner = 0;
 
-    }
+    //}
+
+    printf("child: exit guacd_recv_fd() loop\n");
     
 cleanup_client:
 
@@ -401,6 +412,8 @@ guacd_proc* guacd_create_proc(const char* protocol) {
     int parent_socket = sockets[0];
     int child_socket = sockets[1];
 
+    printf("guacd_create_proc. parent_socket = %u, child_socket = %u\n", parent_socket, child_socket);
+
     /* Allocate process */
     guacd_proc* proc = calloc(1, sizeof(guacd_proc));
     if (proc == NULL) {
@@ -423,6 +436,7 @@ guacd_proc* guacd_create_proc(const char* protocol) {
     proc->client->log_handler = guacd_client_log;
 
     /* Fork */
+    printf("--- before fork() ---\n");
     proc->pid = fork();
     if (proc->pid < 0) {
         guacd_log(GUAC_LOG_ERROR, "Cannot fork child process: %s", strerror(errno));
@@ -436,8 +450,11 @@ guacd_proc* guacd_create_proc(const char* protocol) {
     /* Child */
     else if (proc->pid == 0) {
 
+        printf("--- after fork(): child ---\n");
+
         /* Communicate with parent */
         proc->fd_socket = parent_socket;
+        printf("child: proc->fd_socket = %u\n", proc->fd_socket);
         close(child_socket);
 
         /* Start protocol-specific handling */
@@ -448,8 +465,11 @@ guacd_proc* guacd_create_proc(const char* protocol) {
     /* Parent */
     else {
 
+        printf("--- after fork(): parent ---\n");
+
         /* Communicate with child */
         proc->fd_socket = child_socket;
+        printf("parent: proc->fd_socket = %u\n", proc->fd_socket);
         close(parent_socket);
 
     }
