@@ -17,6 +17,10 @@
  * under the License.
  */
 
+#ifdef ENABLE_SSH_AGENT
+
+
+
 #include "config.h"
 
 #include "client.h"
@@ -198,4 +202,6 @@ void ssh_auth_agent_callback(LIBSSH2_SESSION *session,
     client_data->auth_agent = auth_agent;
 
 }
+
+#endif // ENABLE_SSH_AGENT
 

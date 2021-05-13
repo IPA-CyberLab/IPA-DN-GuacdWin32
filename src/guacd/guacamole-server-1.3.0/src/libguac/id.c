@@ -22,11 +22,15 @@
 #include "guacamole/error.h"
 #include "id.h"
 
-#ifdef HAVE_OSSP_UUID_H
-#include <ossp/uuid.h>
-#else
-#include <uuid.h>
-#endif
+
+//#ifdef HAVE_OSSP_UUID_H
+//#include <ossp/uuid.h>
+//#else
+//#include <uuid.h>
+//#endif
+
+
+#include "/cygdrive/c/git/IPA-DN-GuacdWin32/src/libossp-uuid/uuid-1.6.2/uuid.h"
 
 #include <stdlib.h>
 

@@ -4,14 +4,14 @@
 
 .DEFAULT_GOAL := all
 
-CFLAGS := -g -O2 -I./ -I./src/libguac/
+CFLAGS := -g -O2 -I/usr/include/freerdp2/ -I/usr/include/winpr2/ -I/usr/include/pango-1.0/ -I/usr/include/glib-2.0/ -I/lib/glib-2.0/include/ -I/usr/include/cairo/ -I./ -I./src/pulse/ -I./src/common/ -I./src/libguac/ -I./src/protocols/rdp/ -I./src/common-ssh/ -I./src/terminal/
 
-LDLIBS := -ldl -lm -lcairo -ljpeg -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lintl -lpng -lrt -lpthread -lpulse -lfreerdp2 -lfreerdp-client2 -lwinpr2 -lssh2 -lssl -lcrypto -lvncclient -logg -lvorbis -lvorbisenc -lwebp  -pthread $(CROSSLIBS_FULLPATH)
+LDLIBS := -ldl -lm -lcairo -ljpeg -lpango-1.0 -lgobject-2.0 -lglib-2.0 -lintl -lpng -lrt -lpthread -lpulse -lfreerdp2 -lfreerdp-client2 -lwinpr2 -lssh2 -lssl -lcrypto -lvncclient -logg -lvorbis -lvorbisenc -lwebp -pthread /usr/local/lib/libuuid.a
 
 LDFLAGS := -g
 
 h_all := $(shell /bin/find ./ -type f -name '*.h')
-c_all := $(shell /bin/find ./ -type f -name '*.c')
+c_all := $(shell /bin/find ./ -type f -name '*.c' | grep -F -v -e ./src/common/tests/ -e ./src/common-ssh/tests/ -e ./src/libguac/tests/ -e ./src/protocols/kubernetes/ -e ./src/protocols/rdp/tests/ -e ./src/protocols/telnet/ -e ./src/guacenc/ -e ./src/guaclog/)
 o_all := $(addprefix tmp_build/,$(patsubst %.c,%.o,$(c_all)))
 
 # $(warning test = $(o_all))
@@ -25,9 +25,11 @@ o_all := $(addprefix tmp_build/,$(patsubst %.c,%.o,$(c_all)))
 # 	@if [ ! -e `dirname $@` ]; then mkdir -p `dirname $@`; fi
 # 	$(CC) $(CFLAGS) -o $@ -c $<
 
-$(o_all): $(h_all)
+#$(o_all): $(patsubst tmp_build/%.o,%.c,$@) $(h_all) aaa
+
+$(o_all): tmp_build/%.o: %.c $(h_all)
 	@if [ ! -e `dirname $@` ]; then mkdir -p `dirname $@`; fi
-	$(CC) $(CFLAGS) -o $@ -c $(patsubst tmp_build/%.o,%.c,$@)
+	$(CC) $(CFLAGS) -o $@ -c $<
 
 all:	build
 

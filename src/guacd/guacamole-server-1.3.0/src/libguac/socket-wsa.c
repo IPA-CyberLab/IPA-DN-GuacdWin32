@@ -17,6 +17,10 @@
  * under the License.
  */
 
+// dnobori
+#ifdef ENABLE_WINSOCK
+
+
 #include "guacamole/error.h"
 #include "guacamole/socket.h"
 
@@ -446,3 +450,4 @@ guac_socket* guac_socket_open_wsa(SOCKET sock) {
 
 }
 
+#endif
