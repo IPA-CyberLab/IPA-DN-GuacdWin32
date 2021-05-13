@@ -42,6 +42,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <strings.h>
 
 /**
  * Empty NULL-terminated array of argument names.
@@ -425,7 +426,31 @@ int guac_client_end_frame(guac_client* client) {
 
 }
 
-int guac_client_load_plugin(guac_client* client, const char* protocol) {
+int PROTO_RDP_guac_client_init(guac_client* client, int argc, char** argv);
+int PROTO_VNC_guac_client_init(guac_client* client);
+int PROTO_SSH_guac_client_init(guac_client* client);
+
+
+// dnobori
+int guac_client_load_plugin(guac_client* client, const char* protocol)
+{
+    if (strcasecmp(protocol, "rdp") == 0)
+    {
+        return PROTO_RDP_guac_client_init(client, 0, NULL);
+    }
+    else if (strcasecmp(protocol, "vnc") == 0)
+    {
+        return PROTO_VNC_guac_client_init(client);
+    }
+	else if (strcasecmp(protocol, "ssh") == 0)
+	{
+		return PROTO_SSH_guac_client_init(client);
+	}
+    guac_error == GUAC_STATUS_NOT_FOUND;
+    return -1;
+}
+
+int guac_client_load_plugin__original(guac_client* client, const char* protocol) {
 
     /* Reference to dlopen()'d plugin */
     void* client_plugin_handle;

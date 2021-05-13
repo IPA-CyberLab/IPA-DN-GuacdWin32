@@ -78,7 +78,7 @@ static int is_writable_directory(const char* path) {
 
 }
 
-int guac_client_init(guac_client* client, int argc, char** argv) {
+int PROTO_RDP_guac_client_init(guac_client* client, int argc, char** argv) {
 
     /* Automatically set HOME environment variable if unset (FreeRDP's
      * initialization process will fail within freerdp_settings_new() if this

@@ -78,7 +78,7 @@ static void guac_kubernetes_log(int level, const char* line) {
 
 }
 
-int guac_client_init(guac_client* client) {
+int PROTO_KUBERNETES_guac_client_init(guac_client* client) {
 
     /* Ensure reference to main guac_client remains available in all
      * libwebsockets contexts */

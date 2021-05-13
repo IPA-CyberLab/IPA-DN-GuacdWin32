@@ -36,7 +36,7 @@
 #include <guacamole/argv.h>
 #include <guacamole/client.h>
 
-int guac_client_init(guac_client* client) {
+int PROTO_SSH_guac_client_init(guac_client* client) {
 
     /* Set client args */
     client->args = GUAC_SSH_CLIENT_ARGS;

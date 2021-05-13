@@ -35,7 +35,7 @@
 #include <guacamole/argv.h>
 #include <guacamole/client.h>
 
-int guac_client_init(guac_client* client) {
+int PROTO_TELNET_guac_client_init(guac_client* client) {
 
     /* Set client args */
     client->args = GUAC_TELNET_CLIENT_ARGS;
