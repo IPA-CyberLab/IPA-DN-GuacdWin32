@@ -1,0 +1,2313 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="guacamole-server-1.3.0">
+      <UniqueIdentifier>{DF54E533-F41F-4C09-8B10-5067B6D5F2AA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\bin">
+      <UniqueIdentifier>{8B240D94-08A7-4C86-892E-307DA689AF25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\build-aux">
+      <UniqueIdentifier>{36EBC04D-98CD-4524-9D6E-76B60E4B053C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\doc">
+      <UniqueIdentifier>{0545FBDD-C66D-4FBF-82B0-3CEACA6BF704}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\m4">
+      <UniqueIdentifier>{69D46E46-5CD3-4719-99D2-EFEC8D0632F6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src">
+      <UniqueIdentifier>{66A5ED04-80E0-4C90-A120-05802F0E85C5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\common">
+      <UniqueIdentifier>{5D91FB90-4BD4-4DB3-8647-CDE791A4F393}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\common\common">
+      <UniqueIdentifier>{CBF83C1B-6ED8-452B-B135-B1457A756E37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\common\tests">
+      <UniqueIdentifier>{FB4A5143-D41E-4943-85FD-FAD499311C68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\common\tests\iconv">
+      <UniqueIdentifier>{F9AA7DC0-8450-4C59-B912-E09867BC4BDD}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\common\tests\rect">
+      <UniqueIdentifier>{376DA56E-3C83-4C95-A9C0-20B6EB61D050}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\common\tests\string">
+      <UniqueIdentifier>{E695761A-C8F9-4FA8-833B-DBC5A7714E21}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\common-ssh">
+      <UniqueIdentifier>{BA9E9BE4-1721-4ED7-82F6-EF9714A85AF2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\common-ssh\common-ssh">
+      <UniqueIdentifier>{4B8C8D87-9754-44BD-84C0-28616FA6AFEA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\common-ssh\tests">
+      <UniqueIdentifier>{6E693322-0637-4E97-BEDA-71212B2D4E6F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\common-ssh\tests\sftp">
+      <UniqueIdentifier>{F5333502-0913-46CC-B039-48FF199D3771}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\guacd">
+      <UniqueIdentifier>{17B2C84C-3E77-4560-83CC-E9CD1ED371AA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\guacd\init.d">
+      <UniqueIdentifier>{9D6E9AC6-8CA4-4535-B3A4-09D6AEE48F90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\guacd\man">
+      <UniqueIdentifier>{F6F1FB9D-129E-47D5-B9C9-1F3DFE706824}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\guacd\systemd">
+      <UniqueIdentifier>{D24E881F-754A-40A6-A3CB-38E2E7865714}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\guacd-docker">
+      <UniqueIdentifier>{F4CCDF61-FC5F-467E-9A8D-E26ED4813829}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\guacd-docker\bin">
+      <UniqueIdentifier>{A8E6917E-013F-4878-8D06-CBDD2C1821CE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\guacenc">
+      <UniqueIdentifier>{565065B4-B8D3-4A82-9D4A-7CB1EC279C7C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\guacenc\man">
+      <UniqueIdentifier>{62B2F360-61CB-453F-A1B1-B9381B6F896F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\guaclog">
+      <UniqueIdentifier>{F005346C-DF8D-47D4-8390-6334CFE0596C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\guaclog\man">
+      <UniqueIdentifier>{5043BF62-9C5F-4CAD-B0EF-B8F5A706168F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\libguac">
+      <UniqueIdentifier>{1F468156-068D-4216-B847-EF09BEBF01C4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\libguac\guacamole">
+      <UniqueIdentifier>{D74EED88-A7E6-47E9-86E8-F962A078EC91}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\libguac\tests">
+      <UniqueIdentifier>{F11F8317-2095-474B-A815-C7DF283602B3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\libguac\tests\client">
+      <UniqueIdentifier>{746EE217-7DCA-492A-AD10-BE1212F9121C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\libguac\tests\parser">
+      <UniqueIdentifier>{C3B8E87C-BF82-40B4-9E1A-18D4EEBCFEFA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\libguac\tests\pool">
+      <UniqueIdentifier>{AF193ECD-8298-4109-BF5A-7C2BD3057D17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\libguac\tests\protocol">
+      <UniqueIdentifier>{DDE9D19D-065E-4ADC-91E9-B9B3EA777621}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\libguac\tests\socket">
+      <UniqueIdentifier>{5C83EC2B-99CA-48BD-B89C-17FF65796083}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\libguac\tests\string">
+      <UniqueIdentifier>{83B422B9-1383-47E6-87E0-8782F43ACFC2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\libguac\tests\unicode">
+      <UniqueIdentifier>{B6B43B2C-A6D4-4A10-817D-BE9F5B219A68}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\protocols">
+      <UniqueIdentifier>{D9044AAD-4ED7-42C7-A7CD-D051CBA202EE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\protocols\kubernetes">
+      <UniqueIdentifier>{65D11BE2-ABA4-43AE-BF84-D0B1C5ADCDD1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\protocols\rdp">
+      <UniqueIdentifier>{FB7942F0-3720-4277-85D0-7CF55FB46BBC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\protocols\rdp\channels">
+      <UniqueIdentifier>{4ECC168F-BF00-4F01-8F17-7FF47775B90C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\protocols\rdp\channels\audio-input">
+      <UniqueIdentifier>{3D3CFEC3-9BCA-4CC1-819C-6F8D4FAA0B10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr">
+      <UniqueIdentifier>{29337491-B4EB-4D09-A728-95A8E3DE3DC5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpsnd">
+      <UniqueIdentifier>{FA9D0FFF-A94B-437C-9189-2715D817A506}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps">
+      <UniqueIdentifier>{48C23EC8-6F32-424C-A7FC-C014238ADB6E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\protocols\rdp\plugins">
+      <UniqueIdentifier>{7643FF56-3968-4D57-B32D-B618C6A5C9E0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\protocols\rdp\plugins\guacai">
+      <UniqueIdentifier>{34D69418-BFE6-477D-9139-CCFF90B1D642}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\protocols\rdp\plugins\guac-common-svc">
+      <UniqueIdentifier>{EB26584E-EECE-4964-A9CB-C29CFEE46E3B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\protocols\rdp\tests">
+      <UniqueIdentifier>{63F6A1BC-C4CA-476A-8DF7-261073F03DE6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\protocols\rdp\tests\fs">
+      <UniqueIdentifier>{D33E62F6-AA35-479E-9249-7F590081B32E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\protocols\ssh">
+      <UniqueIdentifier>{60929DE7-59E4-493D-AE96-393498600104}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\protocols\telnet">
+      <UniqueIdentifier>{C2324454-3E70-49F5-8B9F-D39425A11A2F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\protocols\vnc">
+      <UniqueIdentifier>{E3E5E29C-6FA7-4C2A-AF7F-62578A3913CB}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\pulse">
+      <UniqueIdentifier>{BDD6DAB0-114E-4DAA-B4BC-FD1225D1D282}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\pulse\pulse">
+      <UniqueIdentifier>{3B089E68-C524-47A4-9D19-9E60F6F5362F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\terminal">
+      <UniqueIdentifier>{E3ED19BF-A2DF-40AC-826A-9A6583B90B43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\src\terminal\terminal">
+      <UniqueIdentifier>{BBF0F501-DEF4-4636-A056-EDA80548A1D2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build">
+      <UniqueIdentifier>{77EC2F61-9F28-49C2-9F5E-1B5060007538}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src">
+      <UniqueIdentifier>{80371609-7345-4333-AE82-1DDBDA673789}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\common">
+      <UniqueIdentifier>{124723CB-3EA1-46EF-BE26-F3E55E496ED9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\common-ssh">
+      <UniqueIdentifier>{7DBFEEB1-7EF6-448B-9090-96ACF09A64C1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\guacd">
+      <UniqueIdentifier>{2194CC24-64C1-47B0-B5EC-C692D853566F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\libguac">
+      <UniqueIdentifier>{122C4E4C-5B93-40CA-852B-A030036606F2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\protocols">
+      <UniqueIdentifier>{A08CF57B-F929-49B4-BDCB-DD023F0F0017}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp">
+      <UniqueIdentifier>{FE822ACA-9EB4-4AAF-8E90-06633926EB8B}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels">
+      <UniqueIdentifier>{D7DF9DE8-9ED8-428D-B14F-34B34D5F757D}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\audio-input">
+      <UniqueIdentifier>{5E01FB45-D73C-44BB-87A7-0425785D926E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr">
+      <UniqueIdentifier>{F5C1270B-F384-4715-9B85-E273F2831779}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpsnd">
+      <UniqueIdentifier>{D26D8865-0C9B-4438-A90E-CB5FC65CF6FC}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\plugins">
+      <UniqueIdentifier>{0EC4761F-F025-4BE8-8FD2-CAD7168077A1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\plugins\guacai">
+      <UniqueIdentifier>{B7751B09-424A-4BD8-BB39-F5D7FC6A5A60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\plugins\guac-common-svc">
+      <UniqueIdentifier>{28942FF2-91C1-40DE-B258-7878C6486A74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\protocols\ssh">
+      <UniqueIdentifier>{99A94635-9186-4E49-BE42-A1EA2AED5BE4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\protocols\vnc">
+      <UniqueIdentifier>{0C032E97-D016-495A-945B-C80A0908C0E9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\pulse">
+      <UniqueIdentifier>{139DC452-0E8C-4894-A1C0-33D8578A974A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\tmp_build\src\terminal">
+      <UniqueIdentifier>{097C2F01-3843-472C-97E7-1A5459A1AA1C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="guacamole-server-1.3.0\util">
+      <UniqueIdentifier>{FB87CC49-568E-499C-9146-5A3E9080C580}</UniqueIdentifier>
+    </Filter>
+
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="guacamole-server-1.3.0\src\common\common\blank_cursor.h">
+      <Filter>guacamole-server-1.3.0\src\common\common</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common\common\clipboard.h">
+      <Filter>guacamole-server-1.3.0\src\common\common</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common\common\cursor.h">
+      <Filter>guacamole-server-1.3.0\src\common\common</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common\common\defaults.h">
+      <Filter>guacamole-server-1.3.0\src\common\common</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common\common\display.h">
+      <Filter>guacamole-server-1.3.0\src\common\common</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common\common\dot_cursor.h">
+      <Filter>guacamole-server-1.3.0\src\common\common</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common\common\ibar_cursor.h">
+      <Filter>guacamole-server-1.3.0\src\common\common</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common\common\iconv.h">
+      <Filter>guacamole-server-1.3.0\src\common\common</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common\common\io.h">
+      <Filter>guacamole-server-1.3.0\src\common\common</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common\common\json.h">
+      <Filter>guacamole-server-1.3.0\src\common\common</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common\common\list.h">
+      <Filter>guacamole-server-1.3.0\src\common\common</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common\common\pointer_cursor.h">
+      <Filter>guacamole-server-1.3.0\src\common\common</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common\common\recording.h">
+      <Filter>guacamole-server-1.3.0\src\common\common</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common\common\rect.h">
+      <Filter>guacamole-server-1.3.0\src\common\common</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common\common\string.h">
+      <Filter>guacamole-server-1.3.0\src\common\common</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common\common\surface.h">
+      <Filter>guacamole-server-1.3.0\src\common\common</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common-ssh\common-ssh\buffer.h">
+      <Filter>guacamole-server-1.3.0\src\common-ssh\common-ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common-ssh\common-ssh\dsa-compat.h">
+      <Filter>guacamole-server-1.3.0\src\common-ssh\common-ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common-ssh\common-ssh\key.h">
+      <Filter>guacamole-server-1.3.0\src\common-ssh\common-ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common-ssh\common-ssh\rsa-compat.h">
+      <Filter>guacamole-server-1.3.0\src\common-ssh\common-ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common-ssh\common-ssh\sftp.h">
+      <Filter>guacamole-server-1.3.0\src\common-ssh\common-ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common-ssh\common-ssh\ssh.h">
+      <Filter>guacamole-server-1.3.0\src\common-ssh\common-ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\common-ssh\common-ssh\user.h">
+      <Filter>guacamole-server-1.3.0\src\common-ssh\common-ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacd\conf.h">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacd\conf-args.h">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacd\conf-file.h">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacd\conf-parse.h">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacd\connection.h">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacd\log.h">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacd\move-fd.h">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacd\proc.h">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacd\proc-map.h">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacenc\buffer.h">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacenc\cursor.h">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacenc\display.h">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacenc\encode.h">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacenc\ffmpeg-compat.h">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacenc\guacenc.h">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacenc\image-stream.h">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacenc\instructions.h">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacenc\jpeg.h">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacenc\layer.h">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacenc\log.h">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacenc\parse.h">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacenc\png.h">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacenc\video.h">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guacenc\webp.h">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guaclog\guaclog.h">
+      <Filter>guacamole-server-1.3.0\src\guaclog</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guaclog\instructions.h">
+      <Filter>guacamole-server-1.3.0\src\guaclog</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guaclog\interpret.h">
+      <Filter>guacamole-server-1.3.0\src\guaclog</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guaclog\keydef.h">
+      <Filter>guacamole-server-1.3.0\src\guaclog</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guaclog\log.h">
+      <Filter>guacamole-server-1.3.0\src\guaclog</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\guaclog\state.h">
+      <Filter>guacamole-server-1.3.0\src\guaclog</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\argv.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\argv-constants.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\argv-fntypes.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\audio.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\audio-fntypes.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\audio-types.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\client.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\client-constants.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\client-fntypes.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\client-types.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\error.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\error-types.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\hash.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\layer.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\layer-types.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\object.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\object-types.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\parser.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\parser-constants.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\parser-types.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\plugin.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\plugin-constants.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\pool.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\pool-types.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\protocol.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\protocol-constants.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\protocol-types.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\socket.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\socket-constants.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\socket-fntypes.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\socket-ssl.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\socket-types.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\socket-wsa.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\stream.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\stream-types.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\string.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\timestamp.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\timestamp-types.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\unicode.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\user.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\user-constants.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\user-fntypes.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\user-types.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\wol.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\guacamole\wol-constants.h">
+      <Filter>guacamole-server-1.3.0\src\libguac\guacamole</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\encode-jpeg.h">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\encode-png.h">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\encode-webp.h">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\id.h">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\palette.h">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\raw_encoder.h">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\user-handlers.h">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\libguac\wait-fd.h">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\kubernetes\argv.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\kubernetes\client.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\kubernetes\clipboard.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\kubernetes\input.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\kubernetes\io.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\kubernetes\kubernetes.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\kubernetes\pipe.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\kubernetes\settings.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\kubernetes\ssl.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\kubernetes\url.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\kubernetes\user.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\audio-input\audio-buffer.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\audio-input</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\audio-input\audio-input.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\audio-input</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr\rdpdr.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr\rdpdr-fs.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr\rdpdr-fs-messages.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr\rdpdr-fs-messages-dir-info.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr\rdpdr-fs-messages-file-info.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr\rdpdr-fs-messages-vol-info.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr\rdpdr-messages.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr\rdpdr-printer.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpsnd\rdpsnd.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpsnd</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpsnd\rdpsnd-messages.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpsnd</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\cliprdr.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\common-svc.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\disp.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\pipe-svc.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rail.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\plugins\guacai\guacai.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\plugins\guacai</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\plugins\guacai\guacai-messages.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\plugins\guacai</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\plugins\channels.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\plugins</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\plugins\ptr-string.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\plugins</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\argv.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\beep.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\bitmap.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\client.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\color.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\decompose.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\download.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\error.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\fs.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\gdi.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\glyph.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\input.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\keyboard.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\keymap.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\log.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\ls.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\pointer.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\print-job.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\rdp.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\resolution.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\settings.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\sftp.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\unicode.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\upload.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\rdp\user.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\ssh\argv.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\ssh\client.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\ssh\clipboard.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\ssh\input.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\ssh\pipe.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\ssh\settings.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\ssh\sftp.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\ssh\ssh.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\ssh\ssh_agent.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\ssh\ttymode.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\ssh\user.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\telnet\argv.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\telnet\client.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\telnet\clipboard.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\telnet\input.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\telnet\pipe.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\telnet\settings.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\telnet\telnet.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\telnet\user.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\vnc\argv.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\vnc\auth.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\vnc\client.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\vnc\clipboard.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\vnc\cursor.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\vnc\display.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\vnc\input.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\vnc\log.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\vnc\settings.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\vnc\sftp.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\vnc\user.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\protocols\vnc\vnc.h">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\pulse\pulse\pulse.h">
+      <Filter>guacamole-server-1.3.0\src\pulse\pulse</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\terminal\terminal\buffer.h">
+      <Filter>guacamole-server-1.3.0\src\terminal\terminal</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\terminal\terminal\char_mappings.h">
+      <Filter>guacamole-server-1.3.0\src\terminal\terminal</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\terminal\terminal\color-scheme.h">
+      <Filter>guacamole-server-1.3.0\src\terminal\terminal</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\terminal\terminal\common.h">
+      <Filter>guacamole-server-1.3.0\src\terminal\terminal</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\terminal\terminal\display.h">
+      <Filter>guacamole-server-1.3.0\src\terminal\terminal</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\terminal\terminal\named-colors.h">
+      <Filter>guacamole-server-1.3.0\src\terminal\terminal</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\terminal\terminal\palette.h">
+      <Filter>guacamole-server-1.3.0\src\terminal\terminal</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\terminal\terminal\scrollbar.h">
+      <Filter>guacamole-server-1.3.0\src\terminal\terminal</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\terminal\terminal\select.h">
+      <Filter>guacamole-server-1.3.0\src\terminal\terminal</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\terminal\terminal\terminal.h">
+      <Filter>guacamole-server-1.3.0\src\terminal\terminal</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\terminal\terminal\terminal_handlers.h">
+      <Filter>guacamole-server-1.3.0\src\terminal\terminal</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\terminal\terminal\types.h">
+      <Filter>guacamole-server-1.3.0\src\terminal\terminal</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\terminal\terminal\typescript.h">
+      <Filter>guacamole-server-1.3.0\src\terminal\terminal</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\src\terminal\terminal\xparsecolor.h">
+      <Filter>guacamole-server-1.3.0\src\terminal\terminal</Filter>
+    </ClInclude>
+    <ClInclude Include="guacamole-server-1.3.0\config.h">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </ClInclude>
+
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\tests\iconv\convert.c">
+      <Filter>guacamole-server-1.3.0\src\common\tests\iconv</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\tests\rect\clip_and_split.c">
+      <Filter>guacamole-server-1.3.0\src\common\tests\rect</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\tests\rect\constrain.c">
+      <Filter>guacamole-server-1.3.0\src\common\tests\rect</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\tests\rect\expand_to_grid.c">
+      <Filter>guacamole-server-1.3.0\src\common\tests\rect</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\tests\rect\extend.c">
+      <Filter>guacamole-server-1.3.0\src\common\tests\rect</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\tests\rect\init.c">
+      <Filter>guacamole-server-1.3.0\src\common\tests\rect</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\tests\rect\intersects.c">
+      <Filter>guacamole-server-1.3.0\src\common\tests\rect</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\tests\string\count_occurrences.c">
+      <Filter>guacamole-server-1.3.0\src\common\tests\string</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\tests\string\split.c">
+      <Filter>guacamole-server-1.3.0\src\common\tests\string</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\blank_cursor.c">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\clipboard.c">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\cursor.c">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\display.c">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\dot_cursor.c">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\ibar_cursor.c">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\iconv.c">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\io.c">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\json.c">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\list.c">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\pointer_cursor.c">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\recording.c">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\rect.c">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\string.c">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common\surface.c">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common-ssh\tests\sftp\normalize_path.c">
+      <Filter>guacamole-server-1.3.0\src\common-ssh\tests\sftp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common-ssh\buffer.c">
+      <Filter>guacamole-server-1.3.0\src\common-ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common-ssh\dsa-compat.c">
+      <Filter>guacamole-server-1.3.0\src\common-ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common-ssh\key.c">
+      <Filter>guacamole-server-1.3.0\src\common-ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common-ssh\rsa-compat.c">
+      <Filter>guacamole-server-1.3.0\src\common-ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common-ssh\sftp.c">
+      <Filter>guacamole-server-1.3.0\src\common-ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common-ssh\ssh.c">
+      <Filter>guacamole-server-1.3.0\src\common-ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\common-ssh\user.c">
+      <Filter>guacamole-server-1.3.0\src\common-ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacd\conf-args.c">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacd\conf-file.c">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacd\conf-parse.c">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacd\connection.c">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacd\daemon.c">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacd\log.c">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacd\move-fd.c">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacd\proc.c">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacd\proc-map.c">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\buffer.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\cursor.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\display.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\display-buffers.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\display-flatten.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\display-image-streams.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\display-layers.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\display-sync.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\encode.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\ffmpeg-compat.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\guacenc.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\image-stream.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\instruction-blob.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\instruction-cfill.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\instruction-copy.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\instruction-cursor.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\instruction-dispose.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\instruction-end.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\instruction-img.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\instruction-mouse.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\instruction-move.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\instruction-rect.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\instructions.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\instruction-shade.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\instruction-size.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\instruction-sync.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\instruction-transfer.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\jpeg.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\layer.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\log.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\parse.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\png.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\video.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guacenc\webp.c">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guaclog\guaclog.c">
+      <Filter>guacamole-server-1.3.0\src\guaclog</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guaclog\instruction-key.c">
+      <Filter>guacamole-server-1.3.0\src\guaclog</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guaclog\instructions.c">
+      <Filter>guacamole-server-1.3.0\src\guaclog</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guaclog\interpret.c">
+      <Filter>guacamole-server-1.3.0\src\guaclog</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guaclog\keydef.c">
+      <Filter>guacamole-server-1.3.0\src\guaclog</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guaclog\log.c">
+      <Filter>guacamole-server-1.3.0\src\guaclog</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\guaclog\state.c">
+      <Filter>guacamole-server-1.3.0\src\guaclog</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\client\buffer_pool.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\client</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\client\layer_pool.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\client</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\parser\append.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\parser\read.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\parser</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\pool\next_free.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\pool</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\protocol\base64_decode.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\protocol\guac_protocol_version.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\protocol</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\socket\fd_send_instruction.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\socket\nested_send_instruction.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\socket</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\string\strdup.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\string</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\string\strlcat.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\string</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\string\strlcpy.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\string</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\string\strljoin.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\string</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\unicode\charsize.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\unicode</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\unicode\read.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\unicode</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\unicode\strlen.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\unicode</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\tests\unicode\write.c">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests\unicode</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\argv.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\audio.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\client.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\encode-jpeg.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\encode-png.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\encode-webp.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\error.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\hash.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\id.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\palette.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\parser.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\pool.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\protocol.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\raw_encoder.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\socket.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\socket-broadcast.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\socket-fd.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\socket-nest.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\socket-ssl.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\socket-tee.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\socket-wsa.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\string.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\timestamp.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\unicode.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\user.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\user-handlers.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\user-handshake.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\wait-fd.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\libguac\wol.c">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\kubernetes\argv.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\kubernetes\client.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\kubernetes\clipboard.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\kubernetes\input.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\kubernetes\io.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\kubernetes\kubernetes.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\kubernetes\pipe.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\kubernetes\settings.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\kubernetes\ssl.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\kubernetes\url.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\kubernetes\user.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\audio-input\audio-buffer.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\audio-input</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\audio-input\audio-input.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\audio-input</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr\rdpdr.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr\rdpdr-fs.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr\rdpdr-fs-messages.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr\rdpdr-fs-messages-dir-info.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr\rdpdr-fs-messages-file-info.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr\rdpdr-fs-messages-vol-info.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr\rdpdr-messages.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr\rdpdr-printer.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpdr</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpsnd\rdpsnd.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpsnd</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rdpsnd\rdpsnd-messages.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels\rdpsnd</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\cliprdr.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\common-svc.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\disp.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\pipe-svc.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\channels\rail.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\channels</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\plugins\guacai\guacai.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\plugins\guacai</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\plugins\guacai\guacai-messages.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\plugins\guacai</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\plugins\guac-common-svc\guac-common-svc.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\plugins\guac-common-svc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\plugins\channels.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\plugins</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\plugins\ptr-string.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\plugins</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\tests\fs\basename.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\tests\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\tests\fs\normalize_path.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\tests\fs</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\_generated_channel_entry_wrappers.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\_generated_keymaps.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\argv.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\beep.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\bitmap.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\client.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\color.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\decompose.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\download.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\error.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\fs.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\gdi.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\glyph.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\input.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\keyboard.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\keymap.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\log.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\ls.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\pointer.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\print-job.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\rdp.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\resolution.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\settings.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\sftp.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\unicode.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\upload.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\rdp\user.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\ssh\argv.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\ssh\client.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\ssh\clipboard.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\ssh\input.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\ssh\pipe.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\ssh\settings.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\ssh\sftp.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\ssh\ssh.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\ssh\ssh_agent.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\ssh\ttymode.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\ssh\user.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\telnet\argv.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\telnet\client.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\telnet\clipboard.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\telnet\input.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\telnet\pipe.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\telnet\settings.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\telnet\telnet.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\telnet\user.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\vnc\argv.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\vnc\auth.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\vnc\client.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\vnc\clipboard.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\vnc\cursor.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\vnc\display.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\vnc\input.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\vnc\log.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\vnc\settings.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\vnc\sftp.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\vnc\user.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\protocols\vnc\vnc.c">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\pulse\pulse.c">
+      <Filter>guacamole-server-1.3.0\src\pulse</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\terminal\buffer.c">
+      <Filter>guacamole-server-1.3.0\src\terminal</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\terminal\char_mappings.c">
+      <Filter>guacamole-server-1.3.0\src\terminal</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\terminal\color-scheme.c">
+      <Filter>guacamole-server-1.3.0\src\terminal</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\terminal\common.c">
+      <Filter>guacamole-server-1.3.0\src\terminal</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\terminal\display.c">
+      <Filter>guacamole-server-1.3.0\src\terminal</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\terminal\named-colors.c">
+      <Filter>guacamole-server-1.3.0\src\terminal</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\terminal\palette.c">
+      <Filter>guacamole-server-1.3.0\src\terminal</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\terminal\scrollbar.c">
+      <Filter>guacamole-server-1.3.0\src\terminal</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\terminal\select.c">
+      <Filter>guacamole-server-1.3.0\src\terminal</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\terminal\terminal.c">
+      <Filter>guacamole-server-1.3.0\src\terminal</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\terminal\terminal_handlers.c">
+      <Filter>guacamole-server-1.3.0\src\terminal</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\terminal\terminal-stdin-stream.c">
+      <Filter>guacamole-server-1.3.0\src\terminal</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\terminal\typescript.c">
+      <Filter>guacamole-server-1.3.0\src\terminal</Filter>
+    </ClCompile>
+    <ClCompile Include="guacamole-server-1.3.0\src\terminal\xparsecolor.c">
+      <Filter>guacamole-server-1.3.0\src\terminal</Filter>
+    </ClCompile>
+
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="guacamole-server-1.3.0\bin\guacctl">
+      <Filter>guacamole-server-1.3.0\bin</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\build-aux\compile">
+      <Filter>guacamole-server-1.3.0\build-aux</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\build-aux\config.guess">
+      <Filter>guacamole-server-1.3.0\build-aux</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\build-aux\config.sub">
+      <Filter>guacamole-server-1.3.0\build-aux</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\build-aux\depcomp">
+      <Filter>guacamole-server-1.3.0\build-aux</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\build-aux\install-sh">
+      <Filter>guacamole-server-1.3.0\build-aux</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\build-aux\ltmain.sh">
+      <Filter>guacamole-server-1.3.0\build-aux</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\build-aux\missing">
+      <Filter>guacamole-server-1.3.0\build-aux</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\build-aux\tap-driver.sh">
+      <Filter>guacamole-server-1.3.0\build-aux</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\build-aux\test-driver">
+      <Filter>guacamole-server-1.3.0\build-aux</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\doc\Doxyfile.in">
+      <Filter>guacamole-server-1.3.0\doc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\m4\libtool.m4">
+      <Filter>guacamole-server-1.3.0\m4</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\m4\lt~obsolete.m4">
+      <Filter>guacamole-server-1.3.0\m4</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\m4\ltoptions.m4">
+      <Filter>guacamole-server-1.3.0\m4</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\m4\ltsugar.m4">
+      <Filter>guacamole-server-1.3.0\m4</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\m4\ltversion.m4">
+      <Filter>guacamole-server-1.3.0\m4</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\common\tests\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\common\tests</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\common\tests\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\common\tests</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\common\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\common\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\common-ssh\tests\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\common-ssh\tests</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\common-ssh\tests\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\common-ssh\tests</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\common-ssh\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\common-ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\common-ssh\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\common-ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\guacd\init.d\guacd.in">
+      <Filter>guacamole-server-1.3.0\src\guacd\init.d</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\guacd\man\guacd.8.in">
+      <Filter>guacamole-server-1.3.0\src\guacd\man</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\guacd\man\guacd.conf.5.in">
+      <Filter>guacamole-server-1.3.0\src\guacd\man</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\guacd\systemd\guacd.service.in">
+      <Filter>guacamole-server-1.3.0\src\guacd\systemd</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\guacd\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\guacd\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\guacd</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\guacd-docker\bin\build-guacd.sh">
+      <Filter>guacamole-server-1.3.0\src\guacd-docker\bin</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\guacd-docker\bin\link-freerdp-plugins.sh">
+      <Filter>guacamole-server-1.3.0\src\guacd-docker\bin</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\guacd-docker\bin\list-dependencies.sh">
+      <Filter>guacamole-server-1.3.0\src\guacd-docker\bin</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\guacd-docker\README.md">
+      <Filter>guacamole-server-1.3.0\src\guacd-docker</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\guacenc\man\guacenc.1.in">
+      <Filter>guacamole-server-1.3.0\src\guacenc\man</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\guacenc\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\guacenc\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\guacenc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\guaclog\man\guaclog.1.in">
+      <Filter>guacamole-server-1.3.0\src\guaclog\man</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\guaclog\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\guaclog</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\guaclog\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\guaclog</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\libguac\tests\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\libguac\tests\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\libguac\tests</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\libguac\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\libguac\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\kubernetes\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\kubernetes\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\protocols\kubernetes</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\base.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\da_dk_qwerty.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\de_ch_qwertz.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\de_de_qwertz.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\en_gb_qwerty.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\en_us_qwerty.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\es_es_qwerty.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\es_latam_qwerty.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\failsafe.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\fr_be_azerty.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\fr_ch_qwertz.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\fr_fr_azerty.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\generate.pl">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\hu_hu_qwertz.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\it_it_qwerty.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\ja_jp_qwerty.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\pt_br_qwerty.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\sv_se_qwerty.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\keymaps\tr_tr_qwerty.keymap">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\keymaps</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\plugins\generate-entry-wrappers.pl">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\plugins</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\tests\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\tests</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\tests\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp\tests</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\rdp\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\ssh\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\ssh\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\protocols\ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\telnet\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\telnet\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\protocols\telnet</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\vnc\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\protocols\vnc\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\protocols\vnc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\pulse\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\pulse</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\pulse\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\pulse</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\terminal\Makefile.am">
+      <Filter>guacamole-server-1.3.0\src\terminal</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\src\terminal\Makefile.in">
+      <Filter>guacamole-server-1.3.0\src\terminal</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common\blank_cursor.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common\clipboard.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common\cursor.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common\display.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common\dot_cursor.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common\ibar_cursor.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common\iconv.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common\io.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common\json.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common\list.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common\pointer_cursor.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common\recording.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common\rect.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common\string.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common\surface.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common-ssh\buffer.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common-ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common-ssh\dsa-compat.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common-ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common-ssh\key.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common-ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common-ssh\rsa-compat.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common-ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common-ssh\sftp.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common-ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common-ssh\ssh.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common-ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\common-ssh\user.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\common-ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\guacd\conf-args.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\guacd</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\guacd\conf-file.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\guacd</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\guacd\conf-parse.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\guacd</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\guacd\connection.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\guacd</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\guacd\daemon.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\guacd</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\guacd\log.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\guacd</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\guacd\move-fd.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\guacd</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\guacd\proc.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\guacd</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\guacd\proc-map.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\guacd</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\argv.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\audio.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\client.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\encode-jpeg.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\encode-png.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\encode-webp.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\error.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\hash.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\id.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\palette.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\parser.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\pool.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\protocol.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\raw_encoder.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\socket.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\socket-broadcast.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\socket-fd.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\socket-nest.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\socket-ssl.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\socket-tee.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\socket-wsa.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\string.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\timestamp.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\unicode.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\user.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\user-handlers.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\user-handshake.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\wait-fd.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\libguac\wol.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\libguac</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\audio-input\audio-buffer.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\audio-input</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\audio-input\audio-input.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\audio-input</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr\rdpdr.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr\rdpdr-fs.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr\rdpdr-fs-messages.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr\rdpdr-fs-messages-dir-info.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr\rdpdr-fs-messages-file-info.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr\rdpdr-fs-messages-vol-info.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr\rdpdr-messages.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr\rdpdr-printer.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpdr</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpsnd\rdpsnd.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpsnd</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpsnd\rdpsnd-messages.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rdpsnd</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\cliprdr.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\common-svc.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\disp.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\pipe-svc.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels\rail.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\channels</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\plugins\guacai\guacai.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\plugins\guacai</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\plugins\guacai\guacai-messages.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\plugins\guacai</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\plugins\guac-common-svc\guac-common-svc.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\plugins\guac-common-svc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\plugins\channels.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\plugins</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\plugins\ptr-string.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp\plugins</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\_generated_channel_entry_wrappers.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\_generated_keymaps.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\argv.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\beep.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\bitmap.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\client.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\color.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\decompose.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\download.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\error.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\fs.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\gdi.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\glyph.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\input.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\keyboard.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\keymap.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\log.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\ls.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\pointer.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\print-job.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\rdp.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\resolution.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\settings.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\sftp.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\unicode.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\upload.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\rdp\user.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\rdp</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\ssh\argv.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\ssh\client.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\ssh\clipboard.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\ssh\input.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\ssh\pipe.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\ssh\settings.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\ssh\sftp.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\ssh\ssh.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\ssh\ssh_agent.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\ssh\ttymode.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\ssh\user.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\ssh</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\vnc\argv.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\vnc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\vnc\auth.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\vnc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\vnc\client.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\vnc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\vnc\clipboard.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\vnc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\vnc\cursor.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\vnc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\vnc\display.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\vnc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\vnc\input.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\vnc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\vnc\log.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\vnc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\vnc\settings.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\vnc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\vnc\sftp.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\vnc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\vnc\user.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\vnc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\protocols\vnc\vnc.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\protocols\vnc</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\pulse\pulse.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\pulse</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\terminal\buffer.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\terminal</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\terminal\char_mappings.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\terminal</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\terminal\color-scheme.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\terminal</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\terminal\common.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\terminal</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\terminal\display.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\terminal</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\terminal\named-colors.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\terminal</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\terminal\palette.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\terminal</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\terminal\scrollbar.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\terminal</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\terminal\select.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\terminal</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\terminal\terminal.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\terminal</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\terminal\terminal_handlers.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\terminal</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\terminal\terminal-stdin-stream.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\terminal</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\terminal\typescript.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\terminal</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\tmp_build\src\terminal\xparsecolor.o">
+      <Filter>guacamole-server-1.3.0\tmp_build\src\terminal</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\util\generate-test-runner.pl">
+      <Filter>guacamole-server-1.3.0\util</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\.dockerignore">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\aclocal.m4">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\config.h.in">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\configure">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\configure.ac">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\CONTRIBUTING">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\Dockerfile">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\guacamole-server-1.3.0.sln">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\LICENSE">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\Makefile">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\Makefile.am">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\Makefile.in">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\NOTICE">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\out - コピー.exe">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\out.exe">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </None>
+    <None Include="guacamole-server-1.3.0\README">
+      <Filter>guacamole-server-1.3.0</Filter>
+    </None>
+
+  </ItemGroup>
+</Project>
