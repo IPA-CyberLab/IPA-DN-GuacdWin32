@@ -485,6 +485,7 @@ static int guac_rdp_handle_connection(guac_client* client) {
         /* Wait for data and construct a reasonable frame */
         int wait_result = rdp_guac_client_wait_for_messages(client,
                 GUAC_RDP_FRAME_START_TIMEOUT);
+        printf("rdp_guac_client_wait_for_messages #1: %d\n", wait_result);
         if (wait_result > 0) {
 
             int processing_lag = guac_client_get_processing_lag(client);
@@ -516,17 +517,29 @@ static int guac_rdp_handle_connection(guac_client* client) {
 
                 /* Increase the duration of this frame if client is lagging */
                 if (required_wait > GUAC_RDP_FRAME_TIMEOUT)
+                {
                     wait_result = rdp_guac_client_wait_for_messages(client,
-                            required_wait);
+                        required_wait);
 
+                    printf("rdp_guac_client_wait_for_messages #2: %d\n", wait_result);
+                }
                 /* Wait again if frame remaining */
                 else if (frame_remaining > 0)
+                {
                     wait_result = rdp_guac_client_wait_for_messages(client,
-                            GUAC_RDP_FRAME_TIMEOUT);
+                        GUAC_RDP_FRAME_TIMEOUT);
+
+                    printf("rdp_guac_client_wait_for_messages #3: %d\n", wait_result);
+                }
                 else
+                {
+                    printf("guac_rdp_handle_connection break #1\n");
                     break;
+                }
 
             } while (wait_result > 0);
+
+            //printf("guac_rdp_handle_connection break #2\n");
 
             /* Record end of frame, excluding server-side rendering time (we
              * assume server-side rendering time will be consistent between any
@@ -541,12 +554,18 @@ static int guac_rdp_handle_connection(guac_client* client) {
 
         /* Close connection cleanly if server is disconnecting */
         if (connection_closing)
+        {
+            printf("freerdp_shall_disconnect returns true!!\n");
             guac_rdp_client_abort(client, rdp_inst);
+        }
 
         /* If a low-level connection error occurred, fail */
         else if (wait_result < 0)
+        {
+            printf("wait_result < 0 !!\n");
             guac_client_abort(client, GUAC_PROTOCOL_STATUS_UPSTREAM_UNAVAILABLE,
-                    "Connection closed.");
+                "Connection closed.");
+        }
 
         /* Flush frame only if successful */
         else {
@@ -556,6 +575,8 @@ static int guac_rdp_handle_connection(guac_client* client) {
         }
 
     }
+
+    printf("guac_rdp_handle_connection loop exits!!\n");
 
     pthread_rwlock_wrlock(&(rdp_client->lock));
 

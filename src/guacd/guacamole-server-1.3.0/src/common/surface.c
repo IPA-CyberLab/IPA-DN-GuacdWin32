@@ -1229,6 +1229,9 @@ guac_common_surface* guac_common_surface_alloc(guac_client* client,
 
     /* Layers must initially exist */
     if (layer->index >= 0) {
+		printf("guac_common_surface_alloc: guac_protocol_send_size: layer = %d, w = %d, h = %d\n", layer, w, h);
+		//usleep(100000);
+        printf("guac_common_surface_alloc2: guac_protocol_send_size: layer = %d, w = %d, h = %d\n", layer, w, h);
         guac_protocol_send_size(socket, layer, w, h);
         surface->realized = 1;
     }
@@ -1309,7 +1312,10 @@ void guac_common_surface_resize(guac_common_surface* surface, int w, int h) {
 
     /* Update Guacamole layer */
     if (surface->realized)
+    {
+        printf("guac_common_surface_resize: guac_protocol_send_size: layer = %d, w = %d, h = %d\n", layer, w, h);
         guac_protocol_send_size(socket, layer, w, h);
+    }
 
 complete:
     pthread_mutex_unlock(&surface->_lock);
@@ -1984,6 +1990,8 @@ void guac_common_surface_dup(guac_common_surface* surface, guac_user* user,
     }
 
     /* Sync size to new socket */
+	printf("guac_protocol_send_size: guac_protocol_send_size: layer = %d, w = %d, h = %d\n", surface->layer,
+		surface->width, surface->height);
     guac_protocol_send_size(socket, surface->layer,
             surface->width, surface->height);
 

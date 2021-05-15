@@ -64,7 +64,6 @@ int guac_rdp_user_join_handler(guac_user* user, int argc, char** argv) {
 
     /* Connect via RDP if owner */
     if (user->owner) {
-
         /* Store owner's settings at client level */
         rdp_client->settings = settings;
 
@@ -84,7 +83,6 @@ int guac_rdp_user_join_handler(guac_user* user, int argc, char** argv) {
 
     /* If not owner, synchronize with current state */
     else {
-
         /* Synchronize any audio stream */
         if (rdp_client->audio)
             guac_audio_stream_add_user(rdp_client->audio, user);

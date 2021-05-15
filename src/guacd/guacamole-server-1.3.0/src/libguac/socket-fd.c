@@ -260,7 +260,10 @@ static ssize_t guac_socket_fd_write_buffered(guac_socket* socket,
 
             /* Abort if error occurs during flush */
             if (guac_socket_fd_flush(socket))
+            {
+                printf("guac_socket_fd_write_buffered: guac_socket_fd_flush() error !!\n");
                 return -1;
+            }
 
             /* Retry buffer append */
             continue;

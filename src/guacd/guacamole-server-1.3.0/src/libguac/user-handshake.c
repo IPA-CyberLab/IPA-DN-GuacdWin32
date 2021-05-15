@@ -165,6 +165,7 @@ static void* guac_user_input_thread(void* data) {
         if (__guac_user_call_opcode_handler(__guac_instruction_handler_map, 
                 user, parser->opcode, parser->argc, parser->argv)) {
 
+            printf("__guac_user_call_opcode_handler() error\n");
             /* Log error */
             guac_user_log_guac_error(user, GUAC_LOG_WARNING,
                     "User connection aborted");
@@ -210,16 +211,20 @@ static int guac_user_start(guac_parser* parser, guac_user* user,
         .usec_timeout = usec_timeout
     };
 
-    pthread_t input_thread;
+    //pthread_t input_thread;
 
-    if (pthread_create(&input_thread, NULL, guac_user_input_thread, (void*) &params)) {
-        guac_user_log(user, GUAC_LOG_ERROR, "Unable to start input thread");
-        guac_user_stop(user);
-        return -1;
-    }
+    //if (pthread_create(&input_thread, NULL, guac_user_input_thread, (void*) &params)) {
+    //    guac_user_log(user, GUAC_LOG_ERROR, "Unable to start input thread");
+    //    guac_user_stop(user);
+    //    return -1;
+    //}
 
     /* Wait for I/O threads */
-    pthread_join(input_thread, NULL);
+    //pthread_join(input_thread, NULL);
+
+    printf("guac_user_input_thread() start.\n");
+    guac_user_input_thread(&params);
+    printf("guac_user_input_thread() end.\n");
 
     /* Explicitly signal disconnect */
     guac_protocol_send_disconnect(user->socket);
