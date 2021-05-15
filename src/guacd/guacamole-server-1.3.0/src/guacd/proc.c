@@ -63,6 +63,8 @@ typedef struct guacd_user_thread_params {
      */
     int owner;
 
+    guac_socket* socket;
+
 } guacd_user_thread_params;
 
 /**
@@ -79,14 +81,16 @@ typedef struct guacd_user_thread_params {
  */
 static void* guacd_user_thread(void* data) {
 
+    printf("guacd_user_thread()\n");
+
     guacd_user_thread_params* params = (guacd_user_thread_params*) data;
     guacd_proc* proc = params->proc;
     guac_client* client = proc->client;
 
     /* Get guac_socket for user's file descriptor */
-    guac_socket* socket = guac_socket_open(params->fd);
-    if (socket == NULL)
-        return NULL;
+    guac_socket* socket = params->socket;
+    //if (socket == NULL)
+    //    return NULL;
 
     /* Create skeleton user */
     guac_user* user = guac_user_alloc();
@@ -97,16 +101,20 @@ static void* guacd_user_thread(void* data) {
     /* Handle user connection from handshake until disconnect/completion */
     guac_user_handle_connection(user, GUACD_USEC_TIMEOUT);
 
-    /* Stop client and prevent future users if all users are disconnected */
-    if (client->connected_users == 0) {
-        guacd_log(GUAC_LOG_INFO, "Last user of connection \"%s\" disconnected", client->connection_id);
-        guacd_proc_stop(proc);
-    }
+    exit(0);
 
-    /* Clean up */
-    guac_socket_free(socket);
-    guac_user_free(user);
-    free(params);
+    ///* Stop client and prevent future users if all users are disconnected */
+    //if (client->connected_users == 0) {
+    //    guacd_log(GUAC_LOG_INFO, "Last user of connection \"%s\" disconnected", client->connection_id);
+    //    guacd_proc_stop(proc);
+    //}
+
+    ///* Clean up */
+    //guac_socket_free(socket);
+    //guac_user_free(user);
+    //free(params);
+
+    //exit(0);
 
     return NULL;
 
@@ -128,18 +136,22 @@ static void* guacd_user_thread(void* data) {
  *     Non-zero if the user is the owner of the connection being joined (they
  *     are the first user to join), or zero otherwise.
  */
-static void guacd_proc_add_user(guacd_proc* proc, int fd, int owner) {
+static void guacd_proc_add_user(guacd_proc* proc, int fd, int owner, guac_socket* socket) {
 
+    printf("guacd_proc_add_user()\n");
     guacd_user_thread_params* params = malloc(sizeof(guacd_user_thread_params));
     params->proc = proc;
     params->fd = fd;
     params->owner = owner;
+    params->socket = socket;
 
-    /* Start user thread */
-    pthread_t user_thread;
-    pthread_create(&user_thread, NULL, guacd_user_thread, params);
-    pthread_detach(user_thread);
+    ///* Start user thread */
+    //pthread_t user_thread;
+    //pthread_create(&user_thread, NULL, guacd_user_thread, params);
+    //pthread_detach(user_thread);
 
+    guacd_user_thread(params);
+    exit(0);
 }
 
 /**
@@ -301,16 +313,16 @@ static int guacd_timed_client_free(guac_client* client, int timeout) {
  * @param protocol
  *     The protocol to initialize the given process for.
  */
-static void guacd_exec_proc(guacd_proc* proc, const char* protocol) {
+static void guacd_exec_proc(guacd_proc* proc, const char* protocol, guac_socket* socket) {
 
     int result = 1;
    
-    /* Set process group ID to match PID */ 
-    if (setpgid(0, 0)) {
-        guacd_log(GUAC_LOG_ERROR, "Cannot set PGID for connection process: %s",
-                strerror(errno));
-        goto cleanup_process;
-    }
+    ///* Set process group ID to match PID */ 
+    //if (setpgid(0, 0)) {
+    //    guacd_log(GUAC_LOG_ERROR, "Cannot set PGID for connection process: %s",
+    //            strerror(errno));
+    //    goto cleanup_process;
+    //}
 
     /* Init client for selected protocol */
     guac_client* client = proc->client;
@@ -331,18 +343,18 @@ static void guacd_exec_proc(guacd_proc* proc, const char* protocol) {
     int owner = 1;
 
     /* Enable keep alive on the broadcast socket */
-    guac_socket_require_keep_alive(client->socket);
+    //guac_socket_require_keep_alive(client->socket);
 
     /* Add each received file descriptor as a new user */
-    int received_fd;
-    while ((received_fd = guacd_recv_fd(proc->fd_socket)) != -1) {
+    //int received_fd;
+    //while ((received_fd = guacd_recv_fd(proc->fd_socket)) != -1) {
 
-        guacd_proc_add_user(proc, received_fd, owner);
+        guacd_proc_add_user(proc, 0, owner, socket);
 
-        /* Future file descriptors are not owners */
-        owner = 0;
+    //    /* Future file descriptors are not owners */
+    //    owner = 0;
 
-    }
+    //}
     
 cleanup_client:
 
@@ -384,11 +396,13 @@ cleanup_process:
     close(proc->fd_socket);
     free(proc);
 
-    exit(result);
+    exit(0);
 
 }
 
-guacd_proc* guacd_create_proc(const char* protocol) {
+guacd_proc* guacd_create_proc(const char* protocol, guac_socket* socket) {
+
+    printf("guacd_create_proc()\n");
 
     int sockets[2];
 
@@ -422,39 +436,39 @@ guacd_proc* guacd_create_proc(const char* protocol) {
     /* Init logging */
     proc->client->log_handler = guacd_client_log;
 
-    /* Fork */
-    proc->pid = fork();
-    if (proc->pid < 0) {
-        guacd_log(GUAC_LOG_ERROR, "Cannot fork child process: %s", strerror(errno));
-        close(parent_socket);
-        close(child_socket);
-        guac_client_free(proc->client);
-        free(proc);
-        return NULL;
-    }
+    ///* Fork */
+    //proc->pid = fork();
+    //if (proc->pid < 0) {
+    //    guacd_log(GUAC_LOG_ERROR, "Cannot fork child process: %s", strerror(errno));
+    //    close(parent_socket);
+    //    close(child_socket);
+    //    guac_client_free(proc->client);
+    //    free(proc);
+    //    return NULL;
+    //}
 
-    /* Child */
-    else if (proc->pid == 0) {
+    ///* Child */
+    //else if (proc->pid == 0) {
 
         /* Communicate with parent */
         proc->fd_socket = parent_socket;
         close(child_socket);
 
         /* Start protocol-specific handling */
-        guacd_exec_proc(proc, protocol);
+        guacd_exec_proc(proc, protocol, socket);
 
-    }
+    //}
 
-    /* Parent */
-    else {
+    ///* Parent */
+    //else {
 
-        /* Communicate with child */
-        proc->fd_socket = child_socket;
-        close(parent_socket);
+    //    /* Communicate with child */
+    //    proc->fd_socket = child_socket;
+    //    close(parent_socket);
 
-    }
+    //}
 
-    return proc;
+    //return proc;
 
 }
 

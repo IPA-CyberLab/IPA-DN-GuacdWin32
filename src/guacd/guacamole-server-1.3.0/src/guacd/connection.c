@@ -237,6 +237,7 @@ static int guacd_add_user(guacd_proc* proc, guac_parser* parser, guac_socket* so
  */
 static int guacd_route_connection(guacd_proc_map* map, guac_socket* socket) {
 
+    printf("guacd_route_connection()\n");
     guac_parser* parser = guac_parser_alloc();
 
     /* Reset guac_error */
@@ -268,97 +269,101 @@ static int guacd_route_connection(guacd_proc_map* map, guac_socket* socket) {
     }
 
     guacd_proc* proc;
-    int new_process;
+    //int new_process;
 
     const char* identifier = parser->argv[0];
 
-    /* If connection ID, retrieve existing process */
-    if (identifier[0] == GUAC_CLIENT_ID_PREFIX) {
+    ///* If connection ID, retrieve existing process */
+    //if (identifier[0] == GUAC_CLIENT_ID_PREFIX) {
 
-        proc = guacd_proc_map_retrieve(map, identifier);
-        new_process = 0;
+    //    proc = guacd_proc_map_retrieve(map, identifier);
+    //    new_process = 0;
 
-        /* Warn if requested connection does not exist */
-        if (proc == NULL)
-            guacd_log(GUAC_LOG_INFO, "Connection \"%s\" does not exist.",
-                    identifier);
-        else
-            guacd_log(GUAC_LOG_INFO, "Joining existing connection \"%s\"",
-                    identifier);
+    //    /* Warn if requested connection does not exist */
+    //    if (proc == NULL)
+    //        guacd_log(GUAC_LOG_INFO, "Connection \"%s\" does not exist.",
+    //                identifier);
+    //    else
+    //        guacd_log(GUAC_LOG_INFO, "Joining existing connection \"%s\"",
+    //                identifier);
 
-    }
+    //}
 
-    /* Otherwise, create new client */
-    else {
+    ///* Otherwise, create new client */
+    //else {
 
-        guacd_log(GUAC_LOG_INFO, "Creating new client for protocol \"%s\"",
-                identifier);
+    //    guacd_log(GUAC_LOG_INFO, "Creating new client for protocol \"%s\"",
+    //            identifier);
 
-        /* Create new process */
-        proc = guacd_create_proc(identifier);
-        new_process = 1;
+    //    /* Create new process */
+	proc = guacd_create_proc(identifier, socket);
 
-    }
+    exit(0);
+    //    new_process = 1;
 
-    /* Abort if no process exists for the requested connection */
-    if (proc == NULL) {
-        guacd_log_guac_error(GUAC_LOG_INFO, "Connection did not succeed");
-        guac_parser_free(parser);
-        return 1;
-    }
+    //}
 
-    /* Add new user (in the case of a new process, this will be the owner */
-    int add_user_failed = guacd_add_user(proc, parser, socket);
+    ///* Abort if no process exists for the requested connection */
+    //if (proc == NULL) {
+    //    guacd_log_guac_error(GUAC_LOG_INFO, "Connection did not succeed");
+    //    guac_parser_free(parser);
+    //    return 1;
+    //}
 
-    /* If new process was created, manage that process */
-    if (new_process) {
+    ///* Add new user (in the case of a new process, this will be the owner */
+    //int add_user_failed = guacd_add_user(proc, parser, socket);
 
-        /* The new process will only be active if the user was added */
-        if (!add_user_failed) {
+    ///* If new process was created, manage that process */
+    //if (new_process) {
 
-            /* Log connection ID */
-            guacd_log(GUAC_LOG_INFO, "Connection ID is \"%s\"",
-                    proc->client->connection_id);
+    //    /* The new process will only be active if the user was added */
+    //    if (!add_user_failed) {
 
-            /* Store process, allowing other users to join */
-            guacd_proc_map_add(map, proc);
+    //        /* Log connection ID */
+    //        guacd_log(GUAC_LOG_INFO, "Connection ID is \"%s\"",
+    //                proc->client->connection_id);
 
-            /* Wait for child to finish */
-            waitpid(proc->pid, NULL, 0);
+    //        /* Store process, allowing other users to join */
+    //        guacd_proc_map_add(map, proc);
 
-            /* Remove client */
-            if (guacd_proc_map_remove(map, proc->client->connection_id) == NULL)
-                guacd_log(GUAC_LOG_ERROR, "Internal failure removing "
-                        "client \"%s\". Client record will never be freed.",
-                        proc->client->connection_id);
-            else
-                guacd_log(GUAC_LOG_INFO, "Connection \"%s\" removed.",
-                        proc->client->connection_id);
+    //        /* Wait for child to finish */
+    //        waitpid(proc->pid, NULL, 0);
 
-        }
+    //        /* Remove client */
+    //        if (guacd_proc_map_remove(map, proc->client->connection_id) == NULL)
+    //            guacd_log(GUAC_LOG_ERROR, "Internal failure removing "
+    //                    "client \"%s\". Client record will never be freed.",
+    //                    proc->client->connection_id);
+    //        else
+    //            guacd_log(GUAC_LOG_INFO, "Connection \"%s\" removed.",
+    //                    proc->client->connection_id);
 
-        /* Parser must be manually freed if the process did not start */
-        else
-            guac_parser_free(parser);
+    //    }
 
-        /* Force process to stop and clean up */
-        guacd_proc_stop(proc);
+    //    /* Parser must be manually freed if the process did not start */
+    //    else
+    //        guac_parser_free(parser);
 
-        /* Free skeleton client */
-        guac_client_free(proc->client);
+    //    /* Force process to stop and clean up */
+    //    guacd_proc_stop(proc);
 
-        /* Clean up */
-        close(proc->fd_socket);
-        free(proc);
+    //    /* Free skeleton client */
+    //    guac_client_free(proc->client);
 
-    }
+    //    /* Clean up */
+    //    close(proc->fd_socket);
+    //    free(proc);
+
+    //}
 
     /* Routing succeeded only if the user was added to a process */
-    return add_user_failed;
+    return 0;//add_user_failed;
 
 }
 
 void* guacd_connection_thread(void* data) {
+
+    printf("guacd_connection_thread()\n");
 
     guacd_connection_thread_params* params = (guacd_connection_thread_params*) data;
 
@@ -367,31 +372,34 @@ void* guacd_connection_thread(void* data) {
 
     guac_socket* socket;
 
-#ifdef ENABLE_SSL
-
-    SSL_CTX* ssl_context = params->ssl_context;
-
-    /* If SSL chosen, use it */
-    if (ssl_context != NULL) {
-        socket = guac_socket_open_secure(ssl_context, connected_socket_fd);
-        if (socket == NULL) {
-            guacd_log_guac_error(GUAC_LOG_ERROR, "Unable to set up SSL/TLS");
-            close(connected_socket_fd);
-            free(params);
-            return NULL;
-        }
-    }
-    else
-        socket = guac_socket_open(connected_socket_fd);
-
-#else
+//#ifdef ENABLE_SSL
+//
+//    SSL_CTX* ssl_context = params->ssl_context;
+//
+//    /* If SSL chosen, use it */
+//    if (ssl_context != NULL) {
+//        socket = guac_socket_open_secure(ssl_context, connected_socket_fd);
+//        if (socket == NULL) {
+//            guacd_log_guac_error(GUAC_LOG_ERROR, "Unable to set up SSL/TLS");
+//            close(connected_socket_fd);
+//            free(params);
+//            return NULL;
+//        }
+//    }
+//    else
+//        socket = guac_socket_open(connected_socket_fd);
+//
+//#else
     /* Open guac_socket */
     socket = guac_socket_open(connected_socket_fd);
-#endif
+	//#endif
 
     /* Route connection according to Guacamole, creating a new process if needed */
-    if (guacd_route_connection(map, socket))
-        guac_socket_free(socket);
+    guacd_route_connection(map, socket);
+
+    exit(0);
+
+        //guac_socket_free(socket);
 
     free(params);
     return NULL;

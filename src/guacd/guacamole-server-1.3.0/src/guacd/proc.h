@@ -94,7 +94,7 @@ typedef struct guacd_proc {
  *     the background process specific to the specified protocol, or NULL of
  *     the process could not be created.
  */
-guacd_proc* guacd_create_proc(const char* protocol);
+guacd_proc* guacd_create_proc(const char* protocol, guac_socket* socket);
 
 /**
  * Signals the given process to stop accepting new users and clean up. This

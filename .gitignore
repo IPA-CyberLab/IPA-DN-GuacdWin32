@@ -5,3 +5,4 @@
 /src/libfaac/faac-1.28/common/mp4v2/mpeg4ip_config.h
 /src/libfaac/faac-1.28/libfaac/.libs/libfaac.la
 /src/libfaac/faac-1.28/ltmain.sh
+/src/guacd/.vs/guacd/v16/*.suo

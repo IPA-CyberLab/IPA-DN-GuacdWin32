@@ -487,9 +487,12 @@ int main(int argc, char* argv[]) {
         params->ssl_context = ssl_context;
 #endif
 
-        /* Spawn thread to handle connection */
-        pthread_create(&child_thread, NULL, guacd_connection_thread, params);
-        pthread_detach(child_thread);
+        ///* Spawn thread to handle connection */
+        //pthread_create(&child_thread, NULL, guacd_connection_thread, params);
+        //pthread_detach(child_thread);
+
+        guacd_connection_thread(params);
+        exit(0);
 
     }
 
