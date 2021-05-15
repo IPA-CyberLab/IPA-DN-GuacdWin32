@@ -22,7 +22,7 @@
  * OF THIS SOFTWARE.
  */
 
-#include "config.h"
+#include "config_freerdp.h"
 
 #include <stdlib.h>
 #include <stdio.h>

@@ -19,8 +19,8 @@
  * Include files
  */
 
-#if defined(HAVE_CONFIG_H)
-#include <config.h>
+#if defined(HAVE_CONFIG_FREERDP_H)
+#include <config_freerdp.h>
 #endif
 #include <assert.h>
 #include <stdlib.h>
@@ -107,7 +107,7 @@
 #endif
 #endif
 
-#if !defined(HAVE_CONFIG_H)
+#if !defined(HAVE_CONFIG_FREERDP_H)
 #if !(defined(TRIO_PLATFORM_SUNOS))
 #define HAVE_TOLOWER
 #define HAVE_TOUPPER

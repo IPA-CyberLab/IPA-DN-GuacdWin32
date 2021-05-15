@@ -20,8 +20,8 @@
 #ifndef FREERDP_CHANNEL_RDPEI_CLIENT_MAIN_H
 #define FREERDP_CHANNEL_RDPEI_CLIENT_MAIN_H
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
+#ifdef HAVE_CONFIG_FREERDP_H
+#include "config_freerdp.h"
 #endif
 
 #include <freerdp/dvc.h>

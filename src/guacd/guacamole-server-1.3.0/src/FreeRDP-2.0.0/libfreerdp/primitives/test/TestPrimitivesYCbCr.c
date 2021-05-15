@@ -6,8 +6,8 @@
 #include <winpr/wlog.h>
 #include <freerdp/utils/profiler.h>
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
+#ifdef HAVE_CONFIG_FREERDP_H
+#include "config_freerdp.h"
 #endif
 
 #define TAG __FILE__

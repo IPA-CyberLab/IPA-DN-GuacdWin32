@@ -38,27 +38,29 @@
 #define __func__ __FUNCTION__
 #endif
 
-#if defined _WIN32 || defined __CYGWIN__
-#ifdef FREERDP_EXPORTS
-#ifdef __GNUC__
-#define FREERDP_API __attribute__((dllexport))
-#else
-#define FREERDP_API __declspec(dllexport)
-#endif
-#else
-#ifdef __GNUC__
-#define FREERDP_API __attribute__((dllimport))
-#else
-#define FREERDP_API __declspec(dllimport)
-#endif
-#endif
-#else
-#if __GNUC__ >= 4
-#define FREERDP_API __attribute__((visibility("default")))
-#else
+//#if defined _WIN32 || defined __CYGWIN__
+//#ifdef FREERDP_EXPORTS
+//#ifdef __GNUC__
+//#define FREERDP_API __attribute__((dllexport))
+//#else
+//#define FREERDP_API __declspec(dllexport)
+//#endif
+//#else
+//#ifdef __GNUC__
+//#define FREERDP_API __attribute__((dllimport))
+//#else
+//#define FREERDP_API __declspec(dllimport)
+//#endif
+//#endif
+//#else
+//#if __GNUC__ >= 4
+//#define FREERDP_API __attribute__((visibility("default")))
+//#else
+//#define FREERDP_API
+//#endif
+//#endif
+
 #define FREERDP_API
-#endif
-#endif
 
 #ifdef BUILD_TESTING
 #define FREERDP_LOCAL FREERDP_API

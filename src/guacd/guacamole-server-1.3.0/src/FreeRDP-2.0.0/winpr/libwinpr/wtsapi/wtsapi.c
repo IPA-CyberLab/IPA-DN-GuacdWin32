@@ -19,8 +19,8 @@
  * limitations under the License.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
+#ifdef HAVE_CONFIG_FREERDP_H
+#include "config_freerdp.h"
 #endif
 
 #include <winpr/crt.h>
@@ -693,7 +693,8 @@ static BOOL LoadAndInitialize(char* library)
 	if (!g_WtsApiModule)
 		return FALSE;
 
-	pInitWtsApi = (INIT_WTSAPI_FN)GetProcAddress(g_WtsApiModule, "InitWtsApi");
+	pInitWtsApi = NULL;
+	//(INIT_WTSAPI_FN) GetProcAddress(g_WtsApiModule, "InitWtsApi");
 
 	if (!pInitWtsApi)
 	{

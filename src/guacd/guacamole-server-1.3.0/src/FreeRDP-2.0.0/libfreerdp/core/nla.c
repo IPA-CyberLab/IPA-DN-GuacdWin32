@@ -21,8 +21,8 @@
  * limitations under the License.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
+#ifdef HAVE_CONFIG_FREERDP_H
+#include "config_freerdp.h"
 #endif
 
 #include <time.h>
@@ -746,87 +746,89 @@ static int nla_client_authenticate(rdpNla* nla)
 
 static int nla_server_init(rdpNla* nla)
 {
-	rdpTls* tls = nla->transport->tls;
+//	rdpTls* tls = nla->transport->tls;
+//
+//	if (!sspi_SecBufferAlloc(&nla->PublicKey, tls->PublicKeyLength))
+//	{
+//		WLog_ERR(TAG, "Failed to allocate SecBuffer for public key");
+//		return -1;
+//	}
+//
+//	CopyMemory(nla->PublicKey.pvBuffer, tls->PublicKey, tls->PublicKeyLength);
+//
+//	if (nla->SspiModule)
+//	{
+//		HMODULE hSSPI;
+//		INIT_SECURITY_INTERFACE pInitSecurityInterface;
+//		hSSPI = LoadLibrary(nla->SspiModule);
+//
+//		if (!hSSPI)
+//		{
+//			WLog_ERR(TAG, "Failed to load SSPI module: %s", nla->SspiModule);
+//			return -1;
+//		}
+//
+//#ifdef UNICODE
+//		pInitSecurityInterface =
+//		    (INIT_SECURITY_INTERFACE)GetProcAddress(hSSPI, "InitSecurityInterfaceW");
+//#else
+//		pInitSecurityInterface =
+//		    (INIT_SECURITY_INTERFACE)GetProcAddress(hSSPI, "InitSecurityInterfaceA");
+//#endif
+//		nla->table = pInitSecurityInterface();
+//	}
+//	else
+//	{
+//		nla->table = InitSecurityInterfaceEx(0);
+//	}
+//
+//	nla->status = nla->table->QuerySecurityPackageInfo(NLA_PKG_NAME, &nla->pPackageInfo);
+//
+//	if (nla->status != SEC_E_OK)
+//	{
+//		WLog_ERR(TAG, "QuerySecurityPackageInfo status %s [0x%08" PRIX32 "]",
+//		         GetSecurityStatusString(nla->status), nla->status);
+//		return -1;
+//	}
+//
+//	nla->cbMaxToken = nla->pPackageInfo->cbMaxToken;
+//	nla->packageName = nla->pPackageInfo->Name;
+//	nla->status =
+//	    nla->table->AcquireCredentialsHandle(NULL, NLA_PKG_NAME, SECPKG_CRED_INBOUND, NULL, NULL,
+//	                                         NULL, NULL, &nla->credentials, &nla->expiration);
+//
+//	if (nla->status != SEC_E_OK)
+//	{
+//		WLog_ERR(TAG, "AcquireCredentialsHandle status %s [0x%08" PRIX32 "]",
+//		         GetSecurityStatusString(nla->status), nla->status);
+//		return -1;
+//	}
+//
+//	nla->haveContext = FALSE;
+//	nla->haveInputBuffer = FALSE;
+//	nla->havePubKeyAuth = FALSE;
+//	ZeroMemory(&nla->inputBuffer, sizeof(SecBuffer));
+//	ZeroMemory(&nla->outputBuffer, sizeof(SecBuffer));
+//	ZeroMemory(&nla->inputBufferDesc, sizeof(SecBufferDesc));
+//	ZeroMemory(&nla->outputBufferDesc, sizeof(SecBufferDesc));
+//	ZeroMemory(&nla->ContextSizes, sizeof(SecPkgContext_Sizes));
+//	/*
+//	 * from tspkg.dll: 0x00000112
+//	 * ASC_REQ_MUTUAL_AUTH
+//	 * ASC_REQ_CONFIDENTIALITY
+//	 * ASC_REQ_ALLOCATE_MEMORY
+//	 */
+//	nla->fContextReq = 0;
+//	nla->fContextReq |= ASC_REQ_MUTUAL_AUTH;
+//	nla->fContextReq |= ASC_REQ_CONFIDENTIALITY;
+//	nla->fContextReq |= ASC_REQ_CONNECTION;
+//	nla->fContextReq |= ASC_REQ_USE_SESSION_KEY;
+//	nla->fContextReq |= ASC_REQ_REPLAY_DETECT;
+//	nla->fContextReq |= ASC_REQ_SEQUENCE_DETECT;
+//	nla->fContextReq |= ASC_REQ_EXTENDED_ERROR;
+//	return 1;
 
-	if (!sspi_SecBufferAlloc(&nla->PublicKey, tls->PublicKeyLength))
-	{
-		WLog_ERR(TAG, "Failed to allocate SecBuffer for public key");
-		return -1;
-	}
-
-	CopyMemory(nla->PublicKey.pvBuffer, tls->PublicKey, tls->PublicKeyLength);
-
-	if (nla->SspiModule)
-	{
-		HMODULE hSSPI;
-		INIT_SECURITY_INTERFACE pInitSecurityInterface;
-		hSSPI = LoadLibrary(nla->SspiModule);
-
-		if (!hSSPI)
-		{
-			WLog_ERR(TAG, "Failed to load SSPI module: %s", nla->SspiModule);
-			return -1;
-		}
-
-#ifdef UNICODE
-		pInitSecurityInterface =
-		    (INIT_SECURITY_INTERFACE)GetProcAddress(hSSPI, "InitSecurityInterfaceW");
-#else
-		pInitSecurityInterface =
-		    (INIT_SECURITY_INTERFACE)GetProcAddress(hSSPI, "InitSecurityInterfaceA");
-#endif
-		nla->table = pInitSecurityInterface();
-	}
-	else
-	{
-		nla->table = InitSecurityInterfaceEx(0);
-	}
-
-	nla->status = nla->table->QuerySecurityPackageInfo(NLA_PKG_NAME, &nla->pPackageInfo);
-
-	if (nla->status != SEC_E_OK)
-	{
-		WLog_ERR(TAG, "QuerySecurityPackageInfo status %s [0x%08" PRIX32 "]",
-		         GetSecurityStatusString(nla->status), nla->status);
-		return -1;
-	}
-
-	nla->cbMaxToken = nla->pPackageInfo->cbMaxToken;
-	nla->packageName = nla->pPackageInfo->Name;
-	nla->status =
-	    nla->table->AcquireCredentialsHandle(NULL, NLA_PKG_NAME, SECPKG_CRED_INBOUND, NULL, NULL,
-	                                         NULL, NULL, &nla->credentials, &nla->expiration);
-
-	if (nla->status != SEC_E_OK)
-	{
-		WLog_ERR(TAG, "AcquireCredentialsHandle status %s [0x%08" PRIX32 "]",
-		         GetSecurityStatusString(nla->status), nla->status);
-		return -1;
-	}
-
-	nla->haveContext = FALSE;
-	nla->haveInputBuffer = FALSE;
-	nla->havePubKeyAuth = FALSE;
-	ZeroMemory(&nla->inputBuffer, sizeof(SecBuffer));
-	ZeroMemory(&nla->outputBuffer, sizeof(SecBuffer));
-	ZeroMemory(&nla->inputBufferDesc, sizeof(SecBufferDesc));
-	ZeroMemory(&nla->outputBufferDesc, sizeof(SecBufferDesc));
-	ZeroMemory(&nla->ContextSizes, sizeof(SecPkgContext_Sizes));
-	/*
-	 * from tspkg.dll: 0x00000112
-	 * ASC_REQ_MUTUAL_AUTH
-	 * ASC_REQ_CONFIDENTIALITY
-	 * ASC_REQ_ALLOCATE_MEMORY
-	 */
-	nla->fContextReq = 0;
-	nla->fContextReq |= ASC_REQ_MUTUAL_AUTH;
-	nla->fContextReq |= ASC_REQ_CONFIDENTIALITY;
-	nla->fContextReq |= ASC_REQ_CONNECTION;
-	nla->fContextReq |= ASC_REQ_USE_SESSION_KEY;
-	nla->fContextReq |= ASC_REQ_REPLAY_DETECT;
-	nla->fContextReq |= ASC_REQ_SEQUENCE_DETECT;
-	nla->fContextReq |= ASC_REQ_EXTENDED_ERROR;
-	return 1;
+	return -1;
 }
 
 /**
@@ -2379,42 +2381,42 @@ rdpNla* nla_new(freerdp* instance, rdpTransport* transport, rdpSettings* setting
 	if (winpr_RAND(nla->ClientNonce.pvBuffer, NonceLength) < 0)
 		goto cleanup;
 
-	if (nla->server)
-	{
-		LONG status;
-		HKEY hKey;
-		DWORD dwType;
-		DWORD dwSize;
-		status =
-		    RegOpenKeyExA(HKEY_LOCAL_MACHINE, SERVER_KEY, 0, KEY_READ | KEY_WOW64_64KEY, &hKey);
+	//if (nla->server)
+	//{
+	//	LONG status;
+	//	HKEY hKey;
+	//	DWORD dwType;
+	//	DWORD dwSize;
+	//	status =
+	//	    RegOpenKeyExA(HKEY_LOCAL_MACHINE, SERVER_KEY, 0, KEY_READ | KEY_WOW64_64KEY, &hKey);
 
-		if (status != ERROR_SUCCESS)
-			return nla;
+	//	if (status != ERROR_SUCCESS)
+	//		return nla;
 
-		status = RegQueryValueEx(hKey, _T("SspiModule"), NULL, &dwType, NULL, &dwSize);
+	//	status = RegQueryValueEx(hKey, _T("SspiModule"), NULL, &dwType, NULL, &dwSize);
 
-		if (status != ERROR_SUCCESS)
-		{
-			RegCloseKey(hKey);
-			return nla;
-		}
+	//	if (status != ERROR_SUCCESS)
+	//	{
+	//		RegCloseKey(hKey);
+	//		return nla;
+	//	}
 
-		nla->SspiModule = (LPTSTR)malloc(dwSize + sizeof(TCHAR));
+	//	nla->SspiModule = (LPTSTR)malloc(dwSize + sizeof(TCHAR));
 
-		if (!nla->SspiModule)
-		{
-			RegCloseKey(hKey);
-			goto cleanup;
-		}
+	//	if (!nla->SspiModule)
+	//	{
+	//		RegCloseKey(hKey);
+	//		goto cleanup;
+	//	}
 
-		status =
-		    RegQueryValueEx(hKey, _T("SspiModule"), NULL, &dwType, (BYTE*)nla->SspiModule, &dwSize);
+	//	status =
+	//	    RegQueryValueEx(hKey, _T("SspiModule"), NULL, &dwType, (BYTE*)nla->SspiModule, &dwSize);
 
-		if (status == ERROR_SUCCESS)
-			WLog_INFO(TAG, "Using SSPI Module: %s", nla->SspiModule);
+	//	if (status == ERROR_SUCCESS)
+	//		WLog_INFO(TAG, "Using SSPI Module: %s", nla->SspiModule);
 
-		RegCloseKey(hKey);
-	}
+	//	RegCloseKey(hKey);
+	//}
 
 	return nla;
 cleanup:

@@ -29,7 +29,7 @@
 #include <winpr/comm.h>
 
 #include "../handle/handle.h"
-#include "config.h"
+#include "config_freerdp.h"
 
 struct winpr_comm
 {

@@ -21,8 +21,8 @@
 #ifndef FREERDP_CHANNEL_URBDRC_CLIENT_TYPES_H
 #define FREERDP_CHANNEL_URBDRC_CLIENT_TYPES_H
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
+#ifdef HAVE_CONFIG_FREERDP_H
+#include "config_freerdp.h"
 #endif
 
 #include <freerdp/dvc.h>

@@ -21,8 +21,8 @@
 #ifndef FREERDP_LIB_CODEC_NSC_TYPES_H
 #define FREERDP_LIB_CODEC_NSC_TYPES_H
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
+#ifdef HAVE_CONFIG_FREERDP_H
+#include "config_freerdp.h"
 #endif
 
 #include <winpr/crt.h>

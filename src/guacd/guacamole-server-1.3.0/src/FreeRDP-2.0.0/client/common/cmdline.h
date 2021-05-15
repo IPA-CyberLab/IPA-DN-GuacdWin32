@@ -20,8 +20,8 @@
 #ifndef CLIENT_COMMON_CMDLINE_H
 #define CLIENT_COMMON_CMDLINE_H
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
+#ifdef HAVE_CONFIG_FREERDP_H
+#include "config_freerdp.h"
 #endif
 
 #include <winpr/cmdline.h>

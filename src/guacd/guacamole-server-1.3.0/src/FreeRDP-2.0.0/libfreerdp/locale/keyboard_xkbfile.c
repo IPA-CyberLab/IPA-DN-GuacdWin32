@@ -17,8 +17,8 @@
  * limitations under the License.
  */
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
+#ifdef HAVE_CONFIG_FREERDP_H
+#include "config_freerdp.h"
 #endif
 
 #include "keyboard_xkbfile.h"
@@ -392,31 +392,31 @@ int detect_keyboard_layout_from_xkbfile(void* display, DWORD* keyboardLayoutId)
 
 	DEBUG_KBD("display: %p", display);
 
-	if (display && XkbRF_GetNamesProp(display, NULL, &rules_names))
-	{
-		DEBUG_KBD("layouts: %s", rules_names.layout ? rules_names.layout : "");
-		DEBUG_KBD("variants: %s", rules_names.variant ? rules_names.variant : "");
+	//if (display && XkbRF_GetNamesProp(display, NULL, &rules_names))
+	//{
+	//	DEBUG_KBD("layouts: %s", rules_names.layout ? rules_names.layout : "");
+	//	DEBUG_KBD("variants: %s", rules_names.variant ? rules_names.variant : "");
 
-		XGetKeyboardControl(display, &coreKbdState);
+	//	XGetKeyboardControl(display, &coreKbdState);
 
-		if (XkbGetState(display, XkbUseCoreKbd, &state) == Success)
-			group = state.group;
+	//	if (XkbGetState(display, XkbUseCoreKbd, &state) == Success)
+	//		group = state.group;
 
-		DEBUG_KBD("group: %u", state.group);
+	//	DEBUG_KBD("group: %u", state.group);
 
-		layout = comma_substring(rules_names.layout, group);
-		variant = comma_substring(rules_names.variant, group);
+	//	layout = comma_substring(rules_names.layout, group);
+	//	variant = comma_substring(rules_names.variant, group);
 
-		DEBUG_KBD("layout: %s", layout ? layout : "");
-		DEBUG_KBD("variant: %s", variant ? variant : "");
+	//	DEBUG_KBD("layout: %s", layout ? layout : "");
+	//	DEBUG_KBD("variant: %s", variant ? variant : "");
 
-		*keyboardLayoutId = find_keyboard_layout_in_xorg_rules(layout, variant);
+	//	*keyboardLayoutId = find_keyboard_layout_in_xorg_rules(layout, variant);
 
-		free(rules_names.model);
-		free(rules_names.layout);
-		free(rules_names.variant);
-		free(rules_names.options);
-	}
+	//	free(rules_names.model);
+	//	free(rules_names.layout);
+	//	free(rules_names.variant);
+	//	free(rules_names.options);
+	//}
 
 	return 0;
 }

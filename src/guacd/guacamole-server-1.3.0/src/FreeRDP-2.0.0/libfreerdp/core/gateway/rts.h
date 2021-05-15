@@ -20,8 +20,8 @@
 #ifndef FREERDP_LIB_CORE_GATEWAY_RTS_H
 #define FREERDP_LIB_CORE_GATEWAY_RTS_H
 
-#ifdef HAVE_CONFIG_H
-#include "config.h"
+#ifdef HAVE_CONFIG_FREERDP_H
+#include "config_freerdp.h"
 #endif
 
 #include "rpc.h"
