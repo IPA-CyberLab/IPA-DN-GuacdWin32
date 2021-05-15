@@ -222,14 +222,14 @@ struct _IUDEVMAN
 	UINT32 status;
 };
 
-enum
+enum device_add_flag_t
 {
 	DEVICE_ADD_FLAG_BUS,
 	DEVICE_ADD_FLAG_DEV,
 	DEVICE_ADD_FLAG_VENDOR,
 	DEVICE_ADD_FLAG_PRODUCT,
 	DEVICE_ADD_FLAG_REGISTER
-} device_add_flag_t;
+} ;
 #define DEVICE_ADD_FLAG_ALL                                               \
 	(DEVICE_ADD_FLAG_BUS | DEVICE_ADD_FLAG_DEV | DEVICE_ADD_FLAG_VENDOR | \
 	 DEVICE_ADD_FLAG_PRODUCT | DEVICE_ADD_FLAG_REGISTER)
