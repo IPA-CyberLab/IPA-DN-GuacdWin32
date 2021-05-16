@@ -31,7 +31,7 @@
  * The maximum number of concurrent connections to a single instance
  * of guacd.
  */
-#define GUACD_CLIENT_MAX_CONNECTIONS 65536
+#define GUACD_CLIENT_MAX_CONNECTIONS 16 // 65536
 
 /**
  * The number of hash buckets in each process map.

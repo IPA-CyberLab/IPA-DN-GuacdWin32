@@ -269,9 +269,9 @@ int main(int argc, char* argv[]) {
 #ifdef ENABLE_SSL
     SSL_CTX* ssl_context = NULL;
 #endif
-
+    
     guacd_proc_map* map = guacd_proc_map_alloc();
-
+    
     /* General */
     int retval;
 
@@ -355,7 +355,7 @@ int main(int argc, char* argv[]) {
         current_address = current_address->ai_next;
 
     }
-
+    
     /* If unable to bind to anything, fail */
     if (current_address == NULL) {
         guacd_log(GUAC_LOG_ERROR, "Unable to bind socket to any addresses.");
@@ -404,7 +404,7 @@ int main(int argc, char* argv[]) {
 
     }
 #endif
-
+    
     /* Daemonize if requested */
     if (!config->foreground) {
 
