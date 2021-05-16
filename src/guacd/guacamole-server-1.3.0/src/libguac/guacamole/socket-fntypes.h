@@ -43,6 +43,8 @@
 typedef ssize_t guac_socket_read_handler(guac_socket* socket,
         void* buf, size_t count);
 
+typedef void guac_socket_set_timeout_handler(guac_socket* socket, int timeout);
+
 /**
  * Generic write handler for socket write operations, modeled after the standard
  * POSIX write() function. When set within a guac_socket, a handler of this type

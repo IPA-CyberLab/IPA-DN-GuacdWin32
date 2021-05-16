@@ -49,9 +49,9 @@
 
 /* #undef WITH_WINMM */
 /* #undef WITH_MACAUDIO */
-#define WITH_OSS
+//////////// #define WITH_OSS
 // #define WITH_ALSA
-#define WITH_PULSE
+//////////// #define WITH_PULSE
 /* #undef WITH_IOSAUDIO */
 /* #undef WITH_OPENSLES */
 /* #undef WITH_GSM */
@@ -59,10 +59,10 @@
 /* #undef WITH_FAAD2 */
 /* #undef WITH_FAAC */
 /* #undef WITH_SOXR */
-#define WITH_GFX_H264
+//////////// #define WITH_GFX_H264
 /* #undef WITH_OPENH264 */
 /* #undef WITH_OPENH264_LOADING */
-#define WITH_FFMPEG
+//////////// #define WITH_FFMPEG
 /* #undef WITH_DSP_EXPERIMENTAL */
 /* #undef WITH_DSP_FFMPEG */
 /* #undef WITH_X264 */

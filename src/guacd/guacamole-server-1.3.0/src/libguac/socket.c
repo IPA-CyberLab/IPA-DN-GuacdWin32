@@ -117,6 +117,12 @@ ssize_t guac_socket_write(guac_socket* socket,
 
 }
 
+void guac_socket_set_timeout(guac_socket* socket, int timeout)
+{
+	if (socket->set_timeout_handler)
+		socket->set_timeout_handler(socket, timeout);
+}
+
 ssize_t guac_socket_read(guac_socket* socket, void* buf, size_t count) {
 
     /* If handler defined, call it. */
@@ -150,6 +156,8 @@ guac_socket* guac_socket_alloc() {
         return NULL;
     }
 
+    memset(socket, 0, sizeof(guac_socket));
+
     socket->__ready = 0;
     socket->data = NULL;
     socket->state = GUAC_SOCKET_OPEN;
@@ -166,6 +174,7 @@ guac_socket* guac_socket_alloc() {
     socket->flush_handler  = NULL;
     socket->lock_handler   = NULL;
     socket->unlock_handler = NULL;
+    socket->set_timeout_handler = NULL;
 
     return socket;
 

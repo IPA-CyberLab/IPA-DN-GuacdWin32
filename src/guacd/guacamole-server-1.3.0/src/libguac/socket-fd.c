@@ -30,6 +30,8 @@
 #include <string.h>
 #include <sys/time.h>
 #include <unistd.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
 
 #ifdef ENABLE_WINSOCK
 #include <winsock2.h>
@@ -387,6 +389,20 @@ static int guac_socket_fd_free_handler(guac_socket* socket) {
 
 }
 
+static int guac_socket_fd_set_timeout_handler(guac_socket* socket, int timeout)
+{
+	guac_socket_fd_data* data = (guac_socket_fd_data*)socket->data;
+
+	int fd = data->fd;
+	struct timeval tv_timeout = { 0 };
+
+	tv_timeout.tv_sec = timeout / 1000; // miliseconds to seconds
+	tv_timeout.tv_usec = (timeout % 1000) * 1000; // miliseconds to microseconds
+
+	setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, (char*)&tv_timeout, sizeof(tv_timeout));
+	setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, (char*)&tv_timeout, sizeof(tv_timeout));
+}
+
 /**
  * Acquires exclusive access to the given socket.
  *
@@ -445,6 +461,7 @@ guac_socket* guac_socket_open(int fd) {
     socket->unlock_handler = guac_socket_fd_unlock_handler;
     socket->flush_handler  = guac_socket_fd_flush_handler;
     socket->free_handler   = guac_socket_fd_free_handler;
+    socket->set_timeout_handler = guac_socket_fd_set_timeout_handler;
 
     return socket;
 
