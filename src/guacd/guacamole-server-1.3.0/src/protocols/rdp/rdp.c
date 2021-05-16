@@ -411,6 +411,8 @@ static int guac_rdp_handle_connection(guac_client* client) {
     /* Init random number generator */
     srandom(time(NULL));
 
+    usleep(100 * 1000);
+
     pthread_rwlock_wrlock(&(rdp_client->lock));
 
     /* Set up screen recording, if requested */
@@ -423,6 +425,8 @@ static int guac_rdp_handle_connection(guac_client* client) {
                 !settings->recording_exclude_mouse,
                 settings->recording_include_keys);
     }
+
+	//usleep(100 * 1000);
 
     /* Create display */
     rdp_client->display = guac_common_display_alloc(client,
@@ -616,9 +620,12 @@ static int guac_rdp_handle_connection(guac_client* client) {
     /* Client is now disconnected */
     guac_client_log(client, GUAC_LOG_INFO, "Internal RDP client disconnected");
 
+    printf("guac_rdp_handle_connection() exit 0\n");
+
     return 0;
 
 fail:
+    printf("guac_rdp_handle_connection() exit 1\n");
     pthread_rwlock_unlock(&(rdp_client->lock));
     return 1;
 
@@ -765,9 +772,11 @@ void* guac_rdp_client_thread(void* data) {
 
     /* Continue handling connections until error or client disconnect */
     while (client->state == GUAC_CLIENT_RUNNING) {
+        printf("guac_rdp_client_thread() loop one\n");
         if (guac_rdp_handle_connection(client))
             break;
     }
+	printf("guac_rdp_client_thread() loop exit\n");
 
     return NULL;
 

@@ -55,6 +55,8 @@ static void* __guac_socket_keep_alive_thread(void* data) {
     guac_socket* socket = (guac_socket*) data;
     while (socket->state == GUAC_SOCKET_OPEN) {
 
+        //WHERE;
+
         /* Send NOP keep-alive if it's been a while since the last output */
         guac_timestamp timestamp = guac_timestamp_current();
         if (timestamp - socket->last_write_timestamp >
@@ -117,6 +119,12 @@ ssize_t guac_socket_write(guac_socket* socket,
 
 }
 
+void guac_socket_set_timeout(guac_socket* socket, int timeout)
+{
+	if (socket->set_timeout_handler)
+		socket->set_timeout_handler(socket, timeout);
+}
+
 ssize_t guac_socket_read(guac_socket* socket, void* buf, size_t count) {
 
     /* If handler defined, call it. */
@@ -130,10 +138,16 @@ ssize_t guac_socket_read(guac_socket* socket, void* buf, size_t count) {
 
 int guac_socket_select(guac_socket* socket, int usec_timeout) {
 
+    WHERE;
     /* Call select handler if defined */
     if (socket->select_handler)
-        return socket->select_handler(socket, usec_timeout);
-
+    {
+        WHERE;
+        int ret = socket->select_handler(socket, usec_timeout);
+        WHERE;
+        return ret;
+    }
+    WHERE;
     /* Otherwise, assume ready. */
     return 1;
 
@@ -149,6 +163,8 @@ guac_socket* guac_socket_alloc() {
         guac_error_message = "Could not allocate memory for socket";
         return NULL;
     }
+
+	memset(socket, 0, sizeof(guac_socket));
 
     socket->__ready = 0;
     socket->data = NULL;
@@ -166,6 +182,7 @@ guac_socket* guac_socket_alloc() {
     socket->flush_handler  = NULL;
     socket->lock_handler   = NULL;
     socket->unlock_handler = NULL;
+    socket->set_timeout_handler = NULL;
 
     return socket;
 
@@ -182,6 +199,7 @@ void guac_socket_require_keep_alive(guac_socket* socket) {
 
 void guac_socket_instruction_begin(guac_socket* socket) {
 
+    //printf("socket: %p\n", socket);
     /* Call instruction begin handler if defined */
     if (socket->lock_handler)
         socket->lock_handler(socket);

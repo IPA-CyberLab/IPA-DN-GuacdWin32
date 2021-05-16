@@ -129,7 +129,7 @@ void guac_client_free_stream(guac_client* client, guac_stream* stream) {
 
 }
 
-guac_client* guac_client_alloc() {
+guac_client* guac_client_alloc(guac_socket* socket) {
 
     int i;
     pthread_rwlockattr_t lock_attributes;
@@ -178,7 +178,8 @@ guac_client* guac_client_alloc() {
     pthread_rwlock_init(&(client->__users_lock), &lock_attributes);
 
     /* Set up socket to broadcast to all users */
-    client->socket = guac_socket_broadcast(client);
+    //client->socket = guac_socket_broadcast(client);
+    client->socket = socket;
 
     return client;
 
@@ -285,7 +286,9 @@ int guac_client_add_user(guac_client* client, guac_user* user, int argc, char** 
 
     /* Call handler, if defined */
     if (client->join_handler)
-    {
+	{
+		 //usleep(1000 * 1000);
+
         printf("5\n");
         retval = client->join_handler(user, argc, argv);
         printf("6\n");

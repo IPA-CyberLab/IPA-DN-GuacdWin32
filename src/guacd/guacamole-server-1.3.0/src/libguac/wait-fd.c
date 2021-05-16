@@ -39,12 +39,21 @@ int guac_wait_for_fd(int fd, int usec_timeout) {
         .revents = 0
     }};
 
+    printf("guac_wait_for_fd: fd = %u, usec_timeout = %u\n", fd, usec_timeout);
+
     /* No timeout if usec_timeout is negative */
     if (usec_timeout < 0)
+    {
+        WHERE;
         return poll(fds, 1, -1);
+    }
 
+    WHERE;
     /* Handle timeout if specified, rounding up to poll()'s granularity */
-    return poll(fds, 1, (usec_timeout + 999) / 1000);
+    int ret = poll(fds, 1, (usec_timeout + 999) / 1000);
+
+    WHERE;
+    return ret;
 
 }
 #else

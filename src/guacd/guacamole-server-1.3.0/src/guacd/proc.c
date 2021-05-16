@@ -428,7 +428,7 @@ guacd_proc* guacd_create_proc(const char* protocol, guac_socket* socket) {
     }
 
     /* Associate new client */
-    proc->client = guac_client_alloc();
+    proc->client = guac_client_alloc(socket);
     if (proc->client == NULL) {
         guacd_log_guac_error(GUAC_LOG_ERROR, "Unable to create client");
         close(parent_socket);

@@ -1229,8 +1229,8 @@ guac_common_surface* guac_common_surface_alloc(guac_client* client,
 
     /* Layers must initially exist */
     if (layer->index >= 0) {
-		//printf("guac_common_surface_alloc: guac_protocol_send_size: layer = %d, w = %d, h = %d\n", layer, w, h);
-		//usleep(5 * 1000 * 1000);
+		printf("guac_common_surface_alloc: guac_protocol_send_size: layer = %d, w = %d, h = %d\n", layer, w, h);
+		//usleep(100 * 1000);
 		guac_protocol_send_size(socket, layer, w, h);
 		//printf("guac_common_surface_alloc2: guac_protocol_send_size: layer = %d, w = %d, h = %d\n", layer, w, h);
     }

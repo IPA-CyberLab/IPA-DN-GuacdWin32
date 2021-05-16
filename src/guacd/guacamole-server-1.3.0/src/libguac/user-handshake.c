@@ -136,8 +136,9 @@ static void* guac_user_input_thread(void* data) {
     guac_parser* parser = params->parser;
     guac_client* client = user->client;
     guac_socket* socket = user->socket;
-
+    usleep(1000 * 1000); // here!!!
     /* Guacamole user input loop */
+    printf("guac_user_input_thread enter loop\n");
     while (client->state == GUAC_CLIENT_RUNNING && user->active) {
 
         /* Read instruction, stop on error */
@@ -153,6 +154,7 @@ static void* guac_user_input_thread(void* data) {
                 guac_user_stop(user);
             }
 
+            printf("guac_user_input_thread exit loop 3\n");
             return NULL;
         }
 
@@ -174,10 +176,13 @@ static void* guac_user_input_thread(void* data) {
             guac_user_log(user, GUAC_LOG_DEBUG, "Failing instruction handler in user was \"%s\"", parser->opcode);
 
             guac_user_stop(user);
+            printf("guac_user_input_thread exit loop 2\n");
             return NULL;
         }
 
     }
+
+    printf("guac_user_input_thread exit loop 1\n");
 
     return NULL;
 
@@ -365,7 +370,7 @@ int guac_user_handle_connection(guac_user* user, int usec_timeout) {
                     "its protocol version.");
             user->info.protocol_version = GUAC_PROTOCOL_VERSION_1_0_0;
         }
-
+        //usleep(1000 * 1000);
         printf("2\n");
         /* Handle user I/O, wait for connection to terminate */
         guac_user_start(parser, user, usec_timeout);

@@ -170,6 +170,8 @@ int guac_parser_read(guac_parser* parser, guac_socket* socket, int usec_timeout)
     char* instr_start    = parser->__instructionbuf_unparsed_start;
     char* buffer_end     = parser->__instructionbuf + sizeof(parser->__instructionbuf);
 
+    //printf("guac_parser_read: usec_timeout = %u\n", usec_timeout);
+
     /* Begin next instruction if previous was ended */
     if (parser->state == GUAC_PARSE_COMPLETE)
         guac_parser_reset(parser);
@@ -219,13 +221,17 @@ int guac_parser_read(guac_parser* parser, guac_socket* socket, int usec_timeout)
             }
 
             /* No instruction yet? Get more data ... */
-            retval = guac_socket_select(socket, usec_timeout);
-            if (retval <= 0)
-                return -1;
-           
+            //retval = guac_socket_select(socket, usec_timeout);
+            //if (retval <= 0)
+            //    return -1;
+
+            guac_socket_set_timeout(socket, usec_timeout / 1000);
+                       
             /* Attempt to fill buffer */
             retval = guac_socket_read(socket, unparsed_end,
                     buffer_end - unparsed_end);
+
+            WHERE;
 
             /* Set guac_error if read unsuccessful */
             if (retval < 0) {

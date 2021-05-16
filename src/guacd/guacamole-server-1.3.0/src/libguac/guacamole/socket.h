@@ -48,6 +48,8 @@ struct guac_socket {
      */
     guac_socket_read_handler* read_handler;
 
+    guac_socket_set_timeout_handler* set_timeout_handler;
+
     /**
      * Handler which will be called whenever data is written to this socket.
      */

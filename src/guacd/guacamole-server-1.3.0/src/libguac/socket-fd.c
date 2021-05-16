@@ -30,6 +30,8 @@
 #include <string.h>
 #include <sys/time.h>
 #include <unistd.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
 
 #ifdef ENABLE_WINSOCK
 #include <winsock2.h>
@@ -344,10 +346,12 @@ static ssize_t guac_socket_fd_write_handler(guac_socket* socket,
 static int guac_socket_fd_select_handler(guac_socket* socket,
         int usec_timeout) {
 
+    WHERE;
     /* Wait for data on socket */
     guac_socket_fd_data* data = (guac_socket_fd_data*) socket->data;
+    WHERE;
     int retval = guac_wait_for_fd(data->fd, usec_timeout);
-
+    WHERE;
     /* Properly set guac_error */
     if (retval <  0) {
         guac_error = GUAC_STATUS_SEE_ERRNO;
@@ -390,6 +394,23 @@ static int guac_socket_fd_free_handler(guac_socket* socket) {
 
 }
 
+static int guac_socket_fd_set_timeout_handler(guac_socket* socket, int timeout)
+{
+    WHERE;
+	guac_socket_fd_data* data = (guac_socket_fd_data*)socket->data;
+
+    int fd = data->fd;
+    struct timeval tv_timeout = { 0 };
+
+	printf("set timeout: fd %u: %u\n", fd, timeout);
+
+	tv_timeout.tv_sec = timeout / 1000; // miliseconds to seconds
+	tv_timeout.tv_usec = (timeout % 1000) * 1000; // miliseconds to microseconds
+
+	setsockopt(fd, SOL_SOCKET, SO_SNDTIMEO, (char*)&tv_timeout, sizeof(tv_timeout));
+	setsockopt(fd, SOL_SOCKET, SO_RCVTIMEO, (char*)&tv_timeout, sizeof(tv_timeout));
+}
+
 /**
  * Acquires exclusive access to the given socket.
  *
@@ -423,6 +444,8 @@ static void guac_socket_fd_unlock_handler(guac_socket* socket) {
 guac_socket* guac_socket_open(int fd) {
     pthread_mutexattr_t lock_attributes;
 
+    printf("guac_socket_open: fd = %u\n", fd);
+
     /* Allocate socket and associated data */
     guac_socket* socket = guac_socket_alloc();
     guac_socket_fd_data* data = malloc(sizeof(guac_socket_fd_data));
@@ -447,6 +470,7 @@ guac_socket* guac_socket_open(int fd) {
     socket->unlock_handler = guac_socket_fd_unlock_handler;
     socket->flush_handler  = guac_socket_fd_flush_handler;
     socket->free_handler   = guac_socket_fd_free_handler;
+    socket->set_timeout_handler = guac_socket_fd_set_timeout_handler;
 
     return socket;
 

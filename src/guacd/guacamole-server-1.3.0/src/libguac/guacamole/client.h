@@ -265,7 +265,7 @@ struct guac_client {
  *
  * @return A pointer to the new client.
  */
-guac_client* guac_client_alloc();
+guac_client* guac_client_alloc(guac_socket* socket);
 
 /**
  * Free all resources associated with the given client.
