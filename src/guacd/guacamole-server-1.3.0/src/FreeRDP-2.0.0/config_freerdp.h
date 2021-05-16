@@ -5,6 +5,10 @@
 #define WHERE printf("%s: %u\n", __FILE__, __LINE__);
 #endif // !WHERE
 
+#ifndef malloc
+#define malloc(size) (_zero_malloc(size))
+#endif // !malloc
+
 /* Include files */
 #define HAVE_FCNTL_H
 #if defined(__APPLE__) && !defined(__IOS__)

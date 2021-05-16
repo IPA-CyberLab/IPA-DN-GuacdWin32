@@ -5,6 +5,11 @@
 #define WHERE printf("%s: %u\n", __FILE__, __LINE__);
 #endif // !WHERE
 
+#ifndef malloc
+#define malloc(size)	(_zero_malloc(size))
+#endif // !malloc
+
+
 /* Whether support for the common SSH core is enabled */
 #define ENABLE_COMMON_SSH /**/
 
