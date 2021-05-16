@@ -345,6 +345,7 @@ static int __guac_socket_broadcast_free_handler(guac_socket* socket) {
 
 guac_socket* guac_socket_broadcast(guac_client* client) {
 
+    printf("guac_socket_broadcast()\n");
     pthread_mutexattr_t lock_attributes;
 
     /* Allocate socket and associated data */

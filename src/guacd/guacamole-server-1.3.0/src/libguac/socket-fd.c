@@ -421,7 +421,6 @@ static void guac_socket_fd_unlock_handler(guac_socket* socket) {
 }
 
 guac_socket* guac_socket_open(int fd) {
-
     pthread_mutexattr_t lock_attributes;
 
     /* Allocate socket and associated data */

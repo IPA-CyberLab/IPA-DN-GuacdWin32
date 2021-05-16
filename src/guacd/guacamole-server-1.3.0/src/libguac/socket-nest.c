@@ -312,6 +312,7 @@ static void guac_socket_nest_unlock_handler(guac_socket* socket) {
 
 guac_socket* guac_socket_nest(guac_socket* parent, int index) {
 
+    printf("guac_socket_nest()\n");
     /* Allocate socket and associated data */
     guac_socket* socket = guac_socket_alloc();
     guac_socket_nest_data* data = malloc(sizeof(guac_socket_nest_data));

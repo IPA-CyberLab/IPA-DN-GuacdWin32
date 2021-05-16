@@ -298,6 +298,7 @@ static int guacd_route_connection(guacd_proc_map* map, guac_socket* socket) {
     //    /* Create new process */
 	proc = guacd_create_proc(identifier, socket);
 
+    printf("guacd_route_connection: exit(0);\n");
     exit(0);
     //    new_process = 1;
 
@@ -396,6 +397,8 @@ void* guacd_connection_thread(void* data) {
 
     /* Route connection according to Guacamole, creating a new process if needed */
     guacd_route_connection(map, socket);
+
+    printf("guacd_connection_thread: exit(0);\n");
 
     exit(0);
 

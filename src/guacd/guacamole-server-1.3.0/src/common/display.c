@@ -118,6 +118,7 @@ static void guac_common_display_free_layers(guac_common_display_layer* layers,
 guac_common_display* guac_common_display_alloc(guac_client* client,
         int width, int height) {
 
+    printf("guac_common_display_alloc()\n");
     /* Allocate display */
     guac_common_display* display = malloc(sizeof(guac_common_display));
     if (display == NULL)
@@ -277,7 +278,7 @@ static void guac_common_display_remove_layer(guac_common_display_layer** head,
 
 guac_common_display_layer* guac_common_display_alloc_layer(
         guac_common_display* display, int width, int height) {
-
+    printf("guac_common_display_alloc_layer()\n");
     pthread_mutex_lock(&display->_lock);
 
     /* Allocate Guacamole layer */
@@ -299,6 +300,7 @@ guac_common_display_layer* guac_common_display_alloc_layer(
 guac_common_display_layer* guac_common_display_alloc_buffer(
         guac_common_display* display, int width, int height) {
 
+    printf("guac_common_display_alloc_buffer()\n");
     pthread_mutex_lock(&display->_lock);
 
     /* Allocate Guacamole buffer */

@@ -101,6 +101,7 @@ static void* guacd_user_thread(void* data) {
     /* Handle user connection from handshake until disconnect/completion */
     guac_user_handle_connection(user, GUACD_USEC_TIMEOUT);
 
+    printf("guacd_user_thread: exit(0)\n");
     exit(0);
 
     ///* Stop client and prevent future users if all users are disconnected */
@@ -151,6 +152,8 @@ static void guacd_proc_add_user(guacd_proc* proc, int fd, int owner, guac_socket
     //pthread_detach(user_thread);
 
     guacd_user_thread(params);
+
+    printf("guacd_proc_add_user: exit(0);\n");
     exit(0);
 }
 
@@ -396,6 +399,7 @@ cleanup_process:
     close(proc->fd_socket);
     free(proc);
 
+    printf("guacd_exec_proc: exit(0);\n");
     exit(0);
 
 }

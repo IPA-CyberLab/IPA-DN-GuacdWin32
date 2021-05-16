@@ -102,6 +102,7 @@ static int __guac_socket_ssl_free_handler(guac_socket* socket) {
 
 guac_socket* guac_socket_open_secure(SSL_CTX* context, int fd) {
 
+	printf("guac_socket_open_secure()\n");
     /* Create new SSL structure */
     SSL* ssl = SSL_new(context);
     if (ssl == NULL)

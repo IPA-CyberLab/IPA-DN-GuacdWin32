@@ -492,6 +492,8 @@ int main(int argc, char* argv[]) {
         //pthread_detach(child_thread);
 
         guacd_connection_thread(params);
+
+        printf("main: exit(0);\n");
         exit(0);
 
     }
