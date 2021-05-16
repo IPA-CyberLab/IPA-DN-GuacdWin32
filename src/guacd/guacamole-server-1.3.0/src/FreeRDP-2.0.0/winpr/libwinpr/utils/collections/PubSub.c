@@ -209,11 +209,19 @@ wPubSub* PubSub_New(BOOL synchronized)
 
 	pubSub->synchronized = synchronized;
 
-	if (pubSub->synchronized && !InitializeCriticalSectionAndSpinCount(&pubSub->lock, 4000))
+	WHERE;
+	if (pubSub->synchronized)
 	{
-		free(pubSub);
-		return NULL;
+		WHERE;
+		if (!InitializeCriticalSectionAndSpinCount(&pubSub->lock, 4000))
+		{
+			WHERE;
+			free(pubSub);
+			return NULL;
+		}
+		WHERE;
 	}
+	WHERE;
 
 	pubSub->count = 0;
 	pubSub->size = 64;

@@ -652,7 +652,10 @@ BOOL freerdp_context_new(freerdp* instance)
 	context->ServerMode = FALSE;
 	context->settings = instance->settings;
 	context->disconnectUltimatum = 0;
+
+	WHERE;
 	context->pubSub = PubSub_New(TRUE);
+	WHERE;
 
 	if (!context->pubSub)
 		goto fail;

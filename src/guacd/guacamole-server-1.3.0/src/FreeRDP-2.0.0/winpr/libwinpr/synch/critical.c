@@ -74,6 +74,7 @@ BOOL InitializeCriticalSectionEx(LPCRITICAL_SECTION lpCriticalSection, DWORD dwS
 	lpCriticalSection->RecursionCount = 0;
 	lpCriticalSection->OwningThread = NULL;
 	lpCriticalSection->LockSemaphore = (winpr_sem_t*)malloc(sizeof(winpr_sem_t));
+	memset(lpCriticalSection->LockSemaphore, 0, sizeof(winpr_sem_t));
 
 	if (!lpCriticalSection->LockSemaphore)
 		return FALSE;
@@ -86,8 +87,13 @@ BOOL InitializeCriticalSectionEx(LPCRITICAL_SECTION lpCriticalSection, DWORD dwS
 
 #else
 
+	//WHERE;
 	if (sem_init(lpCriticalSection->LockSemaphore, 0, 0) != 0)
+	{
+		WHERE;
 		goto out_fail;
+	}
+	//WHERE;
 
 #endif
 	SetCriticalSectionSpinCount(lpCriticalSection, dwSpinCount);

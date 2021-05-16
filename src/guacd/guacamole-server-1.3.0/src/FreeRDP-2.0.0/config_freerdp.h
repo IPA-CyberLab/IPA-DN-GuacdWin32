@@ -1,6 +1,10 @@
 #ifndef FREERDP_CONFIG_H
 #define FREERDP_CONFIG_H
 
+#ifndef WHERE
+#define WHERE printf("%s: %u\n", __FILE__, __LINE__);
+#endif // !WHERE
+
 /* Include files */
 #define HAVE_FCNTL_H
 #if defined(__APPLE__) && !defined(__IOS__)

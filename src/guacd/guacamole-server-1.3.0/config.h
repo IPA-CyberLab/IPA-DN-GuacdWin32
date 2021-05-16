@@ -1,6 +1,10 @@
 /* config.h.  Generated from config.h.in by configure.  */
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
+#ifndef WHERE
+#define WHERE printf("%s: %u\n", __FILE__, __LINE__);
+#endif // !WHERE
+
 /* Whether support for the common SSH core is enabled */
 #define ENABLE_COMMON_SSH /**/
 
