@@ -116,7 +116,6 @@ BOOL rdp_freerdp_pre_connect(freerdp* instance) {
         || settings->audio_enabled) {
         guac_rdpdr_load_plugin(context);
         guac_rdpsnd_load_plugin(context);
-		WHERE;
     }
 
     /* Load RAIL plugin if RemoteApp in use */

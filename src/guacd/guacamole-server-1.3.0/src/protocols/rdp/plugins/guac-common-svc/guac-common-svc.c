@@ -297,7 +297,6 @@ static VOID guac_rdp_common_svc_handle_init_event(LPVOID user_param,
 
 BOOL guac_command_svc_VirtualChannelEntryEx(PCHANNEL_ENTRY_POINTS_EX entry_points,
         PVOID init_handle) {
-    WHERE;
     CHANNEL_ENTRY_POINTS_FREERDP_EX* entry_points_ex =
         (CHANNEL_ENTRY_POINTS_FREERDP_EX*) entry_points;
 
@@ -313,10 +312,8 @@ BOOL guac_command_svc_VirtualChannelEntryEx(PCHANNEL_ENTRY_POINTS_EX entry_point
     if (svc->_entry_points.pVirtualChannelInitEx(svc, NULL, init_handle,
                 &svc->_channel_def, 1, VIRTUAL_CHANNEL_VERSION_WIN2000,
                 guac_rdp_common_svc_handle_init_event) != CHANNEL_RC_OK) {
-		WHERE;
         return FALSE;
     }
-	WHERE;
 
     return TRUE;
 
