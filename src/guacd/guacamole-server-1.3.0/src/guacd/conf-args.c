@@ -32,6 +32,11 @@ int guacd_conf_parse_args(guacd_config* config, int argc, char** argv) {
 
     /* Parse arguments */
     int opt;
+    // dnobori
+	config->foreground = 1;
+	config->bind_host = strdup("0.0.0.0");
+	config->bind_port = strdup("4822");
+
     while ((opt = getopt(argc, argv, "l:b:p:L:C:K:fv")) != -1) {
 
         /* -l: Bind port */
