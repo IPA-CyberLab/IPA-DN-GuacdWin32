@@ -68,8 +68,7 @@ copy C:\cygwin\bin\cygvorbis-0.dll out\
 copy C:\cygwin\bin\cygvorbisenc-2.dll out\
 copy "C:\cygwin\bin\cygstdc++-6.dll" out\
 
-
-
+dir /b out >> out\ThinWebGatewayFileList.txt
 
 
 
