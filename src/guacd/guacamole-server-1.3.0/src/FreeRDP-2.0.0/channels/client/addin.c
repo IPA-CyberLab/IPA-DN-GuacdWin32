@@ -351,6 +351,8 @@ PVIRTUALCHANNELENTRY freerdp_channels_load_static_addin_entry(LPCSTR pszName, LP
 	const STATIC_ADDIN_TABLE* table = CLIENT_STATIC_ADDIN_TABLE;
 	const char* type = NULL;
 
+	printf("--- freerdp_channels_load_static_addin_entry: %s %s\n", pszName, pszSubsystem);
+
 	if (!pszName)
 		return NULL;
 

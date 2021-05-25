@@ -343,19 +343,42 @@ int freerdp_register_addin_provider(FREERDP_LOAD_CHANNEL_ADDIN_ENTRY_FN provider
 	return 0;
 }
 
-PVIRTUALCHANNELENTRY freerdp_load_channel_addin_entry(LPCSTR pszName, LPCSTR pszSubsystem,
+BOOL guac_command_svc_VirtualChannelEntryEx(PCHANNEL_ENTRY_POINTS_EX entry_points,
+                                            PVOID init_handle);
+
+PVIRTUALCHANNELENTRY
+    freerdp_load_channel_addin_entry(LPCSTR pszName, LPCSTR pszSubsystem,
                                                       LPCSTR pszType, DWORD dwFlags)
 {
 	PVIRTUALCHANNELENTRY entry = NULL;
 
-	if (freerdp_load_static_channel_addin_entry)
+	printf("--- freerdp_load_channel_addin_entry: %s\n", pszName);
+
+	if (strcmp(pszName, "guac-common-svc") == 0 && dwFlags & FREERDP_ADDIN_CHANNEL_ENTRYEX)
+	{
+		WHERE;
+		entry = guac_command_svc_VirtualChannelEntryEx;
+		printf("*** guac_command_svc_VirtualChannelEntryEx = %p, entry = %p\n",
+		       guac_command_svc_VirtualChannelEntryEx, entry);
+	}
+
+	if (!entry && freerdp_load_static_channel_addin_entry)
+	{
+		WHERE;
 		entry = freerdp_load_static_channel_addin_entry(pszName, pszSubsystem, pszType, dwFlags);
+	}
 
 	if (!entry)
+	{
+		WHERE;
 		entry = freerdp_load_dynamic_channel_addin_entry(pszName, pszSubsystem, pszType, dwFlags);
+	}
 
 	if (!entry)
+	{
+		WHERE;
 		WLog_WARN(TAG, "Failed to load channel %s [%s]", pszName, pszSubsystem);
+	}
 
 	return entry;
 }

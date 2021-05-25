@@ -1227,6 +1227,9 @@ int freerdp_channels_client_load(rdpChannels* channels, rdpSettings* settings,
 	return 0;
 }
 
+BOOL guac_command_svc_VirtualChannelEntryEx(PCHANNEL_ENTRY_POINTS_EX entry_points,
+                                            PVOID init_handle);
+
 int freerdp_channels_client_load_ex(rdpChannels* channels, rdpSettings* settings,
                                     PVIRTUALCHANNELENTRYEX entryEx, void* data)
 {
@@ -1266,6 +1269,9 @@ int freerdp_channels_client_load_ex(rdpChannels* channels, rdpSettings* settings
 	/* enable VirtualChannelInit */
 	channels->can_call_init = TRUE;
 	EnterCriticalSection(&channels->channelsLock);
+	printf("guac_command_svc_VirtualChannelEntryEx = %p\n", guac_command_svc_VirtualChannelEntryEx);
+	printf("freerdp_channels_client_load_ex: call pChannelClientData->entryEx = %p\n",
+	       pChannelClientData->entryEx);
 	status = pChannelClientData->entryEx((PCHANNEL_ENTRY_POINTS_EX)&EntryPointsEx, pInitHandle);
 	LeaveCriticalSection(&channels->channelsLock);
 	/* disable MyVirtualChannelInit */

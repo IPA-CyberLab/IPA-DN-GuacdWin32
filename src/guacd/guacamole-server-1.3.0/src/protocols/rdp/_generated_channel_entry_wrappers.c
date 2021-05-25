@@ -5,6 +5,7 @@ static BOOL guac_rdp_plugin_entry_ex_wrapper1(PCHANNEL_ENTRY_POINTS_EX entry_poi
     return guac_rdp_wrapped_entry_ex[1 - 1](entry_points_ex, init_handle);
 }
 static BOOL guac_rdp_plugin_entry_ex_wrapper2(PCHANNEL_ENTRY_POINTS_EX entry_points_ex, PVOID init_handle) {
+    printf("*** guac_rdp_wrapped_entry_ex[1] = %p\n", guac_rdp_wrapped_entry_ex[1]);
     return guac_rdp_wrapped_entry_ex[2 - 1](entry_points_ex, init_handle);
 }
 static BOOL guac_rdp_plugin_entry_ex_wrapper3(PCHANNEL_ENTRY_POINTS_EX entry_points_ex, PVOID init_handle) {
