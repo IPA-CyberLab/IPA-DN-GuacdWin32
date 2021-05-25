@@ -21,13 +21,13 @@ $(o_all): tmp_build/%.o: %.c $(h_all)
 
 all:	build
 
-build:	out.exe
+build:	ThinWebGateway.exe
 
-out.exe:	$(o_all)
+ThinWebGateway.exe:	$(o_all)
 	$(CC) $(LDFLAGS) $^ $(LDLIBS) -o $@
 
 clean:
 	-rm -fr tmp_build/
-	-rm -f out.exe
+	-rm -f ThinWebGateway.exe
 
 
