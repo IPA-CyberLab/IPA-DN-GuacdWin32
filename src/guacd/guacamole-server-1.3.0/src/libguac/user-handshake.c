@@ -336,12 +336,12 @@ int guac_user_handle_connection(guac_user* user, int usec_timeout) {
         return 1;
     }
 
-    printf("1\n");
+    // printf("1\n");
     
     /* Attempt to join user to connection. */
     if (guac_client_add_user(client, user, (parser->argc - 1), parser->argv + 1))
     {
-        printf("4\n");
+        // printf("4\n");
         guac_client_log(client, GUAC_LOG_ERROR, "User \"%s\" could NOT "
             "join connection \"%s\"", user->user_id, client->connection_id);
     }
@@ -363,10 +363,10 @@ int guac_user_handle_connection(guac_user* user, int usec_timeout) {
             user->info.protocol_version = GUAC_PROTOCOL_VERSION_1_0_0;
         }
 
-        printf("2\n");
+        // printf("2\n");
         /* Handle user I/O, wait for connection to terminate */
         guac_user_start(parser, user, usec_timeout);
-        printf("3\n");
+        // printf("3\n");
 
         /* Remove/free user */
         guac_client_remove_user(client, user);
@@ -374,7 +374,7 @@ int guac_user_handle_connection(guac_user* user, int usec_timeout) {
                 "users remain)", user->user_id, client->connected_users);
 
     }
-    printf("4\n");
+    // printf("4\n");
     
     /* Free mimetype character arrays. */
     guac_free_mimetypes((char **) user->info.audio_mimetypes);

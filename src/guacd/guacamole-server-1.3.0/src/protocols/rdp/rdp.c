@@ -442,7 +442,7 @@ static int guac_rdp_handle_connection(guac_client* client) {
     /* Allocate FreeRDP context */
     rdp_inst->ContextSize = sizeof(rdp_freerdp_context);
 
-    WHERE;
+    //WHERE;
     if (!freerdp_context_new(rdp_inst)) {
         WHERE;
         guac_client_abort(client, GUAC_PROTOCOL_STATUS_SERVER_ERROR,
@@ -452,7 +452,7 @@ static int guac_rdp_handle_connection(guac_client* client) {
         goto fail;
     }
 
-    WHERE;
+    // WHERE;
     ((rdp_freerdp_context*) rdp_inst->context)->client = client;
 
     /* Load keymap into client */

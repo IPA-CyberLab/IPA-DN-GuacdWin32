@@ -287,9 +287,9 @@ int guac_client_add_user(guac_client* client, guac_user* user, int argc, char** 
     /* Call handler, if defined */
     if (client->join_handler)
     {
-        printf("5\n");
+        // printf("5\n");
         retval = client->join_handler(user, argc, argv);
-        printf("6\n");
+        // printf("6\n");
     }
 
     pthread_rwlock_wrlock(&(client->__users_lock));
@@ -314,7 +314,7 @@ int guac_client_add_user(guac_client* client, guac_user* user, int argc, char** 
 
     pthread_rwlock_unlock(&(client->__users_lock));
 
-    printf("7\n");
+    // printf("7\n");
 
     return retval;
 
