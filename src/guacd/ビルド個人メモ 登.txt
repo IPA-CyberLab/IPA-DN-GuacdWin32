@@ -1,0 +1,177 @@
+﻿ビルドマシンは dn-cygwin1 の環境が便利である。
+
+■■ ==== 開発中 ====
+
+■ 参考個人メモ
+210511 dn-cygwin1 Cygwin ビルドサーバー構築メモ
+210514 guacd 分析・デバッグ・開発メモ.txt
+210512 guacd win32 cygwin ビルドメモ
+
+■ OSSP uuid のビルド
+
+mkdir -p /cygdrive/c/git/IPA-DN-GuacdWin32/src/libossp-uuid/
+cd /cygdrive/c/git/IPA-DN-GuacdWin32/src/libossp-uuid/
+
+wget --no-check-certificate https://www.mirrorservice.org/sites/ftp.ossp.org/pkg/lib/uuid/uuid-1.6.2.tar.gz
+
+tar xzf uuid-1.6.2.tar.gz
+
+cd /cygdrive/c/git/IPA-DN-GuacdWin32/src/libossp-uuid/uuid-1.6.2/
+
+./configure
+
+make
+
+make install
+
+
+■ guacd のビルド
+
+mkdir -p /cygdrive/c/git/IPA-DN-GuacdWin32/src/guacd/
+cd /cygdrive/c/git/IPA-DN-GuacdWin32/src/guacd/
+
+wget --no-check-certificate https://ftp.kddi-research.jp/infosystems/apache/guacamole/1.3.0/source/guacamole-server-1.3.0.tar.gz
+
+tar xzf guacamole-server-1.3.0.tar.gz
+
+この状態でコミット
+
+cd /cygdrive/c/git/IPA-DN-GuacdWin32/src/guacd/guacamole-server-1.3.0/
+
+sed -i '1s/^/\#pragma GCC diagnostic ignored \"\-Wdeprecated\-declarations\"\n/' /cygdrive/c/git/IPA-DN-GuacdWin32/src/guacd/guacamole-server-1.3.0/src/protocols/rdp/rdp.c
+
+cp -n ./configure ./configure.original
+./configure
+
+-lossp-uuid が見つからないエラーが出る。
+
+configure を置換
+
+perl -pi -e 's/\-lossp\-uuid/\/usr\/local\/lib\/libuuid\.a/g' ./configure
+
+configure は成功したが、
+
+  --------------------------------------------
+   Unable to find FreeRDP (libfreerdp2 / libfreerdp-client2 / libwinpr2)
+   RDP will be disabled.
+  --------------------------------------------
+
+とか出て RDP が無効になってしまった。
+
+cygwin のパッケージから freerdp 系をインストール。
+
+make -j 10
+
+
+WinSock 系の競合が発生。
+
+
+./configure --with-winsock=no
+
+make clean && make -j 10
+
+
+__BSD_VISIBLE の重複が発生。
+
+
+cp -n ./config.h ./config.h.original3
+perl -pi -e 's/__BSD_VISIBLE/__DUMMY___BSD_VISIBLE/g' ./config.h
+
+make clean && make AM_DEFAULT_VERBOSITY=1
+
+/usr/local/lib/libuuid.a のスタティックリンク時にエラーが発生する。順序が問題のようである。
+
+C:\git\IPA-DN-GuacdWin32\src\guacd\guacamole-server-1.3.0\src\libguac\Makefile
+
+を開く。
+
+
+libguac.la: $(libguac_la_OBJECTS) $(libguac_la_DEPENDENCIES) $(EXTRA_libguac_la_DEPENDENCIES) 
+の $(LIBS) の後に
+
+  /cygdrive/c/git/IPA-DN-GuacdWin32/src/libossp-uuid/uuid-1.6.2/uuid.lo /cygdrive/c/git/IPA-DN-GuacdWin32/src/libossp-uuid/uuid-1.6.2/uuid_mac.lo /cygdrive/c/git/IPA-DN-GuacdWin32/src/libossp-uuid/uuid-1.6.2/uuid_md5.lo /cygdrive/c/git/IPA-DN-GuacdWin32/src/libossp-uuid/uuid-1.6.2/uuid_prng.lo /cygdrive/c/git/IPA-DN-GuacdWin32/src/libossp-uuid/uuid-1.6.2/uuid_sha1.lo /cygdrive/c/git/IPA-DN-GuacdWin32/src/libossp-uuid/uuid-1.6.2/uuid_str.lo /cygdrive/c/git/IPA-DN-GuacdWin32/src/libossp-uuid/uuid-1.6.2/uuid_time.lo /cygdrive/c/git/IPA-DN-GuacdWin32/src/libossp-uuid/uuid-1.6.2/uuid_ui64.lo /cygdrive/c/git/IPA-DN-GuacdWin32/src/libossp-uuid/uuid-1.6.2/uuid_ui128.lo
+
+を追加する。すなわち、libossp-uuid を無理やりリンクする。
+
+
+C:\git\IPA-DN-GuacdWin32\src\guacd\guacamole-server-1.3.0\src\terminal\Makefile
+---
+CFLAGS = -g -O2
+---
+を
+---
+CFLAGS = -g -O2 -Wno-error=char-subscripts
+---
+に変更する。
+
+
+C:\git\IPA-DN-GuacdWin32\src\guacd\guacamole-server-1.3.0\src\protocols\rdp\Makefile
+---
+libguac_client_rdp_la_LDFLAGS = \
+---
+の -version-info の次の行に
+---
+    -no-undefined        \
+---
+を追加する。
+
+---
+libguac_common_svc_client_la_LDFLAGS = \
+---
+の最初のほうの行に
+---
+    -no-undefined        \
+---
+を追加する。
+
+
+---
+libguacai_client_la_LDFLAGS = \
+---
+の最初のほうの行に
+---
+    -no-undefined        \
+---
+を追加する。
+
+
+
+
+■■ ==== リリースビルド方法 ====
+dn-cygwin1 で
+
+cd /d C:\git\IPA-DN-GuacdWin32\src\guacd\guacamole-server-1.3.0\
+
+c:\cygwin\bin\bash.exe
+
+make clean
+
+make clean
+
+make -j 8
+
+無事に完了したら
+
+C:\git\IPA-DN-GuacdWin32\src\guacd\guacamole-server-1.3.0\CopyRelease.cmd
+
+これにより
+
+C:\git\IPA-DN-GuacdWin32\src\guacd\guacamole-server-1.3.0\out\
+
+に大量に DLL と EXE が生成される。
+
+合計 65 ファイルあることを確認する。
+
+
+■■ ==== リリース署名方法 ====
+別のマシンから
+
+del /q \\dn-cygwin1\C\git\IPA-DN-GuacdWin32\src\guacd\guacamole-server-1.3.0\out_signed\*
+
+copy /y \\dn-cygwin1\C\git\IPA-DN-GuacdWin32\src\guacd\guacamole-server-1.3.0\out\ThinWebGatewayFileList.txt \\dn-cygwin1\C\git\IPA-DN-GuacdWin32\src\guacd\guacamole-server-1.3.0\out_signed\ThinWebGatewayFileList.txt
+
+S:\CommomDev\SE-DNP-CodeSignClientApp\SE-DNP-CodeSignClientApp_signed.exe SignDir \\dn-cygwin1\C\git\IPA-DN-GuacdWin32\src\guacd\guacamole-server-1.3.0\out\ /DEST:\\dn-cygwin1\C\git\IPA-DN-GuacdWin32\src\guacd\guacamole-server-1.3.0\out_signed\ /CERT:SoftEtherEv /COMMENT:'Thin Telework Web Gateway'
+
+
+
+
