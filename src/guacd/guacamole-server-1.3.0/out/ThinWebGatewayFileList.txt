@@ -63,3 +63,4 @@ cygXrender-1.dll
 cygz.dll
 ThinWebGateway.exe
 ThinWebGatewayFileList.txt
+ThinWebGatewayLicense.txt

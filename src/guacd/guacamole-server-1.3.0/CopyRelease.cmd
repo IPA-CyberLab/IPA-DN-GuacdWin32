@@ -3,6 +3,7 @@ cd /d %~dp0
 rmdir /q /s out\
 mkdir out\
 
+copy ThinWebGatewayLicense.txt out\
 copy ThinWebGateway.exe out\
 copy C:\cygwin\bin\cygX11-6.dll out\
 copy C:\cygwin\bin\cygcairo-2.dll out\
