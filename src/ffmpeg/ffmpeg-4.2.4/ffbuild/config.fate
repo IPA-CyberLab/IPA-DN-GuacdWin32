@@ -1,1 +1,0 @@
-config:x86:x86_32:generic:cygwin:gcc 10 (GCC):--prefix=/usr/local --enable-gpl --enable-nonfree --enable-postproc --enable-pthreads --enable-libmp3lame --enable-libx264 --enable-swscale --enable-avfilter --enable-avfilter --enable-libvorbis --enable-shared
