@@ -113,6 +113,31 @@ int guac_rdp_user_mouse_handler(guac_user* user, int x, int y, int mask) {
 
         }
 
+        // dnobori
+        if (released_mask & 96)
+        {
+			int flags = 0;
+			if (released_mask & 32) flags |= PTR_XFLAGS_BUTTON2; // back
+			if (released_mask & 64) flags |= PTR_XFLAGS_BUTTON1; // forward
+
+			//printf("*** 5\n");
+			rdp_inst->input->ExtendedMouseEvent(rdp_inst->input, flags, x, y);
+            //printf("*** 6\n");
+        }
+
+        if (pressed_mask & 96)
+        {
+			int flags = PTR_XFLAGS_DOWN;
+			if (pressed_mask & 32) flags |= PTR_XFLAGS_BUTTON2; // back
+			if (pressed_mask & 64) flags |= PTR_XFLAGS_BUTTON1; // forward
+
+            //printf("flags = %u\n", flags);
+            //printf("rdp_inst->input->ExtendedMouseEvent = %p\n", rdp_inst->input->ExtendedMouseEvent);
+            //printf("*** 3\n");
+			rdp_inst->input->ExtendedMouseEvent(rdp_inst->input, flags, x, y);
+            //printf("*** 4\n");
+        }
+
         rdp_client->mouse_button_mask = mask;
     }
 
