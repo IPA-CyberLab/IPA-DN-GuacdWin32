@@ -1464,9 +1464,13 @@ static int rdp_recv_fastpath_pdu(rdpRdp* rdp, wStream* s)
 static int rdp_recv_pdu(rdpRdp* rdp, wStream* s)
 {
 	if (tpkt_verify_header(s))
+	{
 		return rdp_recv_tpkt_pdu(rdp, s);
+	}
 	else
+	{
 		return rdp_recv_fastpath_pdu(rdp, s);
+	}
 }
 
 int rdp_recv_callback(rdpTransport* transport, wStream* s, void* extra)

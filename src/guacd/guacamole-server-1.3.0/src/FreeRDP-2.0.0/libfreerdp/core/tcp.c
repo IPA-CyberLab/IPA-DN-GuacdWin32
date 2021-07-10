@@ -116,6 +116,7 @@ static int transport_bio_simple_write(BIO* bio, const char* buf, int size)
 		return 0;
 
 	BIO_clear_flags(bio, BIO_FLAGS_WRITE);
+	//WHERE;
 	status = _send(ptr->socket, buf, size, 0);
 
 	if (status <= 0)
@@ -133,6 +134,13 @@ static int transport_bio_simple_write(BIO* bio, const char* buf, int size)
 		}
 	}
 
+	int remain = size - status;
+	if (status <= 0)
+		remain = 0;
+
+	//printf("Send [%x] Size: %u  Remain: %u  Ret: %u\n", (unsigned int)pthread_self(), size, remain,
+	//       status);
+
 	return status;
 }
 
@@ -146,16 +154,22 @@ static int transport_bio_simple_read(BIO* bio, char* buf, int size)
 		return 0;
 
 	BIO_clear_flags(bio, BIO_FLAGS_READ);
-	WSAResetEvent(ptr->hEvent);
+	//WSAResetEvent(ptr->hEvent);
+	//WHERE;
 	status = _recv(ptr->socket, buf, size, 0);
 
 	if (status > 0)
 	{
+		//printf("Recv [%x] Size: %u  Remain: %u  Ret: %u\n", (unsigned int)pthread_self(), size, size - status,
+		//       status);
+
 		return status;
 	}
 
 	if (status == 0)
 	{
+		//printf("Recv [%x] Size: %u  Retry Required #1\n", (unsigned int)pthread_self(), size);
+
 		BIO_clear_flags(bio, BIO_FLAGS_SHOULD_RETRY);
 		return 0;
 	}
@@ -166,10 +180,12 @@ static int transport_bio_simple_read(BIO* bio, char* buf, int size)
 	    (error == WSAEALREADY))
 	{
 		BIO_set_flags(bio, (BIO_FLAGS_READ | BIO_FLAGS_SHOULD_RETRY));
+		//printf("Recv [%x] Size: %u  Retry Required #2\n", (unsigned int)pthread_self(), size);
 	}
 	else
 	{
 		BIO_clear_flags(bio, BIO_FLAGS_SHOULD_RETRY);
+		//printf("Recv [%x] Size: %u  Error!!\n", (unsigned int)pthread_self(), size);
 	}
 
 	return -1;
@@ -233,71 +249,71 @@ static long transport_bio_simple_ctrl(BIO* bio, int cmd, long arg1, void* arg2)
 	}
 	else if (cmd == BIO_C_WAIT_READ)
 	{
-		int timeout = (int)arg1;
-		int sockfd = (int)ptr->socket;
-#ifdef HAVE_POLL_H
-		struct pollfd pollset;
-		pollset.fd = sockfd;
-		pollset.events = POLLIN;
-		pollset.revents = 0;
-
-		do
-		{
-			status = poll(&pollset, 1, timeout);
-		} while ((status < 0) && (errno == EINTR));
-
-#else
-		fd_set rset;
-		struct timeval tv;
-		FD_ZERO(&rset);
-		FD_SET(sockfd, &rset);
-
-		if (timeout)
-		{
-			tv.tv_sec = timeout / 1000;
-			tv.tv_usec = (timeout % 1000) * 1000;
-		}
-
-		do
-		{
-			status = select(sockfd + 1, &rset, NULL, NULL, timeout ? &tv : NULL);
-		} while ((status < 0) && (errno == EINTR));
-
-#endif
+//		int timeout = (int)arg1;
+//		int sockfd = (int)ptr->socket;
+//#ifdef HAVE_POLL_H
+//		struct pollfd pollset;
+//		pollset.fd = sockfd;
+//		pollset.events = POLLIN;
+//		pollset.revents = 0;
+//
+//		do
+//		{
+//			status = poll(&pollset, 1, timeout);
+//		} while ((status < 0) && (errno == EINTR));
+//
+//#else
+//		fd_set rset;
+//		struct timeval tv;
+//		FD_ZERO(&rset);
+//		FD_SET(sockfd, &rset);
+//
+//		if (timeout)
+//		{
+//			tv.tv_sec = timeout / 1000;
+//			tv.tv_usec = (timeout % 1000) * 1000;
+//		}
+//
+//		do
+//		{
+//			status = select(sockfd + 1, &rset, NULL, NULL, timeout ? &tv : NULL);
+//		} while ((status < 0) && (errno == EINTR));
+//
+//#endif
 	}
 	else if (cmd == BIO_C_WAIT_WRITE)
 	{
-		int timeout = (int)arg1;
-		int sockfd = (int)ptr->socket;
-#ifdef HAVE_POLL_H
-		struct pollfd pollset;
-		pollset.fd = sockfd;
-		pollset.events = POLLOUT;
-		pollset.revents = 0;
-
-		do
-		{
-			status = poll(&pollset, 1, timeout);
-		} while ((status < 0) && (errno == EINTR));
-
-#else
-		fd_set rset;
-		struct timeval tv;
-		FD_ZERO(&rset);
-		FD_SET(sockfd, &rset);
-
-		if (timeout)
-		{
-			tv.tv_sec = timeout / 1000;
-			tv.tv_usec = (timeout % 1000) * 1000;
-		}
-
-		do
-		{
-			status = select(sockfd + 1, NULL, &rset, NULL, timeout ? &tv : NULL);
-		} while ((status < 0) && (errno == EINTR));
-
-#endif
+//		int timeout = (int)arg1;
+//		int sockfd = (int)ptr->socket;
+//#ifdef HAVE_POLL_H
+//		struct pollfd pollset;
+//		pollset.fd = sockfd;
+//		pollset.events = POLLOUT;
+//		pollset.revents = 0;
+//
+//		do
+//		{
+//			status = poll(&pollset, 1, timeout);
+//		} while ((status < 0) && (errno == EINTR));
+//
+//#else
+//		fd_set rset;
+//		struct timeval tv;
+//		FD_ZERO(&rset);
+//		FD_SET(sockfd, &rset);
+//
+//		if (timeout)
+//		{
+//			tv.tv_sec = timeout / 1000;
+//			tv.tv_usec = (timeout % 1000) * 1000;
+//		}
+//
+//		do
+//		{
+//			status = select(sockfd + 1, NULL, &rset, NULL, timeout ? &tv : NULL);
+//		} while ((status < 0) && (errno == EINTR));
+//
+//#endif
 	}
 
 	switch (cmd)
@@ -360,12 +376,14 @@ static int transport_bio_simple_init(BIO* bio, SOCKET socket, int shutdown)
 	if (!ptr->hEvent)
 		return 0;
 
-	/* WSAEventSelect automatically sets the socket in non-blocking mode */
-	if (WSAEventSelect(ptr->socket, ptr->hEvent, FD_READ | FD_ACCEPT | FD_CLOSE))
-	{
-		WLog_ERR(TAG, "WSAEventSelect returned 0x%08X", WSAGetLastError());
-		return 0;
-	}
+	///* WSAEventSelect automatically sets the socket in non-blocking mode */
+	//if (WSAEventSelect(ptr->socket, ptr->hEvent, FD_READ | FD_ACCEPT | FD_CLOSE))
+	//{
+	//	WLog_ERR(TAG, "WSAEventSelect returned 0x%08X", WSAGetLastError());
+	//	return 0;
+	//}
+
+	SetEvent(ptr->hEvent);
 
 	return 1;
 }

@@ -227,6 +227,7 @@ wStream* transport_send_stream_init(rdpTransport* transport, int size)
 
 BOOL transport_attach(rdpTransport* transport, int sockfd)
 {
+	WHERE;
 	BIO* socketBio = NULL;
 	BIO* bufferedBio;
 	socketBio = BIO_new(BIO_s_simple_socket());
@@ -235,13 +236,13 @@ BOOL transport_attach(rdpTransport* transport, int sockfd)
 		goto fail;
 
 	BIO_set_fd(socketBio, sockfd, BIO_CLOSE);
-	bufferedBio = BIO_new(BIO_s_buffered_socket());
+	//bufferedBio = BIO_new(BIO_s_buffered_socket());
 
-	if (!bufferedBio)
-		goto fail;
+	//if (!bufferedBio)
+	//	goto fail;
 
-	bufferedBio = BIO_push(bufferedBio, socketBio);
-	transport->frontBio = bufferedBio;
+	//bufferedBio = BIO_push(bufferedBio, socketBio);
+	transport->frontBio = socketBio;
 	return TRUE;
 fail:
 
@@ -552,6 +553,8 @@ static SSIZE_T transport_read_layer(rdpTransport* transport, BYTE* data, size_t 
 	SSIZE_T read = 0;
 	rdpRdp* rdp = transport->context->rdp;
 
+	//WHERE;
+
 	if (!transport->frontBio || (bytes > SSIZE_MAX))
 	{
 		transport->layer = TRANSPORT_LAYER_CLOSED;
@@ -628,7 +631,11 @@ static SSIZE_T transport_read_layer_bytes(rdpTransport* transport, wStream* s, s
 	if (toRead > SSIZE_MAX)
 		return 0;
 
+	EnterCriticalSection(&(transport->WriteLock));
+
 	status = transport_read_layer(transport, Stream_Pointer(s), toRead);
+
+	LeaveCriticalSection(&(transport->WriteLock));
 
 	if (status <= 0)
 		return status;
@@ -797,6 +804,8 @@ int transport_write(rdpTransport* transport, wStream* s)
 	int status = -1;
 	int writtenlength = 0;
 	rdpRdp* rdp = transport->context->rdp;
+
+	//WHERE;
 
 	if (!s)
 		return -1;
