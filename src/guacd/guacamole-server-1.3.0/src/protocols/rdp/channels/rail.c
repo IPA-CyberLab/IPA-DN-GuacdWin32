@@ -85,8 +85,11 @@ static UINT guac_rdp_rail_complete_handshake(RailClientContext* rail) {
 
     };
 
-    /* Send client handshake response */
-    status = rail->ClientHandshake(rail, &handshake);
+	/* Send client handshake response */
+	pthread_mutex_lock(&(rdp_client->message_lock));
+	status = rail->ClientHandshake(rail, &handshake);
+	pthread_mutex_unlock(&(rdp_client->message_lock));
+
     if (status != CHANNEL_RC_OK)
         return status;
 
@@ -94,8 +97,11 @@ static UINT guac_rdp_rail_complete_handshake(RailClientContext* rail) {
         .flags = 0x00
     };
 
-    /* Send client status */
-    status = rail->ClientInformation(rail, &client_status);
+	/* Send client status */
+	pthread_mutex_lock(&(rdp_client->message_lock));
+	status = rail->ClientInformation(rail, &client_status);
+	pthread_mutex_unlock(&(rdp_client->message_lock));
+
     if (status != CHANNEL_RC_OK)
         return status;
 
@@ -138,8 +144,11 @@ static UINT guac_rdp_rail_complete_handshake(RailClientContext* rail) {
 
     };
 
-    /* Send client system parameters */
-    status = rail->ClientSystemParam(rail, &sysparam);
+	/* Send client system parameters */
+	pthread_mutex_lock(&(rdp_client->message_lock));
+	status = rail->ClientSystemParam(rail, &sysparam);
+	pthread_mutex_unlock(&(rdp_client->message_lock));
+
     if (status != CHANNEL_RC_OK)
         return status;
 
@@ -150,9 +159,12 @@ static UINT guac_rdp_rail_complete_handshake(RailClientContext* rail) {
         .RemoteApplicationArguments = rdp_client->settings->remote_app_args,
     };
 
-    /* Execute desired RemoteApp command */
-    return rail->ClientExecute(rail, &exec);
+	/* Execute desired RemoteApp command */
+	pthread_mutex_lock(&(rdp_client->message_lock));
+	status = rail->ClientExecute(rail, &exec);
+	pthread_mutex_unlock(&(rdp_client->message_lock));
 
+	return status;
 }
 
 /**
