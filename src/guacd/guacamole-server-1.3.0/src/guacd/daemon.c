@@ -178,7 +178,7 @@ static pthread_mutex_t* guacd_openssl_locks = NULL;
  */
 static void guacd_openssl_locking_callback(int mode, int n,
         const char* file, int line){
-
+    WHERE;
     /* Lock given mutex upon request */
     if (mode & CRYPTO_LOCK)
         pthread_mutex_lock(&(guacd_openssl_locks[n]));
@@ -196,6 +196,7 @@ static void guacd_openssl_locking_callback(int mode, int n,
  *     An ID which uniquely identifies the current thread.
  */
 static unsigned long guacd_openssl_id_callback() {
+    WHERE;
     return (unsigned long) pthread_self();
 }
 
@@ -245,7 +246,49 @@ static void guacd_openssl_free_locks(int count) {
 #endif
 #endif
 
+static pthread_mutex_t my_malloc_lock = { 0 };
+
+static void* my_malloc(size_t size)
+{
+	//WHERE;
+    pthread_mutex_lock(&my_malloc_lock);
+    if (size == 0) size = 1;
+    void* m = malloc(size);
+    if (m != NULL)
+    {
+        memset(m, 0, size);
+    }
+    pthread_mutex_unlock(&my_malloc_lock);
+    return m;
+}
+
+static void my_free(void* addr)
+{
+	//WHERE;
+    pthread_mutex_lock(&my_malloc_lock);
+    if (addr != NULL)
+    {
+        free(addr);
+    }
+    pthread_mutex_unlock(&my_malloc_lock);
+}
+
+static void* my_realloc(void* mem, size_t size)
+{
+	//WHERE;
+    pthread_mutex_lock(&my_malloc_lock);
+    if (size == 0) size = 1;
+    void* m = realloc(mem, size);
+    pthread_mutex_unlock(&my_malloc_lock);
+    return m;
+}
+
+
 int main(int argc, char* argv[]) {
+
+    pthread_mutex_init(&my_malloc_lock, NULL);
+
+    CRYPTO_set_mem_functions(my_malloc, my_realloc, my_free);
 
     /* Server */
     int socket_fd;

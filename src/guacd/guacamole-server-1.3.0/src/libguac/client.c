@@ -427,8 +427,8 @@ int guac_client_end_frame(guac_client* client) {
     client->last_sent_timestamp = guac_timestamp_current();
 
     /* Log received timestamp and calculated lag (at TRACE level only) */
-    guac_client_log(client, GUAC_LOG_TRACE, "Server completed "
-            "frame %" PRIu64 "ms.", client->last_sent_timestamp);
+    //guac_client_log(client, GUAC_LOG_TRACE, "Server completed "
+    //        "frame %" PRIu64 "ms.", client->last_sent_timestamp);
 
     return guac_protocol_send_sync(client->socket, client->last_sent_timestamp);
 
