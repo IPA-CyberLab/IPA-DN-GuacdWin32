@@ -712,26 +712,32 @@ out:
 
 BOOL security_encrypt(BYTE* data, size_t length, rdpRdp* rdp)
 {
+	BOOL rc = FALSE; // dnobori 2021/07/10 https://github.com/Raven24/FreeRDP/commit/20c77eed7ff838710c24020f053bb66677c488a0#diff-f5d8fcbe9c76dab0a2ff441f2b400327cc72d34d91d66e9462435d95b563edcb
+	EnterCriticalSection(&rdp->critical);
 	if (rdp->encrypt_use_count >= 4096)
 	{
 		if (!security_key_update(rdp->encrypt_key, rdp->encrypt_update_key, rdp->rc4_key_len, rdp))
-			return FALSE;
+			goto fail;
 
 		winpr_RC4_Free(rdp->rc4_encrypt_key);
 		rdp->rc4_encrypt_key = winpr_RC4_New(rdp->encrypt_key, rdp->rc4_key_len);
 
 		if (!rdp->rc4_encrypt_key)
-			return FALSE;
+			goto fail;
 
 		rdp->encrypt_use_count = 0;
 	}
 
 	if (!winpr_RC4_Update(rdp->rc4_encrypt_key, length, data, data))
-		return FALSE;
+		goto fail;
 
 	rdp->encrypt_use_count++;
 	rdp->encrypt_checksum_use_count++;
-	return TRUE;
+	rc = TRUE;
+
+fail:
+	LeaveCriticalSection(&rdp->critical);
+	return rc;
 }
 
 BOOL security_decrypt(BYTE* data, size_t length, rdpRdp* rdp)
@@ -793,13 +799,19 @@ out:
 
 BOOL security_fips_encrypt(BYTE* data, size_t length, rdpRdp* rdp)
 {
+	BOOL rc = FALSE; // dnobori 2021/07/10 https://github.com/Raven24/FreeRDP/commit/20c77eed7ff838710c24020f053bb66677c488a0#diff-f5d8fcbe9c76dab0a2ff441f2b400327cc72d34d91d66e9462435d95b563edcb
 	size_t olen;
 
+	EnterCriticalSection(&rdp->critical);
 	if (!winpr_Cipher_Update(rdp->fips_encrypt, data, length, data, &olen))
-		return FALSE;
+		goto fail;
 
 	rdp->encrypt_use_count++;
-	return TRUE;
+	rc = TRUE;
+
+fail:
+	LeaveCriticalSection(&rdp->critical);
+	return rc;
 }
 
 BOOL security_fips_decrypt(BYTE* data, size_t length, rdpRdp* rdp)

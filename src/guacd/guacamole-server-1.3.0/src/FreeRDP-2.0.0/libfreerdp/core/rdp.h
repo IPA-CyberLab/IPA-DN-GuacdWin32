@@ -179,6 +179,7 @@ struct rdp_rdp
 	UINT64 inPackets;
 	UINT64 outBytes;
 	UINT64 outPackets;
+	CRITICAL_SECTION critical; // dnobori 2021/07/10 https://github.com/Raven24/FreeRDP/commit/20c77eed7ff838710c24020f053bb66677c488a0#diff-f5d8fcbe9c76dab0a2ff441f2b400327cc72d34d91d66e9462435d95b563edcb
 };
 
 FREERDP_LOCAL BOOL rdp_read_security_header(wStream* s, UINT16* flags, UINT16* length);
