@@ -2,7 +2,7 @@
 /* config.h.in.  Generated from configure.ac by autoheader.  */
 
 #ifndef WHERE
-#define WHERE printf("%s: %u\n", __FILE__, __LINE__);
+#define WHERE printf("[%x] %s: %u\n", (unsigned int)pthread_self(), __FILE__, __LINE__);
 #endif // !WHERE
 
 #ifndef malloc
@@ -202,6 +202,7 @@
 
 /* Whether OpenSSL requires explicit threading callbacks for threadsafety */
 /* #undef OPENSSL_REQUIRES_THREADING_CALLBACKS */
+#define	OPENSSL_REQUIRES_THREADING_CALLBACKS
 
 /* Name of package */
 #define PACKAGE "guacamole-server"

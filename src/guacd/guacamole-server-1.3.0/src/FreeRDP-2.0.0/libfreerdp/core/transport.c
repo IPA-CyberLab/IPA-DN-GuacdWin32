@@ -212,7 +212,7 @@ wStream* transport_send_stream_init(rdpTransport* transport, int size)
 {
 	wStream* s;
 
-	if (!(s = StreamPool_Take(transport->ReceivePool, size)))
+	if (!(s = StreamPool_Take(transport->SendPool, size)))
 		return NULL;
 
 	if (!Stream_EnsureCapacity(s, size))
@@ -235,6 +235,14 @@ BOOL transport_attach(rdpTransport* transport, int sockfd)
 		goto fail;
 
 	BIO_set_fd(socketBio, sockfd, BIO_CLOSE);
+
+	if (true)
+	{
+		// debug
+		transport->frontBio = socketBio;
+	}
+	else
+	{
 	bufferedBio = BIO_new(BIO_s_buffered_socket());
 
 	if (!bufferedBio)
@@ -242,6 +250,7 @@ BOOL transport_attach(rdpTransport* transport, int sockfd)
 
 	bufferedBio = BIO_push(bufferedBio, socketBio);
 	transport->frontBio = bufferedBio;
+	}
 	return TRUE;
 fail:
 
@@ -634,7 +643,7 @@ static SSIZE_T transport_read_layer_bytes(rdpTransport* transport, wStream* s, s
 		return status;
 
 	Stream_Seek(s, (size_t)status);
-	return status == (SSIZE_T)toRead ? 1 : 0;
+	return (status == (SSIZE_T)toRead) ? 1 : 0;
 }
 
 /**
@@ -759,7 +768,9 @@ int transport_read_pdu(rdpTransport* transport, wStream* s)
 				pduLength = ((header[1] & 0x7F) << 8) | header[2];
 			}
 			else
+			{
 				pduLength = header[1];
+			}
 
 			/*
 			 * fast-path has 7 bits for length so the maximum size, including headers is 0x8000
@@ -1157,6 +1168,7 @@ rdpTransport* transport_new(rdpContext* context)
 	transport->context = context;
 	transport->settings = context->settings;
 	transport->ReceivePool = StreamPool_New(TRUE, BUFFER_SIZE);
+	transport->SendPool = StreamPool_New(TRUE, BUFFER_SIZE);
 
 	if (!transport->ReceivePool)
 		goto out_free_transport;

@@ -1077,7 +1077,10 @@ static UINT rdpsnd_virtual_channel_event_data_received(rdpsndPlugin* plugin, voi
 
 		error = rdpsnd_recv_pdu(plugin, plugin->data_in);
 		if (error)
+		{
+			WHERE;
 			return error;
+		}
 
 		plugin->data_in = NULL;
 	}

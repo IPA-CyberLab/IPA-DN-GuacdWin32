@@ -140,10 +140,10 @@ int __guac_handle_sync(guac_user* user, int argc, char** argv) {
     }
 
     /* Log received timestamp and calculated lag (at TRACE level only) */
-    guac_user_log(user, GUAC_LOG_TRACE,
-            "User confirmation of frame %" PRIu64 "ms received "
-            "at %" PRIu64 "ms (processing_lag=%ims)",
-            timestamp, current, user->processing_lag);
+    //guac_user_log(user, GUAC_LOG_TRACE,
+    //        "User confirmation of frame %" PRIu64 "ms received "
+    //        "at %" PRIu64 "ms (processing_lag=%ims)",
+    //        timestamp, current, user->processing_lag);
 
     if (user->sync_handler)
         return user->sync_handler(user, timestamp);
@@ -727,8 +727,11 @@ int __guac_user_call_opcode_handler(__guac_instruction_handler_mapping* map,
     }
 
     /* If unrecognized, log and ignore */
+    if (strlen(opcode) >= 1)
+    {
     guac_user_log(user, GUAC_LOG_DEBUG, "Handler not found for \"%s\"",
             opcode);
+    }
     return 0;
 
 }

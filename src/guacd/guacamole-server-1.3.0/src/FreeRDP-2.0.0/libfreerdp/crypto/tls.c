@@ -461,6 +461,9 @@ static int bio_rdp_tls_free(BIO* bio)
 	if (!tls)
 		return 0;
 
+	BIO_set_data(bio, NULL); // d1a78b1b3b6555822bc7236287e57a4533e61f37  Merge pull request #6386
+	                         // from akallabeth/connect_double_free
+
 	if (BIO_get_shutdown(bio))
 	{
 		if (BIO_get_init(bio) && tls->ssl)

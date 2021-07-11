@@ -2,7 +2,7 @@
 #define FREERDP_CONFIG_H
 
 #ifndef WHERE
-#define WHERE printf("%s: %u\n", __FILE__, __LINE__);
+#define WHERE printf("[%x] %s: %u\n", (unsigned int)pthread_self(), __FILE__, __LINE__);
 #endif // !WHERE
 
 #ifndef malloc

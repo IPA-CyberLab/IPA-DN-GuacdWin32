@@ -4271,8 +4271,14 @@ BOOL rdp_send_confirm_active(rdpRdp* rdp)
 	if (!s)
 		return FALSE;
 
-	status = rdp_write_confirm_active(s, rdp->settings) &&
-	         rdp_send_pdu(rdp, s, PDU_TYPE_CONFIRM_ACTIVE, rdp->mcs->userId);
-	Stream_Release(s);
+	status = rdp_write_confirm_active(s, rdp->settings);
+
+	if (!status)
+	{
+		Stream_Release(s) return FALSE;
+	}
+
+	status = rdp_send_pdu(rdp, s, PDU_TYPE_CONFIRM_ACTIVE, rdp->mcs->userId);
+	//Stream_Release(s); // 2021/07/11 by dnobori: fix double free
 	return status;
 }

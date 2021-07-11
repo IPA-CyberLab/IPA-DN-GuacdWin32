@@ -86,10 +86,15 @@ wStream* Stream_New(BYTE* buffer, size_t size)
 	if (!s)
 		return NULL;
 
+	memset(s, 0, sizeof(wStream));
+
 	if (buffer)
 		s->buffer = buffer;
 	else
+	{
 		s->buffer = (BYTE*)malloc(size);
+		memset(s->buffer, 0, size);
+	}
 
 	if (!s->buffer)
 	{
@@ -110,6 +115,7 @@ wStream* Stream_New(BYTE* buffer, size_t size)
 
 void Stream_StaticInit(wStream* s, BYTE* buffer, size_t size)
 {
+	memset(s, 0, sizeof(wStream));
 	assert(s);
 	assert(buffer);
 

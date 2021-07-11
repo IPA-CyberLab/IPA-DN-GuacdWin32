@@ -148,7 +148,10 @@ BOOL rdp_read_share_control_header(wStream* s, UINT16* tpktLength, UINT16* remai
 {
 	UINT16 len;
 	if (Stream_GetRemainingLength(s) < 2)
+	{
+		WHERE;
 		return FALSE;
+	}
 
 	/* Share Control Header */
 	Stream_Read_UINT16(s, len); /* totalLength */
@@ -158,7 +161,10 @@ BOOL rdp_read_share_control_header(wStream* s, UINT16* tpktLength, UINT16* remai
 	if (len == 0x8000)
 	{
 		if (!rdp_read_flow_control_pdu(s, type, channel_id))
+		{
+			WHERE;
 			return FALSE;
+		}
 		*channel_id = 0;
 		if (tpktLength)
 			*tpktLength = 8; /* Flow control PDU is 8 bytes */
@@ -167,8 +173,14 @@ BOOL rdp_read_share_control_header(wStream* s, UINT16* tpktLength, UINT16* remai
 		return TRUE;
 	}
 
+		//printf("len = %u, Stream_GetRemainingLength(s) = %u\n", len, Stream_GetRemainingLength(s));
+
 	if ((len < 4) || ((len - 2) > Stream_GetRemainingLength(s)))
+	{
+		WHERE;
+		printf("error! len = %u, Stream_GetRemainingLength(s) = %u\n", len, Stream_GetRemainingLength(s));
 		return FALSE;
+	}
 
 	if (tpktLength)
 		*tpktLength = len;
@@ -384,6 +396,8 @@ BOOL rdp_read_header(rdpRdp* rdp, wStream* s, UINT16* length, UINT16* channelId)
 	enum DomainMCSPDU domainMCSPDU;
 	MCSPDU = (rdp->settings->ServerMode) ? DomainMCSPDU_SendDataRequest
 	                                     : DomainMCSPDU_SendDataIndication;
+
+	*channelId = 0; /* Initialize in case of early abort */
 
 	if (!tpkt_read_header(s, length))
 		return FALSE;
@@ -640,6 +654,7 @@ BOOL rdp_send(rdpRdp* rdp, wStream* s, UINT16 channel_id)
 		goto fail;
 
 	rc = TRUE;
+	return rc; // 2021/07/11 by dnobori: fix double free
 fail:
 	Stream_Release(s);
 	return rc;
@@ -715,6 +730,7 @@ BOOL rdp_send_data_pdu(rdpRdp* rdp, wStream* s, BYTE type, UINT16 channel_id)
 		goto fail;
 
 	rc = TRUE;
+	return rc; // 2021/07/11 by dnobori: fix double free
 fail:
 	Stream_Release(s);
 	return rc;
@@ -747,6 +763,7 @@ BOOL rdp_send_message_channel_pdu(rdpRdp* rdp, wStream* s, UINT16 sec_flags)
 		goto fail;
 
 	rc = TRUE;
+	return rc;  // 2021/07/11 by dnobori: fix double free
 fail:
 	Stream_Release(s);
 	return rc;
@@ -1144,9 +1161,15 @@ BOOL rdp_read_flow_control_pdu(wStream* s, UINT16* type, UINT16* channel_id)
 	 */
 	UINT8 pduType;
 	if (!type)
+	{
+		WHERE;
 		return FALSE;
+	}
 	if (Stream_GetRemainingLength(s) < 6)
+	{
+		WHERE;
 		return FALSE;
+	}
 	Stream_Read_UINT8(s, pduType); /* pduTypeFlow */
 	*type = pduType;
 	Stream_Seek_UINT8(s);               /* pad8bits */
@@ -1176,6 +1199,7 @@ BOOL rdp_decrypt(rdpRdp* rdp, wStream* s, UINT16* pLength, UINT16 securityFlags)
 	length = *pLength;
 	if (rdp->settings->EncryptionMethods == ENCRYPTION_METHOD_FIPS)
 	{
+		WHERE; // ’Ê‚ç‚ñ
 		UINT16 len;
 		BYTE version, pad;
 		BYTE* sig;
@@ -1224,17 +1248,25 @@ BOOL rdp_decrypt(rdpRdp* rdp, wStream* s, UINT16* pLength, UINT16 securityFlags)
 	if (!security_decrypt(Stream_Pointer(s), length, rdp))
 		return FALSE;
 
+	int flag = 0;
+
 	if (securityFlags & SEC_SECURE_CHECKSUM)
+	{
+		flag = 1;
 		status = security_salted_mac_signature(rdp, Stream_Pointer(s), length, FALSE, cmac);
+	}
 	else
+	{
+		flag = 2;
 		status = security_mac_signature(rdp, Stream_Pointer(s), length, cmac);
+	}
 
 	if (!status)
 		return FALSE;
 
 	if (memcmp(wmac, cmac, sizeof(wmac)) != 0)
 	{
-		WLog_ERR(TAG, "WARNING: invalid packet signature");
+		WLog_ERR(TAG, "WARNING: invalid packet signature  flag=%u", flag);
 		/*
 		 * Because Standard RDP Security is totally broken,
 		 * and cannot protect against MITM, don't treat signature
@@ -1242,7 +1274,7 @@ BOOL rdp_decrypt(rdpRdp* rdp, wStream* s, UINT16* pLength, UINT16 securityFlags)
 		 * us to work with broken RDP clients and servers that
 		 * generate invalid signatures.
 		 */
-		// return FALSE;
+		 return FALSE;
 	}
 
 	*pLength = length;
@@ -1750,6 +1782,8 @@ rdpRdp* rdp_new(rdpContext* context)
 	if (!rdp)
 		return NULL;
 
+	InitializeCriticalSection(&rdp->critical); // dnobori 2021/07/10 https://github.com/Raven24/FreeRDP/commit/20c77eed7ff838710c24020f053bb66677c488a0#diff-f5d8fcbe9c76dab0a2ff441f2b400327cc72d34d91d66e9462435d95b563edcb
+
 	rdp->context = context;
 	rdp->instance = context->instance;
 	flags = 0;
@@ -1762,7 +1796,7 @@ rdpRdp* rdp_new(rdpContext* context)
 		context->settings = freerdp_settings_new(flags);
 
 		if (!context->settings)
-			goto out_free;
+			goto fail;
 
 		newSettings = TRUE;
 	}
@@ -1783,98 +1817,73 @@ rdpRdp* rdp_new(rdpContext* context)
 	rdp->transport = transport_new(context);
 
 	if (!rdp->transport)
-		goto out_free_settings;
+		goto fail;
 
 	rdp->license = license_new(rdp);
 
 	if (!rdp->license)
-		goto out_free_transport;
+		goto fail;
 
 	rdp->input = input_new(rdp);
 
 	if (!rdp->input)
-		goto out_free_license;
+		goto fail;
 
 	rdp->update = update_new(rdp);
 
 	if (!rdp->update)
-		goto out_free_input;
+		goto fail;
 
 	rdp->fastpath = fastpath_new(rdp);
 
 	if (!rdp->fastpath)
-		goto out_free_update;
+		goto fail;
 
 	rdp->nego = nego_new(rdp->transport);
 
 	if (!rdp->nego)
-		goto out_free_fastpath;
+		goto fail;
 
 	rdp->mcs = mcs_new(rdp->transport);
 
 	if (!rdp->mcs)
-		goto out_free_nego;
+		goto fail;
 
 	rdp->redirection = redirection_new();
 
 	if (!rdp->redirection)
-		goto out_free_mcs;
+		goto fail;
 
 	rdp->autodetect = autodetect_new();
 
 	if (!rdp->autodetect)
-		goto out_free_redirection;
+		goto fail;
 
 	rdp->heartbeat = heartbeat_new();
 
 	if (!rdp->heartbeat)
-		goto out_free_autodetect;
+		goto fail;
 
 	rdp->multitransport = multitransport_new();
 
 	if (!rdp->multitransport)
-		goto out_free_heartbeat;
+		goto fail;
 
 	rdp->bulk = bulk_new(context);
 
 	if (!rdp->bulk)
-		goto out_free_multitransport;
+		goto fail;
 
 	return rdp;
-out_free_multitransport:
-	multitransport_free(rdp->multitransport);
-out_free_heartbeat:
-	heartbeat_free(rdp->heartbeat);
-out_free_autodetect:
-	autodetect_free(rdp->autodetect);
-out_free_redirection:
-	redirection_free(rdp->redirection);
-out_free_mcs:
-	mcs_free(rdp->mcs);
-out_free_nego:
-	nego_free(rdp->nego);
-out_free_fastpath:
-	fastpath_free(rdp->fastpath);
-out_free_update:
-	update_free(rdp->update);
-out_free_input:
-	input_free(rdp->input);
-out_free_license:
-	license_free(rdp->license);
-out_free_transport:
-	transport_free(rdp->transport);
-out_free_settings:
 
-	if (newSettings)
-		freerdp_settings_free(rdp->settings);
-
-out_free:
-	free(rdp);
+fail:
+	rdp_free(rdp);
 	return NULL;
 }
 
 void rdp_reset(rdpRdp* rdp)
 {
+	WHERE;
 	rdpContext* context;
 	rdpSettings* settings;
 	context = rdp->context;
@@ -1949,6 +1958,7 @@ void rdp_free(rdpRdp* rdp)
 {
 	if (rdp)
 	{
+		DeleteCriticalSection(&rdp->critical); // dnobori 2021/07/10 https://github.com/Raven24/FreeRDP/commit/20c77eed7ff838710c24020f053bb66677c488a0#diff-f5d8fcbe9c76dab0a2ff441f2b400327cc72d34d91d66e9462435d95b563edcb
 		winpr_RC4_Free(rdp->rc4_decrypt_key);
 		winpr_RC4_Free(rdp->rc4_encrypt_key);
 		winpr_Cipher_Free(rdp->fips_encrypt);
