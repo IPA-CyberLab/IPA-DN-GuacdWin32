@@ -88,6 +88,9 @@
 
 #define TAG FREERDP_TAG("core")
 
+// debug
+static BOOL g_debug_blocking = FALSE;
+
 /* Simple Socket BIO */
 
 struct _WINPR_BIO_SIMPLE_SOCKET
@@ -106,6 +109,9 @@ static long transport_bio_simple_callback(BIO* bio, int mode, const char* argp, 
 	return 1;
 }
 
+static pthread_mutex_t test_socket_lock_read = { 0 };
+//static pthread_mutex_t test_socket_lock_write = { 0 };
+
 static int transport_bio_simple_write(BIO* bio, const char* buf, int size)
 {
 	int error;
@@ -115,12 +121,18 @@ static int transport_bio_simple_write(BIO* bio, const char* buf, int size)
 	if (!buf)
 		return 0;
 
-	BIO_clear_flags(bio, BIO_FLAGS_WRITE);
-	status = _send(ptr->socket, buf, size, 0);
+	pthread_mutex_lock(&test_socket_lock_read);
 
+	BIO_clear_flags(bio, BIO_FLAGS_WRITE);
+
+	status = _send(ptr->socket, buf, size, 0);
 	if (status <= 0)
 	{
 		error = WSAGetLastError();
+	}
+
+	if (status <= 0)
+	{
 
 		if ((error == WSAEWOULDBLOCK) || (error == WSAEINTR) || (error == WSAEINPROGRESS) ||
 		    (error == WSAEALREADY))
@@ -132,6 +144,8 @@ static int transport_bio_simple_write(BIO* bio, const char* buf, int size)
 			BIO_clear_flags(bio, BIO_FLAGS_SHOULD_RETRY);
 		}
 	}
+
+	pthread_mutex_unlock(&test_socket_lock_read);
 
 	return status;
 }
@@ -145,22 +159,43 @@ static int transport_bio_simple_read(BIO* bio, char* buf, int size)
 	if (!buf)
 		return 0;
 
+	pthread_mutex_lock(&test_socket_lock_read);
+
 	BIO_clear_flags(bio, BIO_FLAGS_READ);
-	WSAResetEvent(ptr->hEvent);
+	if (g_debug_blocking == FALSE) // debug
+	{
+		WSAResetEvent(ptr->hEvent);
+	}
+
 	status = _recv(ptr->socket, buf, size, 0);
+	if (status < 0)
+	{
+		error = WSAGetLastError();
+	}
+
+	if (g_debug_blocking)
+	{
+		if (status <= 0)
+		{
+			printf("recv: bio = %x, size = %u, ret = %u\n", bio, size, status);
+		}
+	}
 
 	if (status > 0)
 	{
+		pthread_mutex_unlock(&test_socket_lock_read);
+
 		return status;
 	}
 
 	if (status == 0)
 	{
 		BIO_clear_flags(bio, BIO_FLAGS_SHOULD_RETRY);
+
+		pthread_mutex_unlock(&test_socket_lock_read);
 		return 0;
 	}
 
-	error = WSAGetLastError();
 
 	if ((error == WSAEWOULDBLOCK) || (error == WSAEINTR) || (error == WSAEINPROGRESS) ||
 	    (error == WSAEALREADY))
@@ -172,6 +207,7 @@ static int transport_bio_simple_read(BIO* bio, char* buf, int size)
 		BIO_clear_flags(bio, BIO_FLAGS_SHOULD_RETRY);
 	}
 
+	pthread_mutex_unlock(&test_socket_lock_read);
 	return -1;
 }
 
@@ -217,6 +253,7 @@ static long transport_bio_simple_ctrl(BIO* bio, int cmd, long arg1, void* arg2)
 #ifndef _WIN32
 		int flags;
 		flags = fcntl((int)ptr->socket, F_GETFL);
+		printf("BIO_C_SET_NONBLOCK %u\n", arg1);
 
 		if (flags == -1)
 			return 0;
@@ -233,6 +270,11 @@ static long transport_bio_simple_ctrl(BIO* bio, int cmd, long arg1, void* arg2)
 	}
 	else if (cmd == BIO_C_WAIT_READ)
 	{
+		if (g_debug_blocking)
+		{
+			WHERE;
+		}
+		//pthread_mutex_lock(&test_socket_lock_read);
 		int timeout = (int)arg1;
 		int sockfd = (int)ptr->socket;
 #ifdef HAVE_POLL_H
@@ -264,9 +306,15 @@ static long transport_bio_simple_ctrl(BIO* bio, int cmd, long arg1, void* arg2)
 		} while ((status < 0) && (errno == EINTR));
 
 #endif
+		//pthread_mutex_unlock(&test_socket_lock_read);
 	}
 	else if (cmd == BIO_C_WAIT_WRITE)
 	{
+		if (g_debug_blocking)
+		{
+			WHERE;
+		}
+		//pthread_mutex_lock(&test_socket_lock_write);
 		int timeout = (int)arg1;
 		int sockfd = (int)ptr->socket;
 #ifdef HAVE_POLL_H
@@ -298,6 +346,7 @@ static long transport_bio_simple_ctrl(BIO* bio, int cmd, long arg1, void* arg2)
 		} while ((status < 0) && (errno == EINTR));
 
 #endif
+		//pthread_mutex_unlock(&test_socket_lock_write);
 	}
 
 	switch (cmd)
@@ -350,6 +399,10 @@ static long transport_bio_simple_ctrl(BIO* bio, int cmd, long arg1, void* arg2)
 
 static int transport_bio_simple_init(BIO* bio, SOCKET socket, int shutdown)
 {
+	pthread_mutex_init(&test_socket_lock_read, NULL);
+	//pthread_mutex_init(&test_socket_lock_write, NULL);
+
+	WHERE;
 	WINPR_BIO_SIMPLE_SOCKET* ptr = (WINPR_BIO_SIMPLE_SOCKET*)BIO_get_data(bio);
 	ptr->socket = socket;
 	BIO_set_shutdown(bio, shutdown);
@@ -361,10 +414,17 @@ static int transport_bio_simple_init(BIO* bio, SOCKET socket, int shutdown)
 		return 0;
 
 	/* WSAEventSelect automatically sets the socket in non-blocking mode */
-	if (WSAEventSelect(ptr->socket, ptr->hEvent, FD_READ | FD_ACCEPT | FD_CLOSE))
+	if (g_debug_blocking) // debug
 	{
-		WLog_ERR(TAG, "WSAEventSelect returned 0x%08X", WSAGetLastError());
-		return 0;
+		WSASetEvent(ptr->hEvent);
+	}
+	else
+	{
+		if (WSAEventSelect(ptr->socket, ptr->hEvent, FD_READ | FD_ACCEPT | FD_CLOSE))
+		{
+			WLog_ERR(TAG, "WSAEventSelect returned 0x%08X", WSAGetLastError());
+			return 0;
+		}
 	}
 
 	return 1;

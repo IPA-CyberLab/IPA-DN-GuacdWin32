@@ -543,7 +543,7 @@ static int fastpath_recv_update_data(rdpFastPath* fastpath, wStream* s)
 
 	if (Stream_GetRemainingLength(s) < size)
 	{
-		WLog_ERR(TAG, "Stream_GetRemainingLength() < size");
+		WLog_ERR(TAG, "Stream_GetRemainingLength() %u < size %u", Stream_GetRemainingLength(s), size);
 		return -1;
 	}
 

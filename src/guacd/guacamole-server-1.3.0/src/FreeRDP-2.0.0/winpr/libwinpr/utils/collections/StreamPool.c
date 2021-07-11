@@ -202,6 +202,9 @@ out_fail:
 
 void StreamPool_Return(wStreamPool* pool, wStream* s)
 {
+	if (s->tag == 0x12345678)
+		WHERE;
+
 	if (pool->synchronized)
 		EnterCriticalSection(&pool->lock);
 

@@ -211,8 +211,8 @@ static void transport_ssl_cb(SSL* ssl, int where, int ret)
 wStream* transport_send_stream_init(rdpTransport* transport, int size)
 {
 	wStream* s;
-
-	if (!(s = StreamPool_Take(transport->ReceivePool, size)))
+	
+	if (!(s = StreamPool_Take(transport->SendPool, size)))
 		return NULL;
 
 	if (!Stream_EnsureCapacity(s, size))
@@ -235,13 +235,22 @@ BOOL transport_attach(rdpTransport* transport, int sockfd)
 		goto fail;
 
 	BIO_set_fd(socketBio, sockfd, BIO_CLOSE);
-	bufferedBio = BIO_new(BIO_s_buffered_socket());
 
-	if (!bufferedBio)
-		goto fail;
+	if (true)
+	{
+		// debug
+		transport->frontBio = socketBio;
+	}
+	else
+	{
+		bufferedBio = BIO_new(BIO_s_buffered_socket());
 
-	bufferedBio = BIO_push(bufferedBio, socketBio);
-	transport->frontBio = bufferedBio;
+		if (!bufferedBio)
+			goto fail;
+
+		bufferedBio = BIO_push(bufferedBio, socketBio);
+		transport->frontBio = bufferedBio;
+	}
 	return TRUE;
 fail:
 
@@ -634,7 +643,7 @@ static SSIZE_T transport_read_layer_bytes(rdpTransport* transport, wStream* s, s
 		return status;
 
 	Stream_Seek(s, (size_t)status);
-	return status == (SSIZE_T)toRead ? 1 : 0;
+	return (status == (SSIZE_T)toRead) ? 1 : 0;
 }
 
 /**
@@ -759,7 +768,9 @@ int transport_read_pdu(rdpTransport* transport, wStream* s)
 				pduLength = ((header[1] & 0x7F) << 8) | header[2];
 			}
 			else
+			{
 				pduLength = header[1];
+			}
 
 			/*
 			 * fast-path has 7 bits for length so the maximum size, including headers is 0x8000
@@ -998,11 +1009,13 @@ int transport_drain_output_buffer(rdpTransport* transport)
 
 static int nest_count = 0;
 
+static void* last_taken = NULL;
+
 int transport_check_fds(rdpTransport* transport)
 {
 	int status;
 	int recv_status;
-	wStream* received;
+	//wStream* received;
 	UINT64 now = GetTickCount64();
 	UINT64 dueDate = 0;
 
@@ -1024,77 +1037,178 @@ int transport_check_fds(rdpTransport* transport)
 		ResetEvent(transport->rereadEvent);
 	}
 
-	while (now < dueDate)
+	if (true)
 	{
-		if (freerdp_shall_disconnect(transport->context->instance))
+		wStream* received = NULL;
+		// Original
+		while (now < dueDate) // ƒ‹[ƒv‚µ‚È‚¢‚æ‚¤‚É‚µ‚Ä‚à•s‹ï‡‰ü‘P‚È‚µ
 		{
-			return -1;
-		}
+			if (freerdp_shall_disconnect(transport->context->instance))
+			{
+				return -1;
+			}
 
-		/**
-		 * Note: transport_read_pdu tries to read one PDU from
-		 * the transport layer.
-		 * The ReceiveBuffer might have a position > 0 in case of a non blocking
-		 * transport. If transport_read_pdu returns 0 the pdu couldn't be read at
-		 * this point.
-		 * Note that transport->ReceiveBuffer is replaced after each iteration
-		 * of this loop with a fresh stream instance from a pool.
-		 */
-		if ((status = transport_read_pdu(transport, transport->ReceiveBuffer)) <= 0)
+			/**
+			 * Note: transport_read_pdu tries to read one PDU from
+			 * the transport layer.
+			 * The ReceiveBuffer might have a position > 0 in case of a non blocking
+			 * transport. If transport_read_pdu returns 0 the pdu couldn't be read at
+			 * this point.
+			 * Note that transport->ReceiveBuffer is replaced after each iteration
+			 * of this loop with a fresh stream instance from a pool.
+			 */
+			if ((status = transport_read_pdu(transport, transport->ReceiveBuffer)) <= 0)
+			{
+				if (status < 0)
+					WLog_Print(transport->log, WLOG_DEBUG,
+					           "transport_check_fds: transport_read_pdu() - %i", status);
+
+				return status;
+			}
+
+			received = transport->ReceiveBuffer;
+			received->tag = 0x12345678;
+
+			if (!(transport->ReceiveBuffer = StreamPool_Take(transport->ReceivePool, 0)))
+			{
+				WHERE;
+				return -1;
+			}
+
+			/**
+			 * status:
+			 * 	-1: error
+			 * 	 0: success
+			 * 	 1: redirection
+			 */
+			if (received->count != 1)
+			{
+				WHERE;
+				printf("#1: received->count = %x\n", received->count);
+			}
+			nest_count++;
+			//printf("nest_count = %u\n", nest_count);
+			recv_status = transport->ReceiveCallback(transport, received, transport->ReceiveExtra);
+			nest_count--;
+			if (received->tag != 0x12345678)
+			{
+				WHERE;
+				printf("received->tag = %x\n", received->tag);
+			}
+			received->tag = 0;
+			if (received->count != 1)
+			{
+				WHERE;
+				printf("#2: received->count = %x\n", received->count);
+			}
+			Stream_Release(received);
+
+			/* session redirection or activation */
+			if (recv_status == 1 || recv_status == 2)
+			{
+				return recv_status;
+			}
+
+			if (recv_status < 0)
+			{
+				WLog_Print(transport->log, WLOG_ERROR,
+				           "transport_check_fds: transport->ReceiveCallback() - %i", recv_status);
+				return -1;
+			}
+
+			now = GetTickCount64();
+		}
+	}
+	else
+	{
+		// Jikken
+		while (now < dueDate)
 		{
-			if (status < 0)
-				WLog_Print(transport->log, WLOG_DEBUG,
-				           "transport_check_fds: transport_read_pdu() - %i", status);
+			if (freerdp_shall_disconnect(transport->context->instance))
+			{
+				return -1;
+			}
 
-			return status;
+			nest_count++;
+			//printf("nest_count = %u\n", nest_count);
+			wStream* stream = Stream_New(NULL, 10000000);
+
+			//printf("alloc: 0x%x 0x%x\n", stream, stream->buffer);
+
+			stream->count = 1;
+			stream->tag = 0x12345678;
+
+
+			/**
+			 * Note: transport_read_pdu tries to read one PDU from
+			 * the transport layer.
+			 * The ReceiveBuffer might have a position > 0 in case of a non blocking
+			 * transport. If transport_read_pdu returns 0 the pdu couldn't be read at
+			 * this point.
+			 * Note that transport->ReceiveBuffer is replaced after each iteration
+			 * of this loop with a fresh stream instance from a pool.
+			 */
+			if ((status = transport_read_pdu(transport, stream)) <= 0)
+			{
+				if (status < 0)
+					WLog_Print(transport->log, WLOG_DEBUG,
+					           "transport_check_fds: transport_read_pdu() - %i", status);
+				//WHERE;
+				nest_count--;
+				stream->tag = 0; 
+				Stream_Free(stream, TRUE);
+				return status;
+			}
+
+			// received = transport->ReceiveBuffer;
+
+			// if (!(transport->ReceiveBuffer = StreamPool_Take(transport->ReceivePool, 0)))
+			//	return -1;
+
+			/**
+			 * status:
+			 * 	-1: error
+			 * 	 0: success
+			 * 	 1: redirection
+			 */
+			if (stream->count != 1)
+			{
+				WHERE;
+				printf("#1: received->count = %x\n", stream->count);
+			}
+
+			recv_status = transport->ReceiveCallback(transport, stream, transport->ReceiveExtra);
+			if (stream->tag != 0x12345678)
+			{
+				WHERE;
+				printf("received->tag = %x\n", stream->tag);
+			}
+			stream->tag = 0;
+			if (stream->count != 1)
+			{
+				WHERE;
+				printf("#2: received->count = %x\n", stream->count);
+			}
+			// Stream_Release(stream);
+			//printf("free : 0x%x 0x%x\n", stream, stream->buffer);
+			Stream_Free(stream, TRUE);
+			nest_count--;
+
+			/* session redirection or activation */
+			if (recv_status == 1 || recv_status == 2)
+			{
+				return recv_status;
+			}
+
+			if (recv_status < 0)
+			{
+				WLog_Print(transport->log, WLOG_ERROR,
+				           "transport_check_fds: transport->ReceiveCallback() - %i", recv_status);
+				return -1;
+			}
+
+			now = GetTickCount64();
 		}
-
-		received = transport->ReceiveBuffer;
-		received->tag = 0x12345678;
-
-		if (!(transport->ReceiveBuffer = StreamPool_Take(transport->ReceivePool, 0)))
-			return -1;
-
-		/**
-		 * status:
-		 * 	-1: error
-		 * 	 0: success
-		 * 	 1: redirection
-		 */
-		if (received->count != 1)
-		{
-			WHERE;
-			printf("#1: received->count = %x\n", received->count);
-		}
-
-		recv_status = transport->ReceiveCallback(transport, received, transport->ReceiveExtra);
-		if (received->tag != 0x12345678)
-		{
-			WHERE;
-			printf("received->tag = %x\n", received->tag);
-		}
-		received->tag = 0;
-		if (received->count != 1)
-		{
-			WHERE;
-			printf("#2: received->count = %x\n", received->count);
-		}
-		Stream_Release(received);
-
-		/* session redirection or activation */
-		if (recv_status == 1 || recv_status == 2)
-		{
-			return recv_status;
-		}
-
-		if (recv_status < 0)
-		{
-			WLog_Print(transport->log, WLOG_ERROR,
-			           "transport_check_fds: transport->ReceiveCallback() - %i", recv_status);
-			return -1;
-		}
-
-		now = GetTickCount64();
 	}
 
 	if (now >= dueDate)
@@ -1177,6 +1291,7 @@ rdpTransport* transport_new(rdpContext* context)
 	transport->context = context;
 	transport->settings = context->settings;
 	transport->ReceivePool = StreamPool_New(TRUE, BUFFER_SIZE);
+	transport->SendPool = StreamPool_New(TRUE, BUFFER_SIZE);
 
 	if (!transport->ReceivePool)
 		goto out_free_transport;

@@ -293,6 +293,7 @@ BOOL rdp_recv_deactivate_all(rdpRdp* rdp, wStream* s)
 
 	rdp_client_transition_to_state(rdp, CONNECTION_STATE_CAPABILITIES_EXCHANGE);
 
+	// –³Œø‚É‚µ‚Ä‚à•s‹ï‡•Ï‚í‚ç‚¸
 	for (timeout = 0; timeout < rdp->settings->TcpAckTimeout; timeout += 100)
 	{
 		if (rdp_check_fds(rdp) < 0)

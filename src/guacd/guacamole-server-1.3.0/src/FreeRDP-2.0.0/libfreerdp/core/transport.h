@@ -67,6 +67,7 @@ struct rdp_transport
 	wStream* ReceiveBuffer;
 	TransportRecv ReceiveCallback;
 	wStreamPool* ReceivePool;
+	wStreamPool* SendPool;
 	HANDLE connectedEvent;
 	BOOL NlaMode;
 	BOOL blocking;

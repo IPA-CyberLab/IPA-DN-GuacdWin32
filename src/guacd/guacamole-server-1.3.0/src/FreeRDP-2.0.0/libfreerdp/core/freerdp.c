@@ -258,6 +258,7 @@ BOOL freerdp_connect(freerdp* instance)
 		{
 			pcap_get_next_record_header(update->pcap_rfx, &record);
 
+			WHERE;
 			if (!(s = StreamPool_Take(rdp->transport->ReceivePool, record.length)))
 				break;
 

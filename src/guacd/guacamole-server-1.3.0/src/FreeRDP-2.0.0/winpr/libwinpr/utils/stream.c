@@ -30,6 +30,10 @@ BOOL Stream_EnsureCapacity(wStream* s, size_t size)
 {
 	if (s->capacity < size)
 	{
+		if (s->tag == 0x12345678)
+		{
+			WHERE;
+		}
 		size_t position;
 		size_t old_capacity;
 		size_t new_capacity;
@@ -86,10 +90,15 @@ wStream* Stream_New(BYTE* buffer, size_t size)
 	if (!s)
 		return NULL;
 
+	memset(s, 0, sizeof(wStream));
+
 	if (buffer)
 		s->buffer = buffer;
 	else
+	{
 		s->buffer = (BYTE*)malloc(size);
+		memset(s->buffer, 0, size);
+	}
 
 	if (!s->buffer)
 	{
@@ -110,6 +119,7 @@ wStream* Stream_New(BYTE* buffer, size_t size)
 
 void Stream_StaticInit(wStream* s, BYTE* buffer, size_t size)
 {
+	memset(s, 0, sizeof(wStream));
 	assert(s);
 	assert(buffer);
 
@@ -125,6 +135,9 @@ void Stream_Free(wStream* s, BOOL bFreeBuffer)
 {
 	if (s)
 	{
+		if (s->tag == 0x12345678)
+			WHERE;
+
 		if (bFreeBuffer && s->isOwner)
 			free(s->buffer);
 
