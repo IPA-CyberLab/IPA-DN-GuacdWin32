@@ -185,6 +185,7 @@ wStream* StreamPool_Take(wStreamPool* pool, size_t size)
 	{
 		s->pool = pool;
 		s->count = 1;
+		s->tag = 0;
 		StreamPool_AddUsed(pool, s);
 	}
 
@@ -273,14 +274,21 @@ void Stream_AddRef(wStream* s)
  * Decrement stream reference count
  */
 
-void Stream_Release(wStream* s)
+void Stream_ReleaseEx(wStream* s, char *file, DWORD line)
 {
 	DWORD count;
+
+	if (s->tag == 0x12345678)
+		WHERE;
 
 	if (s->pool)
 	{
 		StreamPool_Lock(s->pool);
 		count = --(s->count);
+		if (count == 4294967295)
+		{
+			printf("Double free? count = %u   %s %u\n", count, file, line);
+		}
 		StreamPool_Unlock(s->pool);
 
 		if (count == 0)

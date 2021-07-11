@@ -1039,6 +1039,7 @@ BOOL fastpath_send_multiple_input_pdu(rdpFastPath* fastpath, wStream* s, int iNu
 		goto fail;
 
 	rc = TRUE;
+	return rc; // 2021/07/11 by dnobori: fix double free
 fail:
 	Stream_Release(s);
 	return rc;

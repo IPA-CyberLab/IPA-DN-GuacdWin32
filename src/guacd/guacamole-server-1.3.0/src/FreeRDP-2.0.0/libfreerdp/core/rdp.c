@@ -148,7 +148,10 @@ BOOL rdp_read_share_control_header(wStream* s, UINT16* tpktLength, UINT16* remai
 {
 	UINT16 len;
 	if (Stream_GetRemainingLength(s) < 2)
+	{
+		WHERE;
 		return FALSE;
+	}
 
 	/* Share Control Header */
 	Stream_Read_UINT16(s, len); /* totalLength */
@@ -158,7 +161,10 @@ BOOL rdp_read_share_control_header(wStream* s, UINT16* tpktLength, UINT16* remai
 	if (len == 0x8000)
 	{
 		if (!rdp_read_flow_control_pdu(s, type, channel_id))
+		{
+			WHERE;
 			return FALSE;
+		}
 		*channel_id = 0;
 		if (tpktLength)
 			*tpktLength = 8; /* Flow control PDU is 8 bytes */
@@ -167,8 +173,14 @@ BOOL rdp_read_share_control_header(wStream* s, UINT16* tpktLength, UINT16* remai
 		return TRUE;
 	}
 
+		//printf("len = %u, Stream_GetRemainingLength(s) = %u\n", len, Stream_GetRemainingLength(s));
+
 	if ((len < 4) || ((len - 2) > Stream_GetRemainingLength(s)))
+	{
+		WHERE;
+		printf("error! len = %u, Stream_GetRemainingLength(s) = %u\n", len, Stream_GetRemainingLength(s));
 		return FALSE;
+	}
 
 	if (tpktLength)
 		*tpktLength = len;
@@ -640,6 +652,7 @@ BOOL rdp_send(rdpRdp* rdp, wStream* s, UINT16 channel_id)
 		goto fail;
 
 	rc = TRUE;
+	return rc; // 2021/07/11 by dnobori: fix double free
 fail:
 	Stream_Release(s);
 	return rc;
@@ -715,6 +728,7 @@ BOOL rdp_send_data_pdu(rdpRdp* rdp, wStream* s, BYTE type, UINT16 channel_id)
 		goto fail;
 
 	rc = TRUE;
+	return rc; // 2021/07/11 by dnobori: fix double free
 fail:
 	Stream_Release(s);
 	return rc;
@@ -747,6 +761,7 @@ BOOL rdp_send_message_channel_pdu(rdpRdp* rdp, wStream* s, UINT16 sec_flags)
 		goto fail;
 
 	rc = TRUE;
+	return rc;  // 2021/07/11 by dnobori: fix double free
 fail:
 	Stream_Release(s);
 	return rc;
@@ -1144,9 +1159,15 @@ BOOL rdp_read_flow_control_pdu(wStream* s, UINT16* type, UINT16* channel_id)
 	 */
 	UINT8 pduType;
 	if (!type)
+	{
+		WHERE;
 		return FALSE;
+	}
 	if (Stream_GetRemainingLength(s) < 6)
+	{
+		WHERE;
 		return FALSE;
+	}
 	Stream_Read_UINT8(s, pduType); /* pduTypeFlow */
 	*type = pduType;
 	Stream_Seek_UINT8(s);               /* pad8bits */
@@ -1169,6 +1190,8 @@ BOOL rdp_decrypt(rdpRdp* rdp, wStream* s, UINT16* pLength, UINT16 securityFlags)
 	BYTE wmac[8];
 	BOOL status;
 	INT32 length;
+
+	//WHERE;
 
 	if (!rdp || !s || !pLength)
 		return FALSE;
@@ -1224,17 +1247,25 @@ BOOL rdp_decrypt(rdpRdp* rdp, wStream* s, UINT16* pLength, UINT16 securityFlags)
 	if (!security_decrypt(Stream_Pointer(s), length, rdp))
 		return FALSE;
 
+	int flag = 0;
+
 	if (securityFlags & SEC_SECURE_CHECKSUM)
+	{
+		flag = 1;
 		status = security_salted_mac_signature(rdp, Stream_Pointer(s), length, FALSE, cmac);
+	}
 	else
+	{
+		flag = 2;
 		status = security_mac_signature(rdp, Stream_Pointer(s), length, cmac);
+	}
 
 	if (!status)
 		return FALSE;
 
 	if (memcmp(wmac, cmac, sizeof(wmac)) != 0)
 	{
-		WLog_ERR(TAG, "WARNING: invalid packet signature");
+		WLog_ERR(TAG, "WARNING: invalid packet signature  flag=%u", flag);
 		/*
 		 * Because Standard RDP Security is totally broken,
 		 * and cannot protect against MITM, don't treat signature

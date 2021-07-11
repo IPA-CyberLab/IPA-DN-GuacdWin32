@@ -996,6 +996,8 @@ int transport_drain_output_buffer(rdpTransport* transport)
 	return status;
 }
 
+static int nest_count = 0;
+
 int transport_check_fds(rdpTransport* transport)
 {
 	int status;
@@ -1048,6 +1050,7 @@ int transport_check_fds(rdpTransport* transport)
 		}
 
 		received = transport->ReceiveBuffer;
+		received->tag = 0x12345678;
 
 		if (!(transport->ReceiveBuffer = StreamPool_Take(transport->ReceivePool, 0)))
 			return -1;
@@ -1058,7 +1061,24 @@ int transport_check_fds(rdpTransport* transport)
 		 * 	 0: success
 		 * 	 1: redirection
 		 */
+		if (received->count != 1)
+		{
+			WHERE;
+			printf("#1: received->count = %x\n", received->count);
+		}
+
 		recv_status = transport->ReceiveCallback(transport, received, transport->ReceiveExtra);
+		if (received->tag != 0x12345678)
+		{
+			WHERE;
+			printf("received->tag = %x\n", received->tag);
+		}
+		received->tag = 0;
+		if (received->count != 1)
+		{
+			WHERE;
+			printf("#2: received->count = %x\n", received->count);
+		}
 		Stream_Release(received);
 
 		/* session redirection or activation */

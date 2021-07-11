@@ -878,7 +878,7 @@ freerdp_peer* freerdp_peer_new(int sockfd)
 	option_value = TRUE;
 	option_len = sizeof(option_value);
 	setsockopt(sockfd, IPPROTO_TCP, TCP_NODELAY, (void*)&option_value, option_len);
-
+	
 	if (client)
 	{
 		client->sockfd = sockfd;

@@ -522,6 +522,8 @@ static void fips_expand_key_bits(BYTE* in, BYTE* out)
 
 BOOL security_establish_keys(const BYTE* client_random, rdpRdp* rdp)
 {
+	WHERE;
+
 	BYTE pre_master_secret[48];
 	BYTE master_secret[48];
 	BYTE session_key_blob[48];
@@ -752,8 +754,9 @@ BOOL security_decrypt(BYTE* data, size_t length, rdpRdp* rdp)
 	if (rdp->rc4_decrypt_key == NULL)
 		goto fail;
 
-	if (rdp->decrypt_use_count >= 4096)
+	if (rdp->decrypt_use_count >= 4096) // •s‹ï‡‚Æ‚Í–³ŠÖŒW
 	{
+		// WHERE;
 		if (!security_key_update(rdp->decrypt_key, rdp->decrypt_update_key, rdp->rc4_key_len, rdp))
 			goto fail;
 

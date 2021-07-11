@@ -46,6 +46,7 @@ extern "C"
 		wStreamPool* pool;
 		BOOL isAllocatedStream;
 		BOOL isOwner;
+		DWORD tag;
 	};
 	typedef struct _wStream wStream;
 
@@ -413,7 +414,8 @@ extern "C"
 	WINPR_API void StreamPool_Return(wStreamPool* pool, wStream* s);
 
 	WINPR_API void Stream_AddRef(wStream* s);
-	WINPR_API void Stream_Release(wStream* s);
+	//WINPR_API void Stream_Release(wStream* s);
+	WINPR_API void Stream_ReleaseEx(wStream* s, char *file, DWORD line);
 
 	WINPR_API wStream* StreamPool_Find(wStreamPool* pool, BYTE* ptr);
 	WINPR_API void StreamPool_AddRef(wStreamPool* pool, BYTE* ptr);
@@ -427,5 +429,7 @@ extern "C"
 #ifdef __cplusplus
 }
 #endif
+
+#define Stream_Release(s) Stream_ReleaseEx(s, __FILE__, __LINE__);
 
 #endif /* WINPR_UTILS_STREAM_H */
