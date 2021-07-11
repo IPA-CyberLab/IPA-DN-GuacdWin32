@@ -397,6 +397,8 @@ BOOL rdp_read_header(rdpRdp* rdp, wStream* s, UINT16* length, UINT16* channelId)
 	MCSPDU = (rdp->settings->ServerMode) ? DomainMCSPDU_SendDataRequest
 	                                     : DomainMCSPDU_SendDataIndication;
 
+	*channelId = 0; /* Initialize in case of early abort */
+
 	if (!tpkt_read_header(s, length))
 		return FALSE;
 
@@ -1184,7 +1186,7 @@ BOOL rdp_read_flow_control_pdu(wStream* s, UINT16* type, UINT16* channel_id)
  * @param length int
  */
 
-BOOL rdp_decrypt(rdpRdp* rdp, wStream* s, UINT16* pLength, UINT16 securityFlags)
+BOOL rdp_decrypt(rdpRdp* rdp, wStream* s, UINT16* pLength, UINT16 securityFlags, int debugflag)
 {
 	BYTE cmac[8];
 	BYTE wmac[8];
@@ -1199,6 +1201,7 @@ BOOL rdp_decrypt(rdpRdp* rdp, wStream* s, UINT16* pLength, UINT16 securityFlags)
 	length = *pLength;
 	if (rdp->settings->EncryptionMethods == ENCRYPTION_METHOD_FIPS)
 	{
+		WHERE; // ’Ê‚ç‚ñ
 		UINT16 len;
 		BYTE version, pad;
 		BYTE* sig;
@@ -1241,6 +1244,14 @@ BOOL rdp_decrypt(rdpRdp* rdp, wStream* s, UINT16* pLength, UINT16 securityFlags)
 	Stream_Read(s, wmac, sizeof(wmac));
 	length -= sizeof(wmac);
 
+	if (debugflag)
+	{
+		int remain = Stream_GetRemainingLength(s);
+		int cap = Stream_GetRemainingCapacity(s);
+		int pos = Stream_GetPosition(s);
+		printf("rdp_decrypt: remain = %u, cap = %u, pos = %u\n", remain, cap, pos);
+	}
+
 	if (length <= 0)
 		return FALSE;
 
@@ -1273,7 +1284,7 @@ BOOL rdp_decrypt(rdpRdp* rdp, wStream* s, UINT16* pLength, UINT16 securityFlags)
 		 * us to work with broken RDP clients and servers that
 		 * generate invalid signatures.
 		 */
-		// return FALSE;
+		 return FALSE;
 	}
 
 	*pLength = length;
@@ -1346,7 +1357,8 @@ static int rdp_recv_tpkt_pdu(rdpRdp* rdp, wStream* s)
 
 		if (securityFlags & (SEC_ENCRYPT | SEC_REDIRECTION_PKT))
 		{
-			if (!rdp_decrypt(rdp, s, &length, securityFlags))
+			WHERE;
+			if (!rdp_decrypt(rdp, s, &length, securityFlags, 1))
 			{
 				WLog_ERR(TAG, "rdp_decrypt failed");
 				return -1;
@@ -1482,7 +1494,8 @@ static int rdp_recv_fastpath_pdu(rdpRdp* rdp, wStream* s)
 		UINT16 flags =
 		    (fastpath->encryptionFlags & FASTPATH_OUTPUT_SECURE_CHECKSUM) ? SEC_SECURE_CHECKSUM : 0;
 
-		if (!rdp_decrypt(rdp, s, &length, flags))
+		WHERE;
+		if (!rdp_decrypt(rdp, s, &length, flags, 0))
 		{
 			WLog_ERR(TAG, "rdp_recv_fastpath_pdu: rdp_decrypt() fail");
 			return -1;
@@ -1882,6 +1895,7 @@ fail:
 
 void rdp_reset(rdpRdp* rdp)
 {
+	WHERE;
 	rdpContext* context;
 	rdpSettings* settings;
 	context = rdp->context;

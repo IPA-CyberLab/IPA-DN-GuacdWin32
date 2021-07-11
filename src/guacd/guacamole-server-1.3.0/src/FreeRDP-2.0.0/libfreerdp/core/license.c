@@ -467,7 +467,8 @@ int license_recv(rdpLicense* license, wStream* s)
 
 	if (securityFlags & SEC_ENCRYPT)
 	{
-		if (!rdp_decrypt(license->rdp, s, &length, securityFlags))
+		WHERE;
+		if (!rdp_decrypt(license->rdp, s, &length, securityFlags, 0))
 		{
 			WLog_ERR(TAG, "rdp_decrypt failed");
 			return -1;

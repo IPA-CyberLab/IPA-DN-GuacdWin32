@@ -991,7 +991,8 @@ BOOL rdp_client_connect_auto_detect(rdpRdp* rdp, wStream* s)
 
 				if (securityFlags & SEC_ENCRYPT)
 				{
-					if (!rdp_decrypt(rdp, s, &length, securityFlags))
+					WHERE;
+					if (!rdp_decrypt(rdp, s, &length, securityFlags, 0))
 					{
 						WLog_ERR(TAG, "rdp_decrypt failed");
 						return FALSE;

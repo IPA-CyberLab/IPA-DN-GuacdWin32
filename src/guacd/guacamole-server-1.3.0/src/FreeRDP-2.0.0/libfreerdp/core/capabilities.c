@@ -3862,7 +3862,9 @@ BOOL rdp_recv_get_active_header(rdpRdp* rdp, wStream* s, UINT16* pChannelId, UIN
 
 		if (securityFlags & SEC_ENCRYPT)
 		{
-			if (!rdp_decrypt(rdp, s, length, securityFlags))
+			WHERE;
+			//printf("length = %u\n", *length);
+			if (!rdp_decrypt(rdp, s, length, securityFlags, 1))
 			{
 				WLog_ERR(TAG, "rdp_decrypt failed");
 				return FALSE;

@@ -458,9 +458,9 @@ BOOL security_salted_mac_signature(rdpRdp* rdp, const BYTE* data, UINT32 length,
 	memcpy(output, md5_digest, 8);
 	result = TRUE;
 out:
-	LeaveCriticalSection(&rdp->critical);
 	winpr_Digest_Free(sha1);
 	winpr_Digest_Free(md5);
+	LeaveCriticalSection(&rdp->critical);
 	return result;
 }
 
@@ -721,8 +721,10 @@ BOOL security_encrypt(BYTE* data, size_t length, rdpRdp* rdp)
 {
 	BOOL rc = FALSE; // dnobori 2021/07/10 https://github.com/Raven24/FreeRDP/commit/20c77eed7ff838710c24020f053bb66677c488a0#diff-f5d8fcbe9c76dab0a2ff441f2b400327cc72d34d91d66e9462435d95b563edcb
 	EnterCriticalSection(&rdp->critical);
+	//printf("rdp->encrypt_use_count = %u\n", rdp->encrypt_use_count);
 	if (rdp->encrypt_use_count >= 4096)
 	{
+		WHERE;
 		if (!security_key_update(rdp->encrypt_key, rdp->encrypt_update_key, rdp->rc4_key_len, rdp))
 			goto fail;
 
@@ -756,7 +758,7 @@ BOOL security_decrypt(BYTE* data, size_t length, rdpRdp* rdp)
 
 	if (rdp->decrypt_use_count >= 4096) // •s‹ï‡‚Æ‚Í–³ŠÖŒW
 	{
-		// WHERE;
+		WHERE;
 		if (!security_key_update(rdp->decrypt_key, rdp->decrypt_update_key, rdp->rc4_key_len, rdp))
 			goto fail;
 
@@ -788,7 +790,6 @@ BOOL security_hmac_signature(const BYTE* data, size_t length, BYTE* output, rdpR
 	BOOL result = FALSE;
 	EnterCriticalSection(&rdp->critical); // dnobori 2021/07/10 https://github.com/FreeRDP/FreeRDP/pull/6242
 	security_UINT32_le(use_count_le, rdp->encrypt_use_count);
-	LeaveCriticalSection(&rdp->critical);
 
 	if (!(hmac = winpr_HMAC_New()))
 		return FALSE;
@@ -809,6 +810,7 @@ BOOL security_hmac_signature(const BYTE* data, size_t length, BYTE* output, rdpR
 	result = TRUE;
 out:
 	winpr_HMAC_Free(hmac);
+	LeaveCriticalSection(&rdp->critical);
 	return result;
 }
 
@@ -847,7 +849,6 @@ BOOL security_fips_check_signature(const BYTE* data, size_t length, const BYTE* 
 	BOOL result = FALSE;
 	EnterCriticalSection(&rdp->critical); // dnobori 2021/07/10 https://github.com/FreeRDP/FreeRDP/pull/6242
 	security_UINT32_le(use_count_le, rdp->decrypt_use_count++);
-	LeaveCriticalSection(&rdp->critical);
 
 	if (!(hmac = winpr_HMAC_New()))
 		return FALSE;
@@ -869,5 +870,6 @@ BOOL security_fips_check_signature(const BYTE* data, size_t length, const BYTE* 
 
 out:
 	winpr_HMAC_Free(hmac);
+	LeaveCriticalSection(&rdp->critical);
 	return result;
 }
