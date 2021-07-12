@@ -88,6 +88,8 @@
 
 #define TAG FREERDP_TAG("core")
 
+extern int g_dn_is_for_localhost;
+
 /* Simple Socket BIO */
 
 struct _WINPR_BIO_SIMPLE_SOCKET
@@ -1142,6 +1144,28 @@ int freerdp_tcp_connect(rdpContext* context, rdpSettings* settings, const char* 
 				if (!addr)
 					addr = result;
 			}
+
+			int is_localhost = 0;
+
+			if (addr->ai_family == AF_INET)
+			{
+				struct sockaddr_in* in_addr = (struct sockaddr_in*)addr->ai_addr;
+				if (in_addr->sin_family == AF_INET)
+				{
+					unsigned char* v4addr = &in_addr->sin_addr;
+					if (v4addr[0] == 127)
+					{
+						is_localhost = 1;
+					}
+				}
+			}
+
+			if (is_localhost == 0 && g_dn_is_for_localhost)
+			{
+				printf("FATAL ERROR: Security: is_localhost = 0 && g_dn_is_for_localhost == 1\n");
+				exit(-1);
+			}
+
 
 			sockfd = socket(addr->ai_family, addr->ai_socktype, addr->ai_protocol);
 

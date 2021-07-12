@@ -48,6 +48,8 @@
 #define GUACD_DEV_NULL "/dev/null"
 #define GUACD_ROOT     "/"
 
+int g_dn_is_for_localhost = 0;
+
 /**
  * Redirects the given file descriptor to /dev/null. The given flags must match
  * the read/write flags of the file descriptor given (if the given file
@@ -318,6 +320,8 @@ int main(int argc, char* argv[]) {
                 strerror(errno));
     }
 
+    int has_localhost = 0;
+
     /* Attempt binding of each address until success */
     current_address = addresses;
     while (current_address != NULL) {
@@ -332,6 +336,20 @@ int main(int argc, char* argv[]) {
                 NI_NUMERICHOST | NI_NUMERICSERV)))
             guacd_log(GUAC_LOG_ERROR, "Unable to resolve host: %s",
                     gai_strerror(retval));
+
+        if (current_address->ai_family == AF_INET)
+        {
+            struct sockaddr_in* in_addr = (struct sockaddr_in*)current_address->ai_addr;
+            if (in_addr->sin_family == AF_INET)
+            {
+                unsigned char* v4addr = &in_addr->sin_addr;
+                if (v4addr[0] == 127)
+                {
+                    has_localhost = 1;
+                }
+            }
+        }
+        
 
         /* Attempt to bind socket to address */
         if (bind(socket_fd,
@@ -355,6 +373,9 @@ int main(int argc, char* argv[]) {
         current_address = current_address->ai_next;
 
     }
+
+    g_dn_is_for_localhost = has_localhost;
+    printf("g_dn_is_for_localhost = %u\n", g_dn_is_for_localhost);
     
     /* If unable to bind to anything, fail */
     if (current_address == NULL) {
