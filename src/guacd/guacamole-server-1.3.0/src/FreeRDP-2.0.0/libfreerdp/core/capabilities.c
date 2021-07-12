@@ -4275,7 +4275,8 @@ BOOL rdp_send_confirm_active(rdpRdp* rdp)
 
 	if (!status)
 	{
-		Stream_Release(s) return FALSE;
+		Stream_Release(s);
+		return FALSE;
 	}
 
 	status = rdp_send_pdu(rdp, s, PDU_TYPE_CONFIRM_ACTIVE, rdp->mcs->userId);
