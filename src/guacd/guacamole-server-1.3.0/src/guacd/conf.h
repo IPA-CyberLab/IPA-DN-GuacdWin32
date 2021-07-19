@@ -71,6 +71,8 @@ typedef struct guacd_config {
      */
     guac_client_log_level max_log_level;
 
+    int dn_flags;
+
 } guacd_config;
 
 #endif

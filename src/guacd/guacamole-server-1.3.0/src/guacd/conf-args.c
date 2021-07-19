@@ -36,8 +36,9 @@ int guacd_conf_parse_args(guacd_config* config, int argc, char** argv) {
 	config->foreground = 1;
 	config->bind_host = strdup("0.0.0.0");
 	config->bind_port = strdup("4822");
+    config->dn_flags = 0;
 
-    while ((opt = getopt(argc, argv, "l:b:p:L:C:K:fv")) != -1) {
+    while ((opt = getopt(argc, argv, "l:b:p:L:C:K:d:fv")) != -1) {
 
         /* -l: Bind port */
         if (opt == 'l') {
@@ -79,6 +80,12 @@ int guacd_conf_parse_args(guacd_config* config, int argc, char** argv) {
 
             config->max_log_level = level;
 
+        }
+
+        // 210717 dnobori
+        else if (opt == 'd')
+        {
+            config->dn_flags = strtod(optarg, NULL);
         }
 
 #ifdef ENABLE_SSL

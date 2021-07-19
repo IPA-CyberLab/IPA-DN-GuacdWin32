@@ -50,6 +50,8 @@
 
 int g_dn_is_for_localhost = 0;
 
+int g_dn_flags = 0;
+
 /**
  * Redirects the given file descriptor to /dev/null. The given flags must match
  * the read/write flags of the file descriptor given (if the given file
@@ -295,6 +297,9 @@ int main(int argc, char* argv[]) {
 
     /* Log start */
     guacd_log(GUAC_LOG_INFO, "Guacamole proxy daemon (guacd) version " VERSION " started");
+    guacd_log(GUAC_LOG_INFO, "dn_flag = %u", config->dn_flags);
+
+    g_dn_flags = config->dn_flags;
 
     /* Get addresses for binding */
     if ((retval = getaddrinfo(config->bind_host, config->bind_port,

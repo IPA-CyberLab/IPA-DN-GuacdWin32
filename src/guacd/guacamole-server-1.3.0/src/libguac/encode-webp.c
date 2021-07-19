@@ -34,6 +34,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+extern int g_dn_flags;
+
 /**
  * Structure which describes the current state of the WebP image writer.
  */
@@ -196,6 +198,14 @@ int guac_webp_write(guac_socket* socket, guac_stream* stream,
     config.quality = quality;
     config.thread_level = 1; /* Multi threaded */
     config.method = 2; /* Compression method (0=fast/larger, 6=slow/smaller) */
+
+    if (g_dn_flags & 1)
+    {
+        config.lossless = 1; /* force lossless */
+        config.quality = 30.f; /* prefer fast encoding over size */
+        config.thread_level = 0; /* Disable Multi thread */
+        config.method = 0; /* Compression method (0=fast/larger, 6=slow/smaller) */
+    }
 
     /* Validate configuration */
     WebPValidateConfig(&config);

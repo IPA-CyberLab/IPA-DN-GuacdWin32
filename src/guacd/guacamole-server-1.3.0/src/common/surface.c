@@ -34,6 +34,8 @@
 #include <stdint.h>
 #include <string.h>
 
+extern int g_dn_flags;
+
 /**
  * The width of an update which should be considered negible and thus
  * trivial overhead compared ot the cost of two updates.
@@ -556,6 +558,12 @@ static int __guac_common_surface_should_use_webp(guac_common_surface* surface,
     /* Do not use WebP if not supported */
     if (!guac_client_supports_webp(surface->client))
         return 0;
+
+    if (g_dn_flags & 1)
+    {
+        /* Prefer always WebP */
+        return 1;
+    }
 
     /* Calculate the average framerate for the given rect */
     int framerate = __guac_common_surface_calculate_framerate(surface, rect);
