@@ -1356,6 +1356,14 @@ static BOOL rdp_write_input_capability_set(wStream* s, const rdpSettings* settin
 	Stream_Write_UINT32(s, settings->KeyboardSubType);     /* keyboardSubType (4 bytes) */
 	Stream_Write_UINT32(s, settings->KeyboardFunctionKey); /* keyboardFunctionKeys (4 bytes) */
 	Stream_Zero(s, 64);                                    /* imeFileName (64 bytes) */
+
+	printf("--------\n");
+	printf("settings->KeyboardLayout = 0x%X\n", settings->KeyboardLayout);
+	printf("settings->KeyboardType = 0x%X\n", settings->KeyboardType);
+	printf("settings->KeyboardSubType = 0x%X\n", settings->KeyboardSubType);
+	printf("settings->KeyboardFunctionKey = 0x%X\n", settings->KeyboardFunctionKey);
+	printf("--------\n");
+
 	rdp_capability_set_finish(s, (UINT16)header, CAPSET_TYPE_INPUT);
 	return TRUE;
 }
