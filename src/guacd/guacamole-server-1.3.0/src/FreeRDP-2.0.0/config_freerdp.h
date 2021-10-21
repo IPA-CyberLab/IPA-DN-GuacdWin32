@@ -58,8 +58,8 @@
 /* #undef WITH_WINMM */
 /* #undef WITH_MACAUDIO */
 //////////// #define WITH_OSS
-#define WITH_ALSA
-#define WITH_PULSE
+//////#define WITH_ALSA
+//////#define WITH_PULSE
 /* #undef WITH_IOSAUDIO */
 /* #undef WITH_OPENSLES */
 /* #undef WITH_GSM */
