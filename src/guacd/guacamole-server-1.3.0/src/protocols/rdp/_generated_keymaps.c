@@ -2565,6 +2565,7 @@ static guac_rdp_keysym_desc __guac_rdp_keymap_ja_jp_qwerty[] = {
     { .keysym = 65320, .scancode = 41, .set_modifiers = 0, .clear_modifiers = 0 | GUAC_RDP_KEYMAP_MODIFIER_SHIFT, .set_locks = 0, .clear_locks = 0 },
     { .keysym = 65322, .scancode = 41, .set_modifiers = 0, .clear_modifiers = 0 | GUAC_RDP_KEYMAP_MODIFIER_SHIFT, .set_locks = 0, .clear_locks = 0 },
     { .keysym = 65321, .scancode = 41, .set_modifiers = 0 | GUAC_RDP_KEYMAP_MODIFIER_SHIFT, .clear_modifiers = 0, .set_locks = 0, .clear_locks = 0 },
+    { .keysym = 64641, .scancode = 11, .set_modifiers = 0 | GUAC_RDP_KEYMAP_MODIFIER_SHIFT, .clear_modifiers = 0, .set_locks = 0, .clear_locks = 0 },
     {0}
 };
 
